@@ -2,7 +2,7 @@ const path = require('node:path');
 const { spawn, fork } = require('node:child_process');
 const { name } = require("../../package.json");
 
-const { app, BrowserWindow, nativeImage, Tray, Menu } = require('electron');
+const { app, BrowserWindow, nativeImage, Tray, Menu, shell } = require('electron');
 const appName = app.getPath("exe");
 const expressAppUrl = "http://127.0.0.1:3000";
 let mainWindow = null;
@@ -10,12 +10,12 @@ const {server} = "../server/index.js";
 
 let tray = null;
 let browserWindow = null;
-
+let expressServerProcess = null;
 
 app.whenReady().then(async () => {
 	if (app.dock) app.dock.hide();
 
-	let expressServerProcess =  fork(`${__dirname}/../server/index.js`, [], {
+	expressServerProcess =  fork(`${__dirname}/../server/index.js`, [], {
 		cwd: `${__dirname}/../`
 	});
 	
@@ -31,28 +31,31 @@ app.whenReady().then(async () => {
 		tray.on('click', tray.popUpContextMenu);
 	}
 
+	tray.setToolTip('Sourcepool');
 
-	tray.addListener('mouse-up', () => {
-		browserWindow = new BrowserWindow();
-		browserWindow.loadURL("http://localhost:3000/");
-	})
+	updateMenu();
+	
+});
 
-
+const updateMenu = () => {
 	const menu = Menu.buildFromTemplate([
 		{
-		  label: 'Quit',
-		  click() { app.quit(); }
+			label: 'Server Info',
+			click() { 
+
+				shell.openExternal("http://localhost:3000/")
+
+			}
+		},
+		{ type: 'separator' },
+		{
+			label: 'Quit',
+			click() {
+				expressServerProcess.kill('SIGINT');
+				app.quit(); 
+			}
 		}
 	  ]);
-	
-	  tray.setToolTip('Clipmaster');
 	  tray.setContextMenu(menu);
-	
-});
-
-app.on('window-all-closed', () => {
-	if (process.platform !== 'darwin') {
-		app.quit();
-	}
-});
+}
 
