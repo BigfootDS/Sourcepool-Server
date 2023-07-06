@@ -1,3 +1,6 @@
+if(require('electron-squirrel-startup')) return;
+
+
 const path = require('node:path');
 const { spawn, fork } = require('node:child_process');
 const { name } = require("../../package.json");
@@ -20,9 +23,10 @@ app.whenReady().then(async () => {
 	});
 	
 
-	let icon = nativeImage.createFromPath('./icons/iconTemplate.png');
+	let icon = nativeImage.createFromPath(path.join(__dirname, 'public/favicon/transparentWhiteTemplate.png'));
 	icon = icon.resize({
-		width: 16
+		width: 16,
+		height: 16
 	});
 	icon.setTemplateImage(true);
 	tray = new Tray(icon);

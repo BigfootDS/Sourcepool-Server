@@ -1,21 +1,30 @@
 {
   "name": "sourcepool-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "A self-hosted content manager for TTRPG games.",
   "main": "src/electron/index.js",
   "scripts": {
-    "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron-forge start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "keywords": [],
-  "author": "",
+  "author": "BigfootDS",
   "license": "SEE LICENSE IN ORC_License_FINAL.pdf",
   "dependencies": {
     "cors": "^2.8.5",
+    "electron-squirrel-startup": "^1.0.0",
     "express": "^4.18.2",
     "systray2": "^2.1.4"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^6.2.1",
+    "@electron-forge/maker-deb": "^6.2.1",
+    "@electron-forge/maker-rpm": "^6.2.1",
+    "@electron-forge/maker-squirrel": "^6.2.1",
+    "@electron-forge/maker-zip": "^6.2.1",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.2.1",
     "electron": "^25.2.0"
   }
 }
