@@ -7,19 +7,27 @@ const { name } = require("../../package.json");
 
 const { app, BrowserWindow, nativeImage, Tray, Menu, shell } = require('electron');
 const appName = app.getPath("exe");
-const expressAppUrl = "http://127.0.0.1:3000";
 let mainWindow = null;
-const {server} = "../server/index.js";
 
 let tray = null;
 let browserWindow = null;
 let expressServerProcess = null;
+const PORT = 7474;
 
 app.whenReady().then(async () => {
 	if (app.dock) app.dock.hide();
 
+	if (process.env.NODE_ENV ==  "development") {
+		console.log("ElectronJS envs: \n"+JSON.stringify(process.env, null, 4));
+	}
+	expressServerEnvs = {...process.env};
+	expressServerEnvs.PORT = PORT;
+	expressServerEnvs.NODE_ENV = process.env.NODE_ENV || "development";
+
 	expressServerProcess =  fork(`${__dirname}/../server/index.js`, [], {
-		cwd: `${__dirname}/../`
+		cwd: `${__dirname}/../`,
+		env: expressServerEnvs
+
 	});
 	
 
@@ -47,7 +55,7 @@ const updateMenu = () => {
 			label: 'Server Info',
 			click() { 
 
-				shell.openExternal("http://localhost:3000/")
+				shell.openExternal(`http://localhost:${PORT}/`)
 
 			}
 		},

@@ -17,9 +17,31 @@ app.use(helmet.contentSecurityPolicy({
 var cors = require('cors')
 app.use(cors());
 
+// Debug error handling
+void process.on('unhandledRejection', (reason, p) => {
+	console.log(`Things got pretty major here! Big error:\n`+ JSON.stringify(p));
+	console.log(`That error happened because of:\n` + reason);
+});
+
+
+const {databaseConnector} = require('./database');
+
+if (process.env.NODE_ENV != 'test'){
+    databaseConnector("./sourcepoolData.db");
+	
+}
+
+
+
 app.get("/", (request, response) => {
 	response.json({
 		message:"Hello world!"
+	});
+});
+
+app.get("/envs", (request, response) => {
+	response.json({
+		envs: process.env
 	});
 });
 

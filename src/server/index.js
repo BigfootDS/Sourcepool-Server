@@ -19,6 +19,10 @@ D&D1E was released in 1974.
 
 const {app} = require('./server.js');
 
-app.listen(3000, () => {
+// if (process.env.NODE_ENV ==  "development") {
+// 	console.log("ExpressJS envs: \n"+JSON.stringify(process.env, null, 4));
+// }
+
+app.listen(PORT, HOST, () => {
 	console.log("Server running!");
 });
