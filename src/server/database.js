@@ -6,13 +6,23 @@ let db = null;
 // even if no data exists in it.
 // const {User} = require('./models/User');
 
-async function databaseConnector(databaseURL){
-	db = new Datastore({ filename: databaseURL });
+async function databaseConnector(){
+	db = {
+		general: null,
+		gameSettings: null,
+		players: null
+	};
 	try {
-		await db.loadDatabaseAsync()
+		for (const dStore of Object.keys(db)){
+			db[dStore] = new Datastore({ filename: `${process.env.npm_package_name}-${dStore}.db` });
+			await db[dStore].loadDatabaseAsync()
+		}
+		
 		console.log("Server connected to database!");
+		return db;
 	  } catch (error) {
 		console.log("Database loading failed, here is the attempted database URL:\n" + databaseURL);
+		return null;
 	  }
 }
 

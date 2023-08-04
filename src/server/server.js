@@ -25,11 +25,12 @@ void process.on('unhandledRejection', (reason, p) => {
 
 
 const {databaseConnector} = require('./database');
-
-if (process.env.NODE_ENV != 'test'){
-    databaseConnector("./sourcepoolData.db");
-	
-}
+let db = null;
+(async () => {
+	if (process.env.NODE_ENV != 'test'){
+		db = await databaseConnector();
+	}
+})();
 
 
 
@@ -44,5 +45,16 @@ app.get("/envs", (request, response) => {
 		envs: process.env
 	});
 });
+
+
+app.get("/databaseHealth", (request, response) => {
+
+	response.json({
+		collections: Object.keys(db)
+	});
+});
+
+
+
 
 module.exports = {app};
