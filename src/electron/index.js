@@ -16,13 +16,14 @@ const PORT = 7474;
 
 app.whenReady().then(async () => {
 	if (app.dock) app.dock.hide();
-
+	console.clear();
 	if (process.env.NODE_ENV ==  "development") {
 		console.log("ElectronJS envs: \n"+JSON.stringify(process.env, null, 4));
 	}
 	expressServerEnvs = {...process.env};
 	expressServerEnvs.PORT = PORT;
 	expressServerEnvs.NODE_ENV = process.env.NODE_ENV || "development";
+	expressServerEnvs.npm_package_name = process.env.npm_package_name || "sourcepool-server";
 
 	expressServerProcess =  fork(`${__dirname}/../server/index.js`, [], {
 		cwd: `${__dirname}/../`,
