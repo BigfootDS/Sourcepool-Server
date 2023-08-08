@@ -32,7 +32,7 @@ app.whenReady().then(async () => {
 	});
 	
 
-	let icon = nativeImage.createFromPath(path.join(__dirname, 'public/favicon/transparentWhiteTemplate.png'));
+	let icon = nativeImage.createFromPath(path.join(__dirname, 'public/favicon/android-chrome-192x192.png'));
 	icon = icon.resize({
 		width: 16,
 		height: 16
