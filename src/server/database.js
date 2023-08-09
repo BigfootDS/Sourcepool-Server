@@ -8,9 +8,8 @@ let db = null;
 
 async function databaseConnector(){
 	db = {
-		general: null,
-		gameSettings: null,
-		players: null
+		settings: null,
+		users: null
 	};
 	try {
 		for (const dStore of Object.keys(db)){
