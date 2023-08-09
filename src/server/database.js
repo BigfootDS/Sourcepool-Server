@@ -1,26 +1,25 @@
-const Datastore = require('@seald-io/nedb')
+const Datastore = require('@seald-io/nedb');
+
+var camo = require('camo');
+
+
 let db = null;
 
-// loading has succeeded
 // Require models here so the database has some structure
 // even if no data exists in it.
-// const {User} = require('./models/User');
+const {User} = require('./models/UserModel');
+const {Game} = require('./models/GameModel');
+const {Campaign} = require('./models/CampaignModel');
 
 async function databaseConnector(){
-	db = {
-		settings: null,
-		users: null
-	};
+	db = null;
 	try {
-		for (const dStore of Object.keys(db)){
-			db[dStore] = new Datastore({ filename: `${process.env.npm_package_name}-${dStore}.db` });
-			await db[dStore].loadDatabaseAsync()
-		}
+		db = await camo.connect(`nedb://${process.env.npm_package_name}/data`);
 		
 		console.log("Server connected to database!");
 		return db;
 	  } catch (error) {
-		console.log("Database loading failed, here is the attempted database URL:\n" + databaseURL);
+		console.log("Database loading failed, here is the error:\n" + error);
 		return null;
 	  }
 }

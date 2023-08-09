@@ -14,8 +14,12 @@ app.use(helmet.contentSecurityPolicy({
 
 // CORS settings
 // For now, just allow all traffic from all sources to reach this API.
-var cors = require('cors')
+var cors = require('cors');
 app.use(cors());
+
+// Configure the server instance to receive JSON data.
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 // Debug error handling
 void process.on('unhandledRejection', (reason, p) => {
@@ -23,16 +27,13 @@ void process.on('unhandledRejection', (reason, p) => {
 	console.log(`That error happened because of:\n` + reason);
 });
 
-
-const {databaseConnector} = require('./database');
-let db = null;
-(async () => {
-	if (process.env.NODE_ENV != 'test'){
-		db = await databaseConnector();
-	}
-})();
+const { databaseInitCheck } = require('./functions/serverUtils');
+databaseInitCheck();
 
 
+const { validateBasicAuth, requiresAdminUser } = require('./middleware/authMiddleware');
+
+app.use(validateBasicAuth);
 
 app.get("/", (request, response) => {
 	response.json({
@@ -40,20 +41,18 @@ app.get("/", (request, response) => {
 	});
 });
 
-app.get("/envs", (request, response) => {
-	response.json({
-		envs: process.env
+
+
+const serverUtilsRouter = require('./controllers/serverUtilities');
+app.use("/server", requiresAdminUser, serverUtilsRouter);
+
+
+app.use((error, request, response, next) => {
+	response.status(500).json({
+		message: "You did something that we haven't accounted for. Please raise an issue on GitHub!",
+		error: JSON.stringify(error)
 	});
 });
-
-
-app.get("/databaseHealth", (request, response) => {
-
-	response.json({
-		collections: Object.keys(db)
-	});
-});
-
 
 
 
