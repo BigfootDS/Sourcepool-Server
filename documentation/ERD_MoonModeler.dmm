@@ -1,0 +1,937 @@
+{
+	"tables": {
+		"f8305785-7aeb-430a-b0b0-14ae532c900f": {
+			"id": "f8305785-7aeb-430a-b0b0-14ae532c900f",
+			"visible": true,
+			"name": "User",
+			"desc": "Real human.",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "b99c4c13-c3ba-48b9-939b-08ae0af3a014",
+					"name": "_id",
+					"datatype": "objectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "098c4323-a9f2-41c7-8295-ff3f767635b6",
+					"name": "username",
+					"datatype": "string",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "ba368ab5-0880-4bd4-985f-0cb5b697ae79",
+					"name": "password",
+					"datatype": "string",
+					"param": "",
+					"pk": false,
+					"nn": false,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "0850555c-4d5d-4ab2-9485-5d1a5cc54313",
+					"name": "isAdmin",
+					"datatype": "bool",
+					"param": "",
+					"pk": false,
+					"nn": false,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				}
+			],
+			"relations": [
+				"e481ee67-402e-4ff0-83c4-e680de3e2709",
+				"f4aaab34-7c85-4f67-8d51-e69c9bfc8bed"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "b6387370-159a-4bce-bfe5-27b8fe40559a",
+					"name": "Primary key",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "ed7044c0-68a6-4c6e-b331-0803b0174de4",
+							"colid": "b99c4c13-c3ba-48b9-939b-08ae0af3a014"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"validationLevel": "na",
+			"validationAction": "na",
+			"collation": "",
+			"others": "",
+			"size": "",
+			"max": "",
+			"validation": "",
+			"capped": false
+		},
+		"9f9721a6-13dd-466f-a64b-4d0c82b673c8": {
+			"id": "9f9721a6-13dd-466f-a64b-4d0c82b673c8",
+			"visible": true,
+			"name": "Game",
+			"desc": "",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "eb40550b-41f8-4de8-8b83-f876d5cb1a52",
+					"name": "_id",
+					"datatype": "objectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "8f9305b4-17b4-4b1b-a715-ee43f110a50f",
+					"name": "name",
+					"datatype": "string",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				}
+			],
+			"relations": [
+				"4089b8e7-bf81-48cb-a5a2-e59005f24d4e"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "7bef6608-07a2-4c12-8a57-06ad52b9fa8b",
+					"name": "Primary key",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "9fc925dd-386d-453c-8da4-fafa99285f0a",
+							"colid": "eb40550b-41f8-4de8-8b83-f876d5cb1a52"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"validationLevel": "na",
+			"validationAction": "na",
+			"collation": "",
+			"others": "",
+			"size": "",
+			"max": "",
+			"validation": "",
+			"capped": false
+		},
+		"989715f4-9879-4b3d-8747-9282040e6eb5": {
+			"id": "989715f4-9879-4b3d-8747-9282040e6eb5",
+			"visible": true,
+			"name": "Campaign",
+			"desc": "",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "25d578d3-68b7-4c65-ad88-ee7ec4c478a1",
+					"name": "_id",
+					"datatype": "objectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "a9146c8a-8672-481f-9219-3f7e89204938",
+					"name": "name",
+					"datatype": "string",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "a1bffa78-1927-49f0-ab4d-b135bc813be0",
+					"name": "game",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "08a06454-3d69-48a1-8669-2a41fc1bcdef",
+					"name": "manager",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "be4a2f69-ffa7-4afa-a2f8-19e59a08444c",
+					"name": "universes",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				}
+			],
+			"relations": [
+				"4089b8e7-bf81-48cb-a5a2-e59005f24d4e",
+				"e481ee67-402e-4ff0-83c4-e680de3e2709",
+				"ca74b206-f366-4fb6-8d4a-b258f13d2c3e"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "87134377-1d66-4d00-870e-8107f0c8c7b6",
+					"name": "Primary key",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "c10cc482-013a-442e-9f19-a197c9d1315e",
+							"colid": "25d578d3-68b7-4c65-ad88-ee7ec4c478a1"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"validationLevel": "na",
+			"validationAction": "na",
+			"collation": "",
+			"others": "",
+			"size": "",
+			"max": "",
+			"validation": "",
+			"capped": false
+		},
+		"61efa08f-cf4d-4c2c-b807-22bc0a008903": {
+			"id": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
+			"visible": true,
+			"name": "Character",
+			"desc": "",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "dded48d2-ebba-4d10-9618-84f05443c72a",
+					"name": "_id",
+					"datatype": "objectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "bbc9b5db-7b5c-4855-87ef-ae4d6e5784bb",
+					"name": "name",
+					"datatype": "string",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "663c785a-2c77-4340-9436-a13261190171",
+					"name": "player",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				}
+			],
+			"relations": [
+				"f4aaab34-7c85-4f67-8d51-e69c9bfc8bed",
+				"1b99e75a-bcde-4334-9dcc-734a9aff62be"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "23703926-0c90-44e3-80c5-8ebc5ca900b6",
+					"name": "Primary key",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "1164a15f-4695-4bc5-99df-01d5599b5feb",
+							"colid": "dded48d2-ebba-4d10-9618-84f05443c72a"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"validationLevel": "na",
+			"validationAction": "na",
+			"collation": "",
+			"others": "",
+			"size": "",
+			"max": "",
+			"validation": "",
+			"capped": false
+		},
+		"87999c39-8fbe-4b2e-a733-906184f9a319": {
+			"id": "87999c39-8fbe-4b2e-a733-906184f9a319",
+			"visible": true,
+			"name": "Universe",
+			"desc": "",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "d4cb3752-94d1-4a58-8554-53753865cb03",
+					"name": "_id",
+					"datatype": "objectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "a2cefe3a-f110-44ae-9f77-df314049d7e0",
+					"name": "name",
+					"datatype": "string",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "8e4da7c2-23f2-4610-aeae-ad9f1d98e820",
+					"name": "places",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				}
+			],
+			"relations": [
+				"ca74b206-f366-4fb6-8d4a-b258f13d2c3e",
+				"678ecd9c-0618-4646-a864-b41e86cc7bb6"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "fb5ae2f2-8d82-40cd-a373-18daf176da26",
+					"name": "Primary key",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "4801e9e9-b87b-41ce-9d15-0d64aba344bd",
+							"colid": "d4cb3752-94d1-4a58-8554-53753865cb03"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"validationLevel": "na",
+			"validationAction": "na",
+			"collation": "",
+			"others": "",
+			"size": "",
+			"max": "",
+			"validation": "",
+			"capped": false
+		},
+		"4f252ab8-76ca-438f-a124-981b46ee22ac": {
+			"id": "4f252ab8-76ca-438f-a124-981b46ee22ac",
+			"visible": true,
+			"name": "Place",
+			"desc": "",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "b0438504-c391-4375-892f-bc05a9821560",
+					"name": "_id",
+					"datatype": "objectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "3af6713a-6ccf-413b-b25c-7ec26ca25da1",
+					"name": "name",
+					"datatype": "string",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "5b7dcc71-2d22-4fb8-9379-18a6c636511d",
+					"name": "characters",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "184b77de-1e36-4239-9876-f3e3dd66c445",
+					"name": "subplaces",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				}
+			],
+			"relations": [
+				"678ecd9c-0618-4646-a864-b41e86cc7bb6",
+				"1b99e75a-bcde-4334-9dcc-734a9aff62be",
+				"665c1789-acce-4c78-9e21-78181f21a262"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "86e5d693-657f-493c-b3ba-6f1f5ef20563",
+					"name": "Primary key",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "b72d9178-43d4-480f-aead-1baaa53b25c7",
+							"colid": "b0438504-c391-4375-892f-bc05a9821560"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"validationLevel": "na",
+			"validationAction": "na",
+			"collation": "",
+			"others": "",
+			"size": "",
+			"max": "",
+			"validation": "",
+			"capped": false
+		}
+	},
+	"relations": {
+		"4089b8e7-bf81-48cb-a5a2-e59005f24d4e": {
+			"id": "4089b8e7-bf81-48cb-a5a2-e59005f24d4e",
+			"visible": true,
+			"name": "Game_Campaign",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "7bef6608-07a2-4c12-8a57-06ad52b9fa8b",
+			"parent": "9f9721a6-13dd-466f-a64b-4d0c82b673c8",
+			"child": "989715f4-9879-4b3d-8747-9282040e6eb5",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "533b18ee-a893-436f-be0f-541e6ba320dc",
+					"parentcol": "eb40550b-41f8-4de8-8b83-f876d5cb1a52",
+					"childcol": "a1bffa78-1927-49f0-ab4d-b135bc813be0"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"e481ee67-402e-4ff0-83c4-e680de3e2709": {
+			"id": "e481ee67-402e-4ff0-83c4-e680de3e2709",
+			"visible": true,
+			"name": "User_Campaign",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "b6387370-159a-4bce-bfe5-27b8fe40559a",
+			"parent": "f8305785-7aeb-430a-b0b0-14ae532c900f",
+			"child": "989715f4-9879-4b3d-8747-9282040e6eb5",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "4af3ad0b-2871-4bc3-86b9-ba78d121cac4",
+					"parentcol": "b99c4c13-c3ba-48b9-939b-08ae0af3a014",
+					"childcol": "08a06454-3d69-48a1-8669-2a41fc1bcdef"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"f4aaab34-7c85-4f67-8d51-e69c9bfc8bed": {
+			"id": "f4aaab34-7c85-4f67-8d51-e69c9bfc8bed",
+			"visible": true,
+			"name": "User_Character",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "b6387370-159a-4bce-bfe5-27b8fe40559a",
+			"parent": "f8305785-7aeb-430a-b0b0-14ae532c900f",
+			"child": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "defb574d-9426-4f6b-88a1-5f271912ab39",
+					"parentcol": "b99c4c13-c3ba-48b9-939b-08ae0af3a014",
+					"childcol": "663c785a-2c77-4340-9436-a13261190171"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"ca74b206-f366-4fb6-8d4a-b258f13d2c3e": {
+			"id": "ca74b206-f366-4fb6-8d4a-b258f13d2c3e",
+			"visible": true,
+			"name": "Setting_Campaign",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "fb5ae2f2-8d82-40cd-a373-18daf176da26",
+			"parent": "87999c39-8fbe-4b2e-a733-906184f9a319",
+			"child": "989715f4-9879-4b3d-8747-9282040e6eb5",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "3cb300ea-b646-4528-a9c6-99743e21105e",
+					"parentcol": "d4cb3752-94d1-4a58-8554-53753865cb03",
+					"childcol": "be4a2f69-ffa7-4afa-a2f8-19e59a08444c"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"678ecd9c-0618-4646-a864-b41e86cc7bb6": {
+			"id": "678ecd9c-0618-4646-a864-b41e86cc7bb6",
+			"visible": true,
+			"name": "World_Setting",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "86e5d693-657f-493c-b3ba-6f1f5ef20563",
+			"parent": "4f252ab8-76ca-438f-a124-981b46ee22ac",
+			"child": "87999c39-8fbe-4b2e-a733-906184f9a319",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "73fc1883-15e2-4796-89a8-a8d37be91c3a",
+					"parentcol": "b0438504-c391-4375-892f-bc05a9821560",
+					"childcol": "8e4da7c2-23f2-4610-aeae-ad9f1d98e820"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"1b99e75a-bcde-4334-9dcc-734a9aff62be": {
+			"id": "1b99e75a-bcde-4334-9dcc-734a9aff62be",
+			"visible": true,
+			"name": "Character_World",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "23703926-0c90-44e3-80c5-8ebc5ca900b6",
+			"parent": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
+			"child": "4f252ab8-76ca-438f-a124-981b46ee22ac",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "405c984a-71a3-4e24-a91d-96779a7fe46a",
+					"parentcol": "dded48d2-ebba-4d10-9618-84f05443c72a",
+					"childcol": "5b7dcc71-2d22-4fb8-9379-18a6c636511d"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"665c1789-acce-4c78-9e21-78181f21a262": {
+			"id": "665c1789-acce-4c78-9e21-78181f21a262",
+			"visible": true,
+			"name": "Place_Place",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "86e5d693-657f-493c-b3ba-6f1f5ef20563",
+			"parent": "4f252ab8-76ca-438f-a124-981b46ee22ac",
+			"child": "4f252ab8-76ca-438f-a124-981b46ee22ac",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "ca135899-70b8-4d95-a959-34b774c7c7a0",
+					"parentcol": "b0438504-c391-4375-892f-bc05a9821560",
+					"childcol": "184b77de-1e36-4239-9876-f3e3dd66c445"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		}
+	},
+	"notes": {},
+	"lines": {},
+	"model": {
+		"name": "Sourcepool Server ERD",
+		"id": "a5429de8-406f-42a9-a101-fc5334bdfba3",
+		"activeDiagram": "3c0169c4-dbff-4428-87cd-e9927e4fc88d",
+		"desc": "",
+		"path": "",
+		"type": "MONGODB",
+		"version": 1,
+		"parentTableInFkCols": true,
+		"caseConvention": "under",
+		"replaceSpace": "_",
+		"color": "transparent",
+		"sideSelections": true,
+		"isDirty": true,
+		"storedin": {
+			"major": 7,
+			"minor": 2,
+			"extra": 2
+		},
+		"laststoredin": {
+			"major": 7,
+			"minor": 2,
+			"extra": 2
+		},
+		"writeFileParam": false,
+		"authorName": "",
+		"companyDetails": "",
+		"companyUrl": "",
+		"def_coltopk": true,
+		"def_validationLevel": "na",
+		"def_validationAction": "na",
+		"def_collation": "",
+		"def_others": "",
+		"lastSaved": "Thu Aug 10 2023 14:38:03 GMT+1000 (Australian Eastern Standard Time)"
+	},
+	"otherObjects": {},
+	"diagrams": {
+		"3c0169c4-dbff-4428-87cd-e9927e4fc88d": {
+			"name": "Main Diagram",
+			"description": "",
+			"id": "3c0169c4-dbff-4428-87cd-e9927e4fc88d",
+			"keysgraphics": true,
+			"linegraphics": "detailed",
+			"zoom": 1,
+			"background": "transparent",
+			"lineColor": "transparent",
+			"isOpen": true,
+			"main": true,
+			"diagramItems": {
+				"f8305785-7aeb-430a-b0b0-14ae532c900f": {
+					"referencedItemId": "f8305785-7aeb-430a-b0b0-14ae532c900f",
+					"x": 51,
+					"y": 204,
+					"gHeight": 99,
+					"gWidth": 203,
+					"color": "#ffffff",
+					"background": "#03a9f4",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10"
+				},
+				"9f9721a6-13dd-466f-a64b-4d0c82b673c8": {
+					"referencedItemId": "9f9721a6-13dd-466f-a64b-4d0c82b673c8",
+					"x": 66,
+					"y": 32,
+					"gHeight": 63,
+					"gWidth": 179,
+					"color": "#ffffff",
+					"background": "#03a9f4",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10"
+				},
+				"989715f4-9879-4b3d-8747-9282040e6eb5": {
+					"referencedItemId": "989715f4-9879-4b3d-8747-9282040e6eb5",
+					"x": 378,
+					"y": 57,
+					"gHeight": 117,
+					"gWidth": 218,
+					"color": "#ffffff",
+					"background": "#03a9f4",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10"
+				},
+				"61efa08f-cf4d-4c2c-b807-22bc0a008903": {
+					"referencedItemId": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
+					"x": 355,
+					"y": 306,
+					"gHeight": 81,
+					"gWidth": 194,
+					"color": "#ffffff",
+					"background": "#03a9f4",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10"
+				},
+				"87999c39-8fbe-4b2e-a733-906184f9a319": {
+					"referencedItemId": "87999c39-8fbe-4b2e-a733-906184f9a319",
+					"x": 674,
+					"y": 92,
+					"gHeight": 81,
+					"gWidth": 200,
+					"color": "#ffffff",
+					"background": "#03a9f4",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10"
+				},
+				"4f252ab8-76ca-438f-a124-981b46ee22ac": {
+					"referencedItemId": "4f252ab8-76ca-438f-a124-981b46ee22ac",
+					"x": 662,
+					"y": 283,
+					"gHeight": 99,
+					"gWidth": 223,
+					"color": "#ffffff",
+					"background": "#03a9f4",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10"
+				}
+			},
+			"scroll": {
+				"x": 0,
+				"y": 0
+			},
+			"type": "erd",
+			"showHorizontal": true,
+			"showDescriptions": true,
+			"showIndicators": true,
+			"showProgress": true,
+			"lineWidth": "2",
+			"boxSize": "0",
+			"showIndicatorCaptions": true,
+			"showEstimatedSize": false,
+			"showSchemaContainer": true,
+			"showEmbeddedInParents": true,
+			"showCardinalityCaptions": true,
+			"showColumns": true,
+			"showColumnDataTypes": true,
+			"showSampleData": false,
+			"showTableIndexes": true,
+			"showTableDescriptions": false,
+			"showRelations": true,
+			"backgroundImage": "na",
+			"descriptionsColor": "transparent"
+		}
+	},
+	"order": [],
+	"collapsedTreeItems": [],
+	"reverseStats": {}
+}
