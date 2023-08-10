@@ -1,21 +1,22 @@
 const Document = require('camo').Document;
 
-class Game extends Document{
+class Character extends Document{
 	constructor(){
 		super();
 
 		this.name = {
 			type: String,
-			unique: true,
 			required: true
 		};
-		
-
+		this.isPlayable = {
+			type: Boolean,
+			required: false
+		};
 
 	}
 
 	static collectionName() {
-		return 'games';
+		return 'characters';
 	}
 
 
@@ -23,5 +24,5 @@ class Game extends Document{
 
 
 module.exports = {
-	Game
+	Character: Character
 }
