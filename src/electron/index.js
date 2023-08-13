@@ -1,3 +1,4 @@
+// Prevent weird behaviours during Windows installation:
 if(require('electron-squirrel-startup')) return;
 
 
@@ -10,8 +11,9 @@ const appName = app.getPath("exe");
 let mainWindow = null;
 
 let tray = null;
+
+
 let browserWindow = null;
-let expressServerProcess = null;
 const PORT = 7474;
 
 app.whenReady().then(async () => {
@@ -20,18 +22,20 @@ app.whenReady().then(async () => {
 	if (process.env.NODE_ENV ==  "development") {
 		console.log("ElectronJS envs: \n"+JSON.stringify(process.env, null, 4));
 	}
-	expressServerEnvs = {...process.env};
-	expressServerEnvs.PORT = PORT;
-	expressServerEnvs.NODE_ENV = process.env.NODE_ENV || "development";
-	expressServerEnvs.npm_package_name = process.env.npm_package_name || "sourcepool-server";
-
-	expressServerProcess =  fork(`${__dirname}/../server/index.js`, [], {
-		cwd: `${__dirname}/../`,
-		env: expressServerEnvs
-
-	});
 	
+	process.env.NODE_ENV = "development";
+	process.env.npm_package_name = "sourcepool-server";
 
+	// if(require('electron-squirrel-startup')) return;
+
+	// expressServerProcess =  fork(`${__dirname}/../server/index.js`, [], {
+	// 	cwd: `${__dirname}/../`,
+	// 	env: expressServerEnvs
+
+	// });
+	
+	require('../server/index');
+	
 	let icon = nativeImage.createFromPath(path.join(__dirname, 'public/favicon/android-chrome-192x192.png'));
 	icon = icon.resize({
 		width: 16,
@@ -39,11 +43,11 @@ app.whenReady().then(async () => {
 	});
 	icon.setTemplateImage(true);
 	tray = new Tray(icon);
-
+	
 	if (process.platform === 'win32') {
 		tray.on('click', tray.popUpContextMenu);
 	}
-
+	
 	tray.setToolTip('Sourcepool');
 
 	updateMenu();
@@ -64,11 +68,19 @@ const updateMenu = () => {
 		{
 			label: 'Quit',
 			click() {
-				expressServerProcess.kill('SIGINT');
 				app.quit(); 
 			}
 		}
 	  ]);
+
+	  
 	  tray.setContextMenu(menu);
+
+	  tray.on('double-click', () => {
+		return null;
+	  });
+	  tray.on('click', () => {
+		return null;
+	  });
 }
 

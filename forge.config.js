@@ -5,27 +5,31 @@ module.exports = {
   rebuildConfig: {},
   makers: [
     {
+      // Windows installer
       name: '@electron-forge/maker-squirrel',
-      config: { // TODO
-        certificateFile: './cert.pfx', 
-        certificatePassword: process.env.CERTIFICATE_PASSWORD 
+      config: {
+        // Only need these if using electron-winstaller directly instead?? 
+        // certificateFile: './cert.pfx', 
+        // certificatePassword: process.env.CERTIFICATE_PASSWORD 
       }
     },
     {
+      // Ubuntu installer
       name: '@electron-forge/maker-snap',
       config: {
         features: { // TODO
           audio: true,
-          mpris: 'com.example.mpris',
+          mpris: 'com.bigfootds.sourcepool',
           webgl: true
         },
-        summary: 'Pretty Awesome'
+        summary: 'Sourcepool'
       }
     },
     {
+      // MacOS installer
       name: '@electron-forge/maker-dmg',
       config: {
-        background: './assets/dmg-background.png', // TODO
+        background: './assets/Sourcepool-Parchment-Background-500px.png', // TODO
         format: 'ULFO'
       }
     }
