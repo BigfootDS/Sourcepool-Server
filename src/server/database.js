@@ -14,7 +14,7 @@ const {Campaign} = require('./models/CampaignModel');
 async function databaseConnector(){
 	db = null;
 	try {
-		db = await camo.connect(`nedb://${process.env.npm_package_name}/data`);
+		db = await camo.connect(`nedb://${process.env.userStorageDir}/data`);
 		
 		console.log("Server connected to database!");
 		return db;

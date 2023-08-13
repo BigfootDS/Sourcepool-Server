@@ -1,67 +1,75 @@
 // Prevent weird behaviours during Windows installation:
 if(require('electron-squirrel-startup')) return;
 
-
+const fs = require('fs');
 const path = require('node:path');
-const { spawn, fork } = require('node:child_process');
-const { name } = require("../../package.json");
 
-const { app, BrowserWindow, nativeImage, Tray, Menu, shell } = require('electron');
-const appName = app.getPath("exe");
-let mainWindow = null;
+const { app, Tray, Menu, shell } = require('electron');
 
 let tray = null;
-
-
-let browserWindow = null;
 const PORT = 7474;
 
 app.whenReady().then(async () => {
+	// If MacOS app dock is available, hide the app
 	if (app.dock) app.dock.hide();
-	console.clear();
+
+	// Set package name in case Electron removes it,
+	// it just helps with database file tidiness
+	process.env.npm_package_name = "sourcepool-server";
+	process.env.userStorageDir = app.getPath('userData');
+	
+	// Confirm what environment variables are available to the app:
 	if (process.env.NODE_ENV ==  "development") {
 		console.log("ElectronJS envs: \n"+JSON.stringify(process.env, null, 4));
 	}
 	
-	process.env.NODE_ENV = "development";
-	process.env.npm_package_name = "sourcepool-server";
-
-	// if(require('electron-squirrel-startup')) return;
-
-	// expressServerProcess =  fork(`${__dirname}/../server/index.js`, [], {
-	// 	cwd: `${__dirname}/../`,
-	// 	env: expressServerEnvs
-
-	// });
-	
+	// Start up the server:
 	require('../server/index');
 	
-	let icon = nativeImage.createFromPath(path.join(__dirname, 'public/favicon/android-chrome-192x192.png'));
-	icon = icon.resize({
-		width: 16,
-		height: 16
-	});
-	icon.setTemplateImage(true);
-	tray = new Tray(icon);
-	
-	if (process.platform === 'win32') {
-		tray.on('click', tray.popUpContextMenu);
-	}
-	
-	tray.setToolTip('Sourcepool');
+	// Configure the app tray icon:
+	let iconName = process.platform === 'win32' ? 'favicon-32x32' : 'macos-icon';
+	let iconPath = path.join(__dirname, `./public/favicon/${iconName}.png`);
 
+	// Instantiate the Tray
+	tray = new Tray(iconPath);
+	// Tray logic stored in a function:
 	updateMenu();
 	
 });
 
 const updateMenu = () => {
+	
+	tray.setToolTip('Sourcepool');
+
+	if (process.platform === 'win32') {
+		tray.on('click', (event, bounds) => {
+			tray.popUpContextMenu();
+		});
+	}
+	
 	const menu = Menu.buildFromTemplate([
 		{
 			label: 'Server Info',
 			click() { 
+				shell.openExternal(`http://localhost:${PORT}/`);
+			}
+		},
+		{
+			label: 'Data Packs Location',
+			click() { 
+				let dataPacksPath = path.join(app.getPath('documents'), "Sourcepool", "Server Data Packs");
+				
+				if (!fs.existsSync(dataPacksPath)){
+					console.log("Data packs directory did not exist, creating it now...");
+					fs.mkdirSync(dataPacksPath, {recursive: true});
+				}
 
-				shell.openExternal(`http://localhost:${PORT}/`)
-
+				const {openExplorer} = require('explorer-opener');
+				openExplorer(dataPacksPath).then(() => {
+					console.log("Opening data packs directory now...");
+				}).catch((error) => {
+					console.log(error);
+				});
 			}
 		},
 		{ type: 'separator' },
@@ -75,12 +83,5 @@ const updateMenu = () => {
 
 	  
 	  tray.setContextMenu(menu);
-
-	  tray.on('double-click', () => {
-		return null;
-	  });
-	  tray.on('click', () => {
-		return null;
-	  });
 }
 

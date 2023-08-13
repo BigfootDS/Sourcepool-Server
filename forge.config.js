@@ -1,6 +1,8 @@
 module.exports = {
   packagerConfig: {
     asar: true,
+    name:"Sourcepool",
+    icon: './assets/sourcepool-icon'
   },
   rebuildConfig: {},
   makers: [
@@ -11,6 +13,8 @@ module.exports = {
         // Only need these if using electron-winstaller directly instead?? 
         // certificateFile: './cert.pfx', 
         // certificatePassword: process.env.CERTIFICATE_PASSWORD 
+        name: "Sourcepool",
+        title:"Sourcepool",
       }
     },
     {
