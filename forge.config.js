@@ -2,7 +2,7 @@ module.exports = {
   packagerConfig: {
     asar: true,
     name:"Sourcepool",
-    icon: './assets/sourcepool-icon'
+    icon: '/assets/sourcepool-icon'
   },
   rebuildConfig: {},
   makers: [
@@ -15,6 +15,8 @@ module.exports = {
         // certificatePassword: process.env.CERTIFICATE_PASSWORD 
         name: "Sourcepool",
         title:"Sourcepool",
+        iconUrl:"https://bigfootds.github.io/Sourcepool/assets/images/sourcepool-icon.ico",
+        setupIcon:"./assets/sourcepool-icon.ico"
       }
     },
     {
@@ -26,7 +28,8 @@ module.exports = {
           mpris: 'com.bigfootds.sourcepool',
           webgl: true
         },
-        summary: 'Sourcepool'
+        summary: 'Sourcepool',
+        icon:"./assets/safari-pinned-tab.svg"
       }
     },
     {
@@ -34,7 +37,8 @@ module.exports = {
       name: '@electron-forge/maker-dmg',
       config: {
         background: './assets/Sourcepool-Parchment-Background-500px.png', // TODO
-        format: 'ULFO'
+        format: 'ULFO',
+        icon:"./assets/sourcepool-icon.icns"
       }
     }
   ],
