@@ -2,7 +2,7 @@ module.exports = {
   packagerConfig: {
     asar: true,
     name:"Sourcepool",
-    icon: '/assets/sourcepool-icon'
+    icon: './assets/sourcepool-icon'
   },
   rebuildConfig: {},
   makers: [
