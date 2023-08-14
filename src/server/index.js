@@ -13,16 +13,29 @@ Lidarr = 8686
 Readarr = 8787
 Whisparr = 6969
 Prowlarr = 9696
+
 Sourcepool = 7474
-D&D1E was released in 1974.
+
+D&D1E was released in 1974, so 1974 -> 74 -> 7474.
 */
 
 const {app} = require('./server.js');
 
-// if (process.env.NODE_ENV ==  "development") {
-// 	console.log("ExpressJS envs: \n"+JSON.stringify(process.env, null, 4));
-// }
+const detect = require('detect-port');
 
-app.listen(PORT, HOST, () => {
-	console.log("Server running!");
+detect(PORT).then(_port => {
+	if (PORT == _port){
+		// port is available to use
+		app.listen(PORT, HOST, () => {
+			console.log("Server running!");
+		});
+	} else {
+		// port is not available to use
+		console.warn(
+`Port ${PORT} was not available, Sourcepool will now close.`);
+		process.exit(1);
+	}
+}).catch(error => {
+	//console.log(error);
 });
+
