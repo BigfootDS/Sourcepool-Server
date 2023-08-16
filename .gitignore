@@ -145,5 +145,6 @@ dist
 
 
 *.DS_Store
+**/.DS_Store
 *.Identifier
 *.db
