@@ -4,7 +4,7 @@ if(require('electron-squirrel-startup')) return;
 const fs = require('fs');
 const path = require('node:path');
 
-const { app, Tray, Menu, shell } = require('electron');
+const { app, Tray, Menu, shell, nativeImage } = require('electron');
 
 let tray = null;
 const PORT = 7474;
@@ -27,11 +27,25 @@ app.whenReady().then(async () => {
 	require('../server/index');
 	
 	// Configure the app tray icon:
-	let iconName = process.platform === 'win32' ? 'favicon-32x32' : 'macos-icon';
-	let iconPath = path.join(__dirname, `./public/favicon/${iconName}.png`);
 
-	// Instantiate the Tray
-	tray = new Tray(iconPath);
+	if (process.platform === 'win32'){
+		// Windows setup
+		let iconName = 'favicon-32x32';
+		let iconPath = path.join(__dirname, `./public/favicon/${iconName}.png`);
+		tray = new Tray(iconPath);
+	} else {
+		// Linux & MacOS setup
+		let iconName = 'macos-icon';
+		let iconPath = path.join(__dirname, `./public/favicon/${iconName}.png`);
+		let iconNativeImage = nativeImage.createFromPath(iconPath);
+		iconNativeImage = iconNativeImage.resize({
+			height: 16,
+			width: 16
+		});
+		tray = new Tray(iconNativeImage);
+	}
+
+
 	// Tray logic stored in a function:
 	updateMenu();
 	

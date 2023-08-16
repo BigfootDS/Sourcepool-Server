@@ -36,7 +36,7 @@ module.exports = {
       // MacOS installer
       name: '@electron-forge/maker-dmg',
       config: {
-        background: './assets/Sourcepool-Parchment-Background-500px.png', // TODO
+        background: './assets/Sourcepool-Parchment-Background-DMG-Installer-Size.png', 
         format: 'ULFO',
         icon:"./assets/sourcepool-icon.icns"
       }
