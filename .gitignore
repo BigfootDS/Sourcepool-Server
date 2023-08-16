@@ -148,3 +148,4 @@ dist
 **/.DS_Store
 *.Identifier
 *.db
+src/electron/.DS_Store
