@@ -1107,7 +1107,7 @@
 			"id": "4a1029ec-989d-40fe-80fd-66068bdb64e1",
 			"visible": true,
 			"name": "READ DESCRIPTION - Lore",
-			"desc": "Everything has a name and description. For the sake of the ERD's tidyness, it will not be shown on all tables.\n\nAdditionally, the name and description should both be an array of LocalizedContent, which will look like:\n\n ({lang:\"en\", content: \"Godly Greatsword\"})",
+			"desc": "Everything has a name and description. For the sake of the ERD's tidyness, it will not be shown on all tables.\n",
 			"estimatedSize": "",
 			"cols": [
 				{
@@ -1813,7 +1813,7 @@
 		"def_validationAction": "na",
 		"def_collation": "",
 		"def_others": "",
-		"lastSaved": "Fri Aug 11 2023 21:11:26 GMT+1000 (Australian Eastern Standard Time)"
+		"lastSaved": "Sat Aug 12 2023 14:50:20 GMT+1000 (Australian Eastern Standard Time)"
 	},
 	"otherObjects": {},
 	"diagrams": {

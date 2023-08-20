@@ -30,9 +30,10 @@ void process.on('unhandledRejection', (reason, p) => {
 const { databaseInitCheck } = require('./functions/serverUtils');
 databaseInitCheck();
 
+const {readServerConfig} = require('./middleware/serverMiddleware');
+app.use(readServerConfig);
 
 const { validateBasicAuth, requiresAdminUser } = require('./middleware/authMiddleware');
-
 app.use(validateBasicAuth);
 
 app.get("/", (request, response) => {

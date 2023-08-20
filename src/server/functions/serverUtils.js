@@ -5,6 +5,7 @@ const {databaseConnector} = require('../database');
 const { Game } = require('../models/GameModel');
 const { User } = require('../models/UserModel');
 const { Campaign } = require('../models/CampaignModel');
+const {ServerConfig} = require('../models/ServerConfig');
 let db = null;
 const databaseInitCheck = async () => {
 	if (process.env.NODE_ENV != 'test'){
@@ -24,6 +25,18 @@ const databaseInitCheck = async () => {
 			let savedAdmin = await newAdmin.save();
 			console.log("New admin now exists:\n" + JSON.stringify(savedAdmin, null, 4));
 		}
+
+
+		let serverSettings = await ServerConfig.findOne({});
+		if (serverSettings == null){
+			console.log("No settings were configured, creating server default settings now.");
+			let newServerSettings = ServerConfig.create({
+				requireAuth: false
+			});
+			let savedServerSettings = await newServerSettings.save();
+			console.log("New server settings now exists:\n" + JSON.stringify(savedServerSettings, null, 4));
+		}
+
 
 		// Just force models to exist for structure/debugging purposes
 		let dummyGame = Game.create({

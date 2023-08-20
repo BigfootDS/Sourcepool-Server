@@ -1,15 +1,15 @@
+const { Lore } = require('./LoreEmbeddedModel');
+
 const Document = require('camo').Document;
 
 class Game extends Document{
 	constructor(){
 		super();
 
-		this.name = {
-			type: String,
-			unique: true,
+		this.description = {
+			type:[Lore],
 			required: true
-		};
-		
+		}		
 
 
 	}

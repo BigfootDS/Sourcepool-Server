@@ -21,14 +21,15 @@ const requiresAdminUser = async (request, response, next) => {
 }
 
 
-const validateBasicAuth = (request, response, next) => {
+const validateBasicAuth = async (request, response, next) => {
+
 
 	// Assign the header to something easier to work with, if it exists.
 	let authHeader = request.headers["authorization"] ?? null;
 	console.log("authheader:" + authHeader);
 
 	// If no auth header provided, don't waste our time on the rest of this function.
-	if (authHeader == null || authHeader?.length < 1) {
+	if (request.serverSettings.requireAuth && (authHeader == null || authHeader?.length < 1)) {
 		return response.status(403).json({
 			error: "Authentication required to access this resource."
 		});
