@@ -1,3 +1,4 @@
+const { AbilityScore } = require('./AbilityScoreModel');
 const { Lore } = require('./LoreEmbeddedModel');
 
 const Document = require('camo').Document;
@@ -15,6 +16,11 @@ class Character extends Document{
 			required: false
 		};
 
+
+		this.abilityScores = {
+			type: [AbilityScore],
+			required: true
+		}
 	}
 
 	static collectionName() {
