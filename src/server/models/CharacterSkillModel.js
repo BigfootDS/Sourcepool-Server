@@ -1,29 +1,29 @@
-const { Ability } = require('./AbilityModel');
+const { Skill } = require('./SkillModel');
 
 const EmbeddedDocument = require('camo').EmbeddedDocument;
 
-class AbilityScore extends EmbeddedDocument{
+class CharacterSkill extends EmbeddedDocument{
 	constructor(){
 		super();
 
-		this.value = {
+		this.multiplier = {
 			type: Number,
 			required: true,
-			default: 8,
+			default: 1,
 		}
 
-		this.ability = {
-			type: Ability,
+		this.skill = {
+			type: Skill,
 			required: true
 		}
 	}
 
 	static collectionName() {
-		return 'abilityscores';
+		return 'characterskills';
 	}
 }
 
 
 module.exports = {
-	AbilityScore
+	CharacterSkill
 }
