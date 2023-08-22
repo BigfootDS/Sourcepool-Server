@@ -346,13 +346,13 @@
 					"fk": true
 				},
 				{
-					"id": "567239fc-9e12-46e5-a4dc-afda84e8287d",
-					"name": "statblock",
+					"id": "16ec9d98-b82d-46ba-9fb6-383e9e6e3a04",
+					"name": "abilityScores",
 					"datatype": "objectId",
 					"param": "",
 					"pk": false,
 					"nn": true,
-					"list": false,
+					"list": true,
 					"comment": "",
 					"data": "",
 					"enum": "",
@@ -398,7 +398,7 @@
 				},
 				{
 					"id": "e8601de4-f666-4129-87a5-d2c0f00e0be1",
-					"name": "activeConditions",
+					"name": "conditionActives",
 					"datatype": "objectId",
 					"param": "",
 					"pk": false,
@@ -415,7 +415,7 @@
 				},
 				{
 					"id": "079e3e9f-fb3e-4eda-8138-a73d9aa4ac9c",
-					"name": "immuneConditions",
+					"name": "conditionImmunities",
 					"datatype": "objectId",
 					"param": "",
 					"pk": false,
@@ -431,8 +431,8 @@
 					"fk": true
 				},
 				{
-					"id": "1e15b54c-664e-4c44-ac64-d3c5ec726549",
-					"name": "vulnerabilities",
+					"id": "063aec3f-c9f3-432b-9a0a-1137ae2b76c7",
+					"name": "damageVulnerabilities",
 					"datatype": "objectId",
 					"param": "",
 					"pk": false,
@@ -448,8 +448,8 @@
 					"fk": true
 				},
 				{
-					"id": "8068d9e2-75c2-4e27-9ea4-90315b926075",
-					"name": "resistances",
+					"id": "9aeb0613-70a6-417c-a734-603cd5ce18d6",
+					"name": "damageResistances",
 					"datatype": "objectId",
 					"param": "",
 					"pk": false,
@@ -465,8 +465,8 @@
 					"fk": true
 				},
 				{
-					"id": "f2190fe0-d9eb-4ef0-9107-3469bdc276d7",
-					"name": "immuneDamages",
+					"id": "77b174d7-9ffb-40c5-b8a1-c7ace6cf44da",
+					"name": "damageImmunities",
 					"datatype": "objectId",
 					"param": "",
 					"pk": false,
@@ -485,14 +485,14 @@
 			"relations": [
 				"f4aaab34-7c85-4f67-8d51-e69c9bfc8bed",
 				"1b99e75a-bcde-4334-9dcc-734a9aff62be",
-				"ed8ceb77-117a-4514-9879-f96aed9fa7b1",
 				"2873ca0f-e3ae-4dc6-abde-14264e4e70f3",
 				"4c2e251d-7d71-4dd3-99e4-84319665820b",
 				"09e83077-db9e-49aa-8bdd-345dfdc95d2e",
 				"1226b704-92df-4f4e-bc54-a5a9d5250834",
-				"63725cfd-891e-4388-9f90-00d8e47f76cd",
-				"2d00271e-3816-48c6-9f13-689d5c9acf1d",
-				"d130ff77-e94d-4651-8629-e5e05516864c"
+				"85d00356-1aef-4070-934f-016468d5a588",
+				"2daf07a6-ce1b-4486-b4ea-6db043af0053",
+				"57869056-fe22-4979-8266-812fd7976ba7",
+				"8766560c-b968-4979-8468-26c53b8b6a75"
 			],
 			"lines": [],
 			"keys": [
@@ -786,164 +786,11 @@
 			"validation": "",
 			"capped": false
 		},
-		"d10116f9-ef35-4445-83ae-e3fd9a9261da": {
-			"id": "d10116f9-ef35-4445-83ae-e3fd9a9261da",
-			"visible": true,
-			"name": "Statblock",
-			"desc": "",
-			"estimatedSize": "",
-			"cols": [
-				{
-					"id": "34ee4f0c-04c0-4ff2-a22b-1ff70029e1a8",
-					"name": "_id",
-					"datatype": "objectId",
-					"param": "",
-					"pk": true,
-					"nn": true,
-					"list": false,
-					"comment": "",
-					"data": "",
-					"enum": "",
-					"validation": "",
-					"pattern": false,
-					"estimatedSize": "",
-					"any": ""
-				},
-				{
-					"id": "0a532dbb-79e2-4e5d-b110-25c5374ac887",
-					"name": "strength",
-					"datatype": "double",
-					"param": "",
-					"pk": false,
-					"nn": true,
-					"list": false,
-					"comment": "",
-					"data": "",
-					"enum": "",
-					"validation": "",
-					"pattern": false,
-					"estimatedSize": "",
-					"any": ""
-				},
-				{
-					"id": "3791c127-f445-4494-865c-9450de19441b",
-					"name": "dexterity",
-					"datatype": "double",
-					"param": "",
-					"pk": false,
-					"nn": true,
-					"list": false,
-					"comment": "",
-					"data": "",
-					"enum": "",
-					"validation": "",
-					"pattern": false,
-					"estimatedSize": "",
-					"any": ""
-				},
-				{
-					"id": "15ef8ef2-f3fe-4961-b12d-e8eff9834f31",
-					"name": "constitution",
-					"datatype": "double",
-					"param": "",
-					"pk": false,
-					"nn": true,
-					"list": false,
-					"comment": "",
-					"data": "",
-					"enum": "",
-					"validation": "",
-					"pattern": false,
-					"estimatedSize": "",
-					"any": ""
-				},
-				{
-					"id": "75f65515-6476-42dd-8e95-b6fb4ee7f9eb",
-					"name": "intelligence",
-					"datatype": "double",
-					"param": "",
-					"pk": false,
-					"nn": true,
-					"list": false,
-					"comment": "",
-					"data": "",
-					"enum": "",
-					"validation": "",
-					"pattern": false,
-					"estimatedSize": "",
-					"any": ""
-				},
-				{
-					"id": "d57d4438-231a-4e4a-b26e-7f473ab2fa51",
-					"name": "wisdom",
-					"datatype": "double",
-					"param": "",
-					"pk": false,
-					"nn": true,
-					"list": false,
-					"comment": "",
-					"data": "",
-					"enum": "",
-					"validation": "",
-					"pattern": false,
-					"estimatedSize": "",
-					"any": ""
-				},
-				{
-					"id": "ab74a632-c298-40c4-a27d-093908c7a9d4",
-					"name": "charisma",
-					"datatype": "double",
-					"param": "",
-					"pk": false,
-					"nn": true,
-					"list": false,
-					"comment": "",
-					"data": "",
-					"enum": "",
-					"validation": "",
-					"pattern": false,
-					"estimatedSize": "",
-					"any": ""
-				}
-			],
-			"relations": [
-				"ed8ceb77-117a-4514-9879-f96aed9fa7b1"
-			],
-			"lines": [],
-			"keys": [
-				{
-					"id": "f62f9750-d81b-46fc-bf94-2a5d87ee7346",
-					"name": "Primary key",
-					"isPk": true,
-					"cols": [
-						{
-							"id": "df5812fc-9e81-494d-b707-c0d9258c624a",
-							"colid": "34ee4f0c-04c0-4ff2-a22b-1ff70029e1a8"
-						}
-					]
-				}
-			],
-			"indexes": [],
-			"embeddable": false,
-			"generate": true,
-			"generateCustomCode": true,
-			"customCode": "",
-			"beforeScript": "",
-			"afterScript": "",
-			"validationLevel": "na",
-			"validationAction": "na",
-			"collation": "",
-			"others": "",
-			"size": "",
-			"max": "",
-			"validation": "",
-			"capped": false
-		},
 		"bc44b73b-d7e9-4a3c-a4c1-173c61f5e5e0": {
 			"id": "bc44b73b-d7e9-4a3c-a4c1-173c61f5e5e0",
 			"visible": true,
 			"name": "Prop",
-			"desc": "",
+			"desc": "Props are objects that exist within the world, such as a desk and a chair. Props may contain items, such as a desk always containing items via some flavour-text about desk drawers.",
 			"estimatedSize": "",
 			"cols": [
 				{
@@ -1017,7 +864,7 @@
 		"a10b4e0b-ef8e-4c88-b4c1-00aa9f9e11a8": {
 			"id": "a10b4e0b-ef8e-4c88-b4c1-00aa9f9e11a8",
 			"visible": true,
-			"name": "Skill",
+			"name": "CharacterSkill",
 			"desc": "",
 			"estimatedSize": "",
 			"cols": [
@@ -1027,22 +874,6 @@
 					"datatype": "objectId",
 					"param": "",
 					"pk": true,
-					"nn": true,
-					"list": false,
-					"comment": "",
-					"data": "",
-					"enum": "",
-					"validation": "",
-					"pattern": false,
-					"estimatedSize": "",
-					"any": ""
-				},
-				{
-					"id": "20b18789-db29-4c94-a748-592f2007fbfb",
-					"name": "value",
-					"datatype": "double",
-					"param": "",
-					"pk": false,
 					"nn": true,
 					"list": false,
 					"comment": "",
@@ -1068,10 +899,28 @@
 					"pattern": false,
 					"estimatedSize": "",
 					"any": ""
+				},
+				{
+					"id": "c384b5f3-8c67-4e83-bf43-e25131cc246a",
+					"name": "Skill",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
 				}
 			],
 			"relations": [
-				"4c2e251d-7d71-4dd3-99e4-84319665820b"
+				"4c2e251d-7d71-4dd3-99e4-84319665820b",
+				"342736e2-25bf-481e-a720-ec23ab6767e0"
 			],
 			"lines": [],
 			"keys": [
@@ -1273,9 +1122,7 @@
 				}
 			],
 			"relations": [
-				"63725cfd-891e-4388-9f90-00d8e47f76cd",
-				"2d00271e-3816-48c6-9f13-689d5c9acf1d",
-				"d130ff77-e94d-4651-8629-e5e05516864c"
+				"4a1b6bc5-9e13-4a65-8f4c-699a5b3d0e47"
 			],
 			"lines": [],
 			"keys": [
@@ -1287,6 +1134,323 @@
 						{
 							"id": "fca1e270-2a26-42d3-92e2-a51d582f99e4",
 							"colid": "ac4ab06a-90bc-44ca-960e-51de104cccf7"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"validationLevel": "na",
+			"validationAction": "na",
+			"collation": "",
+			"others": "",
+			"size": "",
+			"max": "",
+			"validation": "",
+			"capped": false
+		},
+		"7b087de9-b9fc-4e30-b5fc-842f000d5f89": {
+			"id": "7b087de9-b9fc-4e30-b5fc-842f000d5f89",
+			"visible": true,
+			"name": "DamageMultiplier",
+			"desc": "",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "7330130e-f4e8-4ff4-a831-2c3bfac1b6e3",
+					"name": "_id",
+					"datatype": "objectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "5f8cf089-dc18-4b01-8001-b943ba389a8b",
+					"name": "DamageType",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "8201f02b-d889-4a1f-b32b-d700d3c8e59e",
+					"name": "multiplier",
+					"datatype": "int",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				}
+			],
+			"relations": [
+				"4a1b6bc5-9e13-4a65-8f4c-699a5b3d0e47",
+				"2daf07a6-ce1b-4486-b4ea-6db043af0053",
+				"57869056-fe22-4979-8266-812fd7976ba7",
+				"8766560c-b968-4979-8468-26c53b8b6a75"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "2cc2eab7-a6ef-4703-831e-48bbd43abec7",
+					"name": "Primary key",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "4effd8f1-5b29-4e25-a908-f9e4f1546bfd",
+							"colid": "7330130e-f4e8-4ff4-a831-2c3bfac1b6e3"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"validationLevel": "na",
+			"validationAction": "na",
+			"collation": "",
+			"others": "",
+			"size": "",
+			"max": "",
+			"validation": "",
+			"capped": false
+		},
+		"e1b50ff6-18de-4896-806a-42da2840144e": {
+			"id": "e1b50ff6-18de-4896-806a-42da2840144e",
+			"visible": true,
+			"name": "Ability",
+			"desc": "",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "614fe20d-4da1-4ef0-b203-68137c7cdd22",
+					"name": "_id",
+					"datatype": "objectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				}
+			],
+			"relations": [
+				"1f645394-9478-4b3c-8c95-3933c2faa7f9",
+				"16ef6856-bebf-43da-a3ea-1bbc8cb18497"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "fd9c628d-e8ff-4ea2-b82d-6a7c915e946b",
+					"name": "Primary key",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "12b15914-08c0-4bc3-bf37-af6c8c467cc2",
+							"colid": "614fe20d-4da1-4ef0-b203-68137c7cdd22"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"validationLevel": "na",
+			"validationAction": "na",
+			"collation": "",
+			"others": "",
+			"size": "",
+			"max": "",
+			"validation": "",
+			"capped": false
+		},
+		"2ce90945-4bb2-4063-97ae-60c803287e2f": {
+			"id": "2ce90945-4bb2-4063-97ae-60c803287e2f",
+			"visible": true,
+			"name": "AbilityScore",
+			"desc": "",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "e02ced83-3612-4966-8fd7-c1455fa0de09",
+					"name": "_id",
+					"datatype": "objectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "d2f83143-ce92-48aa-a05f-e2d38cac5c88",
+					"name": "Ability",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "ef5f520c-f31f-4961-ad4e-609c8966b4f3",
+					"name": "value",
+					"datatype": "int",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				}
+			],
+			"relations": [
+				"1f645394-9478-4b3c-8c95-3933c2faa7f9",
+				"85d00356-1aef-4070-934f-016468d5a588"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "9b8201c9-4f3d-40e4-83f6-3a72390a3ad9",
+					"name": "Primary key",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "4c480672-d311-496b-9f10-affb5b94e3d6",
+							"colid": "e02ced83-3612-4966-8fd7-c1455fa0de09"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"validationLevel": "na",
+			"validationAction": "na",
+			"collation": "",
+			"others": "",
+			"size": "",
+			"max": "",
+			"validation": "",
+			"capped": false
+		},
+		"97323a4e-266c-4857-b1b1-d67e270f90ed": {
+			"id": "97323a4e-266c-4857-b1b1-d67e270f90ed",
+			"visible": true,
+			"name": "Skill",
+			"desc": "",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "0e3aa83c-36d5-400d-a62c-8b94bf45f44d",
+					"name": "_id",
+					"datatype": "objectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "cdd4bb10-ade8-466c-9050-6122ee655917",
+					"name": "Ability",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				}
+			],
+			"relations": [
+				"16ef6856-bebf-43da-a3ea-1bbc8cb18497",
+				"342736e2-25bf-481e-a720-ec23ab6767e0"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "121137e8-2ed7-4d3d-a9e0-73a463587fa5",
+					"name": "Primary key",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "53487ade-d3ed-4a49-9ca0-897d86b3df06",
+							"colid": "0e3aa83c-36d5-400d-a62c-8b94bf45f44d"
 						}
 					]
 				}
@@ -1517,32 +1681,6 @@
 			"generateCustomCode": true,
 			"customCode": ""
 		},
-		"ed8ceb77-117a-4514-9879-f96aed9fa7b1": {
-			"id": "ed8ceb77-117a-4514-9879-f96aed9fa7b1",
-			"visible": true,
-			"name": "Statblock_Character",
-			"desc": "",
-			"type": "identifying",
-			"parent_key": "f62f9750-d81b-46fc-bf94-2a5d87ee7346",
-			"parent": "d10116f9-ef35-4445-83ae-e3fd9a9261da",
-			"child": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
-			"c_mp": "true",
-			"c_mch": "true",
-			"c_p": "one",
-			"c_ch": "many",
-			"c_cp": "",
-			"c_cch": "",
-			"cols": [
-				{
-					"id": "31c748b8-fbac-41b8-9e7c-85a55db37c7f",
-					"parentcol": "34ee4f0c-04c0-4ff2-a22b-1ff70029e1a8",
-					"childcol": "567239fc-9e12-46e5-a4dc-afda84e8287d"
-				}
-			],
-			"generate": true,
-			"generateCustomCode": true,
-			"customCode": ""
-		},
 		"2873ca0f-e3ae-4dc6-abde-14264e4e70f3": {
 			"id": "2873ca0f-e3ae-4dc6-abde-14264e4e70f3",
 			"visible": true,
@@ -1699,15 +1837,15 @@
 			"generateCustomCode": true,
 			"customCode": ""
 		},
-		"63725cfd-891e-4388-9f90-00d8e47f76cd": {
-			"id": "63725cfd-891e-4388-9f90-00d8e47f76cd",
+		"4a1b6bc5-9e13-4a65-8f4c-699a5b3d0e47": {
+			"id": "4a1b6bc5-9e13-4a65-8f4c-699a5b3d0e47",
 			"visible": true,
-			"name": "DamageType_Character",
+			"name": "DamageType_DamageMultiplier",
 			"desc": "",
 			"type": "identifying",
 			"parent_key": "462d0fdf-b85d-4dca-b208-8e763e707452",
 			"parent": "b9859d1b-b9eb-4e74-94ca-d5594802a84b",
-			"child": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
+			"child": "7b087de9-b9fc-4e30-b5fc-842f000d5f89",
 			"c_mp": "true",
 			"c_mch": "true",
 			"c_p": "one",
@@ -1716,24 +1854,24 @@
 			"c_cch": "",
 			"cols": [
 				{
-					"id": "959bfff4-49d7-4d4a-9bfd-cc84010d59e1",
+					"id": "ae84c049-652a-4f09-a2d1-333354baf67d",
 					"parentcol": "ac4ab06a-90bc-44ca-960e-51de104cccf7",
-					"childcol": "1e15b54c-664e-4c44-ac64-d3c5ec726549"
+					"childcol": "5f8cf089-dc18-4b01-8001-b943ba389a8b"
 				}
 			],
 			"generate": true,
 			"generateCustomCode": true,
 			"customCode": ""
 		},
-		"2d00271e-3816-48c6-9f13-689d5c9acf1d": {
-			"id": "2d00271e-3816-48c6-9f13-689d5c9acf1d",
+		"1f645394-9478-4b3c-8c95-3933c2faa7f9": {
+			"id": "1f645394-9478-4b3c-8c95-3933c2faa7f9",
 			"visible": true,
-			"name": "DamageType_Character",
+			"name": "Ability_AbilityScore",
 			"desc": "",
 			"type": "identifying",
-			"parent_key": "462d0fdf-b85d-4dca-b208-8e763e707452",
-			"parent": "b9859d1b-b9eb-4e74-94ca-d5594802a84b",
-			"child": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
+			"parent_key": "fd9c628d-e8ff-4ea2-b82d-6a7c915e946b",
+			"parent": "e1b50ff6-18de-4896-806a-42da2840144e",
+			"child": "2ce90945-4bb2-4063-97ae-60c803287e2f",
 			"c_mp": "true",
 			"c_mch": "true",
 			"c_p": "one",
@@ -1742,23 +1880,23 @@
 			"c_cch": "",
 			"cols": [
 				{
-					"id": "5cc45247-7974-4c2e-b5bc-eda0bdbc9c43",
-					"parentcol": "ac4ab06a-90bc-44ca-960e-51de104cccf7",
-					"childcol": "8068d9e2-75c2-4e27-9ea4-90315b926075"
+					"id": "2bf30e4a-c77e-4f19-a5f0-f278e9b9a2f4",
+					"parentcol": "614fe20d-4da1-4ef0-b203-68137c7cdd22",
+					"childcol": "d2f83143-ce92-48aa-a05f-e2d38cac5c88"
 				}
 			],
 			"generate": true,
 			"generateCustomCode": true,
 			"customCode": ""
 		},
-		"d130ff77-e94d-4651-8629-e5e05516864c": {
-			"id": "d130ff77-e94d-4651-8629-e5e05516864c",
+		"85d00356-1aef-4070-934f-016468d5a588": {
+			"id": "85d00356-1aef-4070-934f-016468d5a588",
 			"visible": true,
-			"name": "DamageType_Character",
+			"name": "AbilityScore_Character",
 			"desc": "",
 			"type": "identifying",
-			"parent_key": "462d0fdf-b85d-4dca-b208-8e763e707452",
-			"parent": "b9859d1b-b9eb-4e74-94ca-d5594802a84b",
+			"parent_key": "9b8201c9-4f3d-40e4-83f6-3a72390a3ad9",
+			"parent": "2ce90945-4bb2-4063-97ae-60c803287e2f",
 			"child": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
 			"c_mp": "true",
 			"c_mch": "true",
@@ -1768,9 +1906,139 @@
 			"c_cch": "",
 			"cols": [
 				{
-					"id": "2611e512-f298-4494-9f70-8e6035c4359c",
-					"parentcol": "ac4ab06a-90bc-44ca-960e-51de104cccf7",
-					"childcol": "f2190fe0-d9eb-4ef0-9107-3469bdc276d7"
+					"id": "5be7fbc1-7d29-47a5-a1c2-4d853d03603f",
+					"parentcol": "e02ced83-3612-4966-8fd7-c1455fa0de09",
+					"childcol": "16ec9d98-b82d-46ba-9fb6-383e9e6e3a04"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"16ef6856-bebf-43da-a3ea-1bbc8cb18497": {
+			"id": "16ef6856-bebf-43da-a3ea-1bbc8cb18497",
+			"visible": true,
+			"name": "Ability_Skill",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "fd9c628d-e8ff-4ea2-b82d-6a7c915e946b",
+			"parent": "e1b50ff6-18de-4896-806a-42da2840144e",
+			"child": "97323a4e-266c-4857-b1b1-d67e270f90ed",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "1d178893-2d63-43d1-b338-22aa7699ac0e",
+					"parentcol": "614fe20d-4da1-4ef0-b203-68137c7cdd22",
+					"childcol": "cdd4bb10-ade8-466c-9050-6122ee655917"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"342736e2-25bf-481e-a720-ec23ab6767e0": {
+			"id": "342736e2-25bf-481e-a720-ec23ab6767e0",
+			"visible": true,
+			"name": "Skill_CharacterSkill",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "121137e8-2ed7-4d3d-a9e0-73a463587fa5",
+			"parent": "97323a4e-266c-4857-b1b1-d67e270f90ed",
+			"child": "a10b4e0b-ef8e-4c88-b4c1-00aa9f9e11a8",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "08b44f99-e4d1-4ec8-87a2-67943c77fb5c",
+					"parentcol": "0e3aa83c-36d5-400d-a62c-8b94bf45f44d",
+					"childcol": "c384b5f3-8c67-4e83-bf43-e25131cc246a"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"2daf07a6-ce1b-4486-b4ea-6db043af0053": {
+			"id": "2daf07a6-ce1b-4486-b4ea-6db043af0053",
+			"visible": true,
+			"name": "DamageMultiplier_Character",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "2cc2eab7-a6ef-4703-831e-48bbd43abec7",
+			"parent": "7b087de9-b9fc-4e30-b5fc-842f000d5f89",
+			"child": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "a414c89e-d182-4e4b-aa49-779ae07b8589",
+					"parentcol": "7330130e-f4e8-4ff4-a831-2c3bfac1b6e3",
+					"childcol": "063aec3f-c9f3-432b-9a0a-1137ae2b76c7"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"57869056-fe22-4979-8266-812fd7976ba7": {
+			"id": "57869056-fe22-4979-8266-812fd7976ba7",
+			"visible": true,
+			"name": "DamageMultiplier_Character",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "2cc2eab7-a6ef-4703-831e-48bbd43abec7",
+			"parent": "7b087de9-b9fc-4e30-b5fc-842f000d5f89",
+			"child": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "24f42d45-1b20-42d8-83cf-bc9d034df7d0",
+					"parentcol": "7330130e-f4e8-4ff4-a831-2c3bfac1b6e3",
+					"childcol": "9aeb0613-70a6-417c-a734-603cd5ce18d6"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"8766560c-b968-4979-8468-26c53b8b6a75": {
+			"id": "8766560c-b968-4979-8468-26c53b8b6a75",
+			"visible": true,
+			"name": "DamageMultiplier_Character",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "2cc2eab7-a6ef-4703-831e-48bbd43abec7",
+			"parent": "7b087de9-b9fc-4e30-b5fc-842f000d5f89",
+			"child": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "d9d94417-c9b2-40a8-baae-1547272285e1",
+					"parentcol": "7330130e-f4e8-4ff4-a831-2c3bfac1b6e3",
+					"childcol": "77b174d7-9ffb-40c5-b8a1-c7ace6cf44da"
 				}
 			],
 			"generate": true,
@@ -1813,7 +2081,7 @@
 		"def_validationAction": "na",
 		"def_collation": "",
 		"def_others": "",
-		"lastSaved": "Sat Aug 12 2023 14:50:20 GMT+1000 (Australian Eastern Standard Time)"
+		"lastSaved": "Sun Aug 20 2023 11:27:20 GMT+1000 (Australian Eastern Standard Time)"
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -1831,8 +2099,8 @@
 			"diagramItems": {
 				"f8305785-7aeb-430a-b0b0-14ae532c900f": {
 					"referencedItemId": "f8305785-7aeb-430a-b0b0-14ae532c900f",
-					"x": 51,
-					"y": 204,
+					"x": 45,
+					"y": 173,
 					"gHeight": 99,
 					"gWidth": 203,
 					"color": "#ffffff",
@@ -1843,8 +2111,8 @@
 				},
 				"9f9721a6-13dd-466f-a64b-4d0c82b673c8": {
 					"referencedItemId": "9f9721a6-13dd-466f-a64b-4d0c82b673c8",
-					"x": 47,
-					"y": 134,
+					"x": 45,
+					"y": 120,
 					"gHeight": 45,
 					"gWidth": 175,
 					"color": "#ffffff",
@@ -1867,10 +2135,10 @@
 				},
 				"61efa08f-cf4d-4c2c-b807-22bc0a008903": {
 					"referencedItemId": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
-					"x": 318,
-					"y": 289,
+					"x": 305,
+					"y": 209,
 					"gHeight": 243,
-					"gWidth": 272,
+					"gWidth": 289,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
@@ -1913,18 +2181,6 @@
 					"autoExpand": true,
 					"backgroundOpacity": "10"
 				},
-				"d10116f9-ef35-4445-83ae-e3fd9a9261da": {
-					"referencedItemId": "d10116f9-ef35-4445-83ae-e3fd9a9261da",
-					"x": 45,
-					"y": 351,
-					"gHeight": 153,
-					"gWidth": 220,
-					"color": "#ffffff",
-					"background": "#03a9f4",
-					"resized": false,
-					"autoExpand": true,
-					"backgroundOpacity": "10"
-				},
 				"bc44b73b-d7e9-4a3c-a4c1-173c61f5e5e0": {
 					"referencedItemId": "bc44b73b-d7e9-4a3c-a4c1-173c61f5e5e0",
 					"x": 1013,
@@ -1939,8 +2195,8 @@
 				},
 				"a10b4e0b-ef8e-4c88-b4c1-00aa9f9e11a8": {
 					"referencedItemId": "a10b4e0b-ef8e-4c88-b4c1-00aa9f9e11a8",
-					"x": 59,
-					"y": 555,
+					"x": 66,
+					"y": 412,
 					"gHeight": 81,
 					"gWidth": 207,
 					"color": "#ffffff",
@@ -1951,8 +2207,8 @@
 				},
 				"4a1029ec-989d-40fe-80fd-66068bdb64e1": {
 					"referencedItemId": "4a1029ec-989d-40fe-80fd-66068bdb64e1",
-					"x": 46,
-					"y": 30,
+					"x": 49,
+					"y": 773,
 					"gHeight": 81,
 					"gWidth": 220,
 					"color": "#ffffff",
@@ -1963,8 +2219,8 @@
 				},
 				"1bb9666f-8fb0-4c2c-9d3f-e7d8c61ae1c4": {
 					"referencedItemId": "1bb9666f-8fb0-4c2c-9d3f-e7d8c61ae1c4",
-					"x": 693,
-					"y": 485,
+					"x": 706,
+					"y": 499,
 					"gHeight": 45,
 					"gWidth": 175,
 					"color": "#ffffff",
@@ -1975,10 +2231,58 @@
 				},
 				"b9859d1b-b9eb-4e74-94ca-d5594802a84b": {
 					"referencedItemId": "b9859d1b-b9eb-4e74-94ca-d5594802a84b",
-					"x": 700,
-					"y": 574,
+					"x": 1012,
+					"y": 583,
 					"gHeight": 45,
 					"gWidth": 175,
+					"color": "#ffffff",
+					"background": "#03a9f4",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10"
+				},
+				"7b087de9-b9fc-4e30-b5fc-842f000d5f89": {
+					"referencedItemId": "7b087de9-b9fc-4e30-b5fc-842f000d5f89",
+					"x": 678,
+					"y": 566,
+					"gHeight": 81,
+					"gWidth": 232,
+					"color": "#ffffff",
+					"background": "#03a9f4",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10"
+				},
+				"e1b50ff6-18de-4896-806a-42da2840144e": {
+					"referencedItemId": "e1b50ff6-18de-4896-806a-42da2840144e",
+					"x": 45,
+					"y": 578,
+					"gHeight": 45,
+					"gWidth": 175,
+					"color": "#ffffff",
+					"background": "#03a9f4",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10"
+				},
+				"2ce90945-4bb2-4063-97ae-60c803287e2f": {
+					"referencedItemId": "2ce90945-4bb2-4063-97ae-60c803287e2f",
+					"x": 45,
+					"y": 285,
+					"gHeight": 81,
+					"gWidth": 193,
+					"color": "#ffffff",
+					"background": "#03a9f4",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10"
+				},
+				"97323a4e-266c-4857-b1b1-d67e270f90ed": {
+					"referencedItemId": "97323a4e-266c-4857-b1b1-d67e270f90ed",
+					"x": 52,
+					"y": 505,
+					"gHeight": 63,
+					"gWidth": 193,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
