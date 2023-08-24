@@ -1,5 +1,6 @@
 const { Game } = require('./GameModel');
 const { Lore } = require('./LoreEmbeddedModel');
+const { Universe } = require('./UniverseModel');
 const { User } = require('./UserModel');
 
 const Document = require('camo').Document;
@@ -19,13 +20,18 @@ class Campaign extends Document{
 			required: true
 		}
 
-		this.manager = {
-			type: User,
+		this.managers = {
+			type: [User],
 			required: true
 		}
 
 		this.players = {
 			type: [User],
+			required: false
+		}
+
+		this.universes = {
+			type: [Universe],
 			required: false
 		}
 

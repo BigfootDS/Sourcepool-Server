@@ -1,15 +1,8 @@
-const Datastore = require('@seald-io/nedb');
+// const Datastore = require('@seald-io/nedb');
 
 var camo = require('camo');
 
-
 let db = null;
-
-// Require models here so the database has some structure
-// even if no data exists in it.
-const {User} = require('./models/UserModel');
-const {Game} = require('./models/GameModel');
-const {Campaign} = require('./models/CampaignModel');
 
 async function databaseConnector(){
 	db = null;
@@ -24,7 +17,15 @@ async function databaseConnector(){
 	  }
 }
 
-
+/**
+ * Create default data for specific game presets.
+ * @param {string} gamePreset Short code of the TTRPG that the data is being made for. For example, "d&d5e" for Dungeons & Dragons 5th Edition.
+ */
+async function createDefaultData(gamePreset){
+	if (db == null){
+		throw new Error("Database not available, something is going wrong. Report this to the project's GitHub repository, please!");
+	}
+}
 
 module.exports = {
     databaseConnector,

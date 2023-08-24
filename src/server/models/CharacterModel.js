@@ -2,7 +2,9 @@ const { AbilityScore } = require('./AbilityScoreModel');
 const { CharacterSkill } = require('./CharacterSkillModel');
 const { Condition } = require('./ConditionModel');
 const { DamageMultiplier } = require('./DamageMultiplierModel');
+const { Item } = require('./ItemModel');
 const { Lore } = require('./LoreEmbeddedModel');
+const { User } = require('./UserModel');
 
 const Document = require('camo').Document;
 
@@ -39,12 +41,24 @@ class Character extends Document{
 			default: 0
 		}
 
+		this.player = {
+			type: User,
+			required: false
+		}
+
 		this.abilityScores = {
 			type: [AbilityScore],
 			required: true
 		}
 
-		this.characterSkills = {
+
+		this.inventory = {
+			type: [Item],
+			required: false
+		}
+
+
+		this.skills = {
 			type: [CharacterSkill],
 			required: false
 		}
@@ -72,6 +86,11 @@ class Character extends Document{
 		this.damageImmunities = {
 			type: [DamageMultiplier],
 			required: false
+		}
+
+		this.tags = {
+			type: [string],
+			required: true
 		}
 	}
 

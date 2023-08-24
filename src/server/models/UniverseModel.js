@@ -1,26 +1,24 @@
 const { Lore } = require('./LoreEmbeddedModel');
+const { Place } = require('./PlaceModel');
 
 const Document = require('camo').Document;
 
-class Game extends Document{
+class Universe extends Document {
 	constructor(){
 		super();
 
 		this.description = {
-			type:[Lore],
+			type: [Lore],
 			required: true
-		}		
+		}
 
+		this.places = {
+			type: [Place],
+			required: false
+		}
 	}
-
-	static collectionName() {
-		return 'games';
-	}
-
-
 }
 
-
 module.exports = {
-	Game
+	Universe
 }
