@@ -69,18 +69,55 @@ const updateMenu = () => {
 			}
 		},
 		{
-			label: 'Data Packs Location',
+			label: 'External Data Packs Location',
 			click() { 
 				let dataPacksPath = path.join(app.getPath('documents'), "Sourcepool", "Server Data Packs");
 				
 				if (!fs.existsSync(dataPacksPath)){
-					console.log("Data packs directory did not exist, creating it now...");
+					console.log("External data packs directory did not exist, creating it now...");
 					fs.mkdirSync(dataPacksPath, {recursive: true});
 				}
 
 				const {openExplorer} = require('explorer-opener');
 				openExplorer(dataPacksPath).then(() => {
 					console.log("Opening data packs directory now...");
+				}).catch((error) => {
+					console.log(error);
+				});
+			}
+		},
+		{
+			label: 'Internal Data Packs Location',
+			click() { 
+				// let databasePath = path.join(app.getPath('documents'), "Sourcepool", "Server Data Packs");
+				let dataPacksPath = path.join(app.getPath('userData'), "bundledDataPacks");
+				if (!fs.existsSync(dataPacksPath)){
+					console.log("Internal data packs directory did not exist, creating it now...");
+					fs.mkdirSync(dataPacksPath, {recursive: true});
+					console.warn("Internal Data Packs directory was just created, and is currently empty. Fix this!");
+				}
+
+				const {openExplorer} = require('explorer-opener');
+				openExplorer(dataPacksPath).then(() => {
+					console.log("Opening data packs directory now...");
+				}).catch((error) => {
+					console.log(error);
+				});
+			}
+		},
+		{
+			label: 'Database Location',
+			click() { 
+				// let databasePath = path.join(app.getPath('documents'), "Sourcepool", "Server Data Packs");
+				let databasePath = path.join(app.getPath('userData'), "data");
+				if (!fs.existsSync(databasePath)){
+					console.log("Database directory did not exist, creating it now...");
+					fs.mkdirSync(databasePath, {recursive: true});
+				}
+
+				const {openExplorer} = require('explorer-opener');
+				openExplorer(databasePath).then(() => {
+					console.log("Opening database directory now...");
 				}).catch((error) => {
 					console.log(error);
 				});

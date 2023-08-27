@@ -128,10 +128,82 @@
 					"pattern": false,
 					"estimatedSize": "",
 					"any": ""
+				},
+				{
+					"id": "c46c1f35-fc79-4cf4-b54f-13032c408f32",
+					"name": "damageTypes",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "ee314c02-2306-4427-b57c-aba493746576",
+					"name": "conditions",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "1f96af26-e654-4da0-b647-cca1576ba261",
+					"name": "skills",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "101b1ee8-1911-46a7-a7d0-513a6365bfe6",
+					"name": "abilities",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
 				}
 			],
 			"relations": [
-				"4089b8e7-bf81-48cb-a5a2-e59005f24d4e"
+				"4089b8e7-bf81-48cb-a5a2-e59005f24d4e",
+				"88eb9cb0-6929-42c7-8481-2a6569e021c6",
+				"3fb1c77c-10c4-46cd-839d-288149347359",
+				"d81fa81c-ec7f-4334-a1f8-ef5c79ea8837",
+				"19a1335e-a041-4441-b824-3a9773c814dc"
 			],
 			"lines": [],
 			"keys": [
@@ -204,13 +276,13 @@
 					"fk": true
 				},
 				{
-					"id": "08a06454-3d69-48a1-8669-2a41fc1bcdef",
-					"name": "manager",
+					"id": "be4a2f69-ffa7-4afa-a2f8-19e59a08444c",
+					"name": "universes",
 					"datatype": "objectId",
 					"param": "",
 					"pk": false,
 					"nn": true,
-					"list": false,
+					"list": true,
 					"comment": "",
 					"data": "",
 					"enum": "",
@@ -221,8 +293,8 @@
 					"fk": true
 				},
 				{
-					"id": "be4a2f69-ffa7-4afa-a2f8-19e59a08444c",
-					"name": "universes",
+					"id": "08a06454-3d69-48a1-8669-2a41fc1bcdef",
+					"name": "managers",
 					"datatype": "objectId",
 					"param": "",
 					"pk": false,
@@ -378,76 +450,8 @@
 					"fk": true
 				},
 				{
-					"id": "16ec9d98-b82d-46ba-9fb6-383e9e6e3a04",
-					"name": "abilityScores",
-					"datatype": "objectId",
-					"param": "",
-					"pk": false,
-					"nn": true,
-					"list": true,
-					"comment": "",
-					"data": "",
-					"enum": "",
-					"validation": "",
-					"pattern": false,
-					"estimatedSize": "",
-					"any": "",
-					"fk": true
-				},
-				{
 					"id": "4d4f412a-fb0f-4c0b-9c4b-2d8653466283",
 					"name": "inventory",
-					"datatype": "objectId",
-					"param": "",
-					"pk": false,
-					"nn": false,
-					"list": true,
-					"comment": "",
-					"data": "",
-					"enum": "",
-					"validation": "",
-					"pattern": false,
-					"estimatedSize": "",
-					"any": "",
-					"fk": true
-				},
-				{
-					"id": "21bc8ea7-3f33-40f1-8219-7394059f12c7",
-					"name": "skills",
-					"datatype": "objectId",
-					"param": "",
-					"pk": false,
-					"nn": false,
-					"list": true,
-					"comment": "",
-					"data": "",
-					"enum": "",
-					"validation": "",
-					"pattern": false,
-					"estimatedSize": "",
-					"any": "",
-					"fk": true
-				},
-				{
-					"id": "e8601de4-f666-4129-87a5-d2c0f00e0be1",
-					"name": "conditionActives",
-					"datatype": "objectId",
-					"param": "",
-					"pk": false,
-					"nn": false,
-					"list": true,
-					"comment": "",
-					"data": "",
-					"enum": "",
-					"validation": "",
-					"pattern": false,
-					"estimatedSize": "",
-					"any": "",
-					"fk": true
-				},
-				{
-					"id": "079e3e9f-fb3e-4eda-8138-a73d9aa4ac9c",
-					"name": "conditionImmunities",
 					"datatype": "objectId",
 					"param": "",
 					"pk": false,
@@ -503,6 +507,74 @@
 					"param": "",
 					"pk": false,
 					"nn": false,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "e8601de4-f666-4129-87a5-d2c0f00e0be1",
+					"name": "conditionActives",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": false,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "079e3e9f-fb3e-4eda-8138-a73d9aa4ac9c",
+					"name": "conditionImmunities",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": false,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "21bc8ea7-3f33-40f1-8219-7394059f12c7",
+					"name": "skills",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": false,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "16ec9d98-b82d-46ba-9fb6-383e9e6e3a04",
+					"name": "abilityScores",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
 					"list": true,
 					"comment": "",
 					"data": "",
@@ -988,7 +1060,7 @@
 			"id": "4a1029ec-989d-40fe-80fd-66068bdb64e1",
 			"visible": true,
 			"name": "READ DESCRIPTION - Lore",
-			"desc": "Everything has a name and description. For the sake of the ERD's tidyness, it will not be shown on all tables.\n",
+			"desc": "Everything has a name and content describing that thing. For the sake of the ERD's tidyness, it will not be shown on all tables.\n",
 			"estimatedSize": "",
 			"cols": [
 				{
@@ -1041,7 +1113,7 @@
 				},
 				{
 					"id": "1ff791dd-7bbf-42bc-8442-5bae499ce8a0",
-					"name": "description",
+					"name": "content",
 					"datatype": "string",
 					"param": "",
 					"pk": false,
@@ -1113,7 +1185,8 @@
 			],
 			"relations": [
 				"09e83077-db9e-49aa-8bdd-345dfdc95d2e",
-				"1226b704-92df-4f4e-bc54-a5a9d5250834"
+				"1226b704-92df-4f4e-bc54-a5a9d5250834",
+				"d81fa81c-ec7f-4334-a1f8-ef5c79ea8837"
 			],
 			"lines": [],
 			"keys": [
@@ -1170,7 +1243,8 @@
 				}
 			],
 			"relations": [
-				"4a1b6bc5-9e13-4a65-8f4c-699a5b3d0e47"
+				"4a1b6bc5-9e13-4a65-8f4c-699a5b3d0e47",
+				"19a1335e-a041-4441-b824-3a9773c814dc"
 			],
 			"lines": [],
 			"keys": [
@@ -1321,7 +1395,8 @@
 			],
 			"relations": [
 				"1f645394-9478-4b3c-8c95-3933c2faa7f9",
-				"16ef6856-bebf-43da-a3ea-1bbc8cb18497"
+				"16ef6856-bebf-43da-a3ea-1bbc8cb18497",
+				"88eb9cb0-6929-42c7-8481-2a6569e021c6"
 			],
 			"lines": [],
 			"keys": [
@@ -1487,7 +1562,8 @@
 			],
 			"relations": [
 				"16ef6856-bebf-43da-a3ea-1bbc8cb18497",
-				"342736e2-25bf-481e-a720-ec23ab6767e0"
+				"342736e2-25bf-481e-a720-ec23ab6767e0",
+				"3fb1c77c-10c4-46cd-839d-288149347359"
 			],
 			"lines": [],
 			"keys": [
@@ -2092,6 +2168,110 @@
 			"generate": true,
 			"generateCustomCode": true,
 			"customCode": ""
+		},
+		"88eb9cb0-6929-42c7-8481-2a6569e021c6": {
+			"id": "88eb9cb0-6929-42c7-8481-2a6569e021c6",
+			"visible": true,
+			"name": "Ability_Game",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "fd9c628d-e8ff-4ea2-b82d-6a7c915e946b",
+			"parent": "e1b50ff6-18de-4896-806a-42da2840144e",
+			"child": "9f9721a6-13dd-466f-a64b-4d0c82b673c8",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "acd41f66-987c-476e-b502-2b440fd44f9a",
+					"parentcol": "614fe20d-4da1-4ef0-b203-68137c7cdd22",
+					"childcol": "101b1ee8-1911-46a7-a7d0-513a6365bfe6"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"3fb1c77c-10c4-46cd-839d-288149347359": {
+			"id": "3fb1c77c-10c4-46cd-839d-288149347359",
+			"visible": true,
+			"name": "Skill_Game",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "121137e8-2ed7-4d3d-a9e0-73a463587fa5",
+			"parent": "97323a4e-266c-4857-b1b1-d67e270f90ed",
+			"child": "9f9721a6-13dd-466f-a64b-4d0c82b673c8",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "f2b1cdd7-907f-4f37-886d-3f9be988c6ae",
+					"parentcol": "0e3aa83c-36d5-400d-a62c-8b94bf45f44d",
+					"childcol": "1f96af26-e654-4da0-b647-cca1576ba261"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"d81fa81c-ec7f-4334-a1f8-ef5c79ea8837": {
+			"id": "d81fa81c-ec7f-4334-a1f8-ef5c79ea8837",
+			"visible": true,
+			"name": "Condition_Game",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "e86da81c-eb0b-4fdd-a545-403da211a1d9",
+			"parent": "1bb9666f-8fb0-4c2c-9d3f-e7d8c61ae1c4",
+			"child": "9f9721a6-13dd-466f-a64b-4d0c82b673c8",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "a520ca65-1316-4b0c-a77f-7e9f4345c5b8",
+					"parentcol": "5b1ed899-1328-4907-835f-26544c7dc4d3",
+					"childcol": "ee314c02-2306-4427-b57c-aba493746576"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"19a1335e-a041-4441-b824-3a9773c814dc": {
+			"id": "19a1335e-a041-4441-b824-3a9773c814dc",
+			"visible": true,
+			"name": "DamageType_Game",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "462d0fdf-b85d-4dca-b208-8e763e707452",
+			"parent": "b9859d1b-b9eb-4e74-94ca-d5594802a84b",
+			"child": "9f9721a6-13dd-466f-a64b-4d0c82b673c8",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "2a78ddba-9f05-4da9-bdb0-1d963dc98f89",
+					"parentcol": "ac4ab06a-90bc-44ca-960e-51de104cccf7",
+					"childcol": "c46c1f35-fc79-4cf4-b54f-13032c408f32"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
 		}
 	},
 	"notes": {},
@@ -2129,7 +2309,7 @@
 		"def_validationAction": "na",
 		"def_collation": "",
 		"def_others": "",
-		"lastSaved": "Tue Aug 22 2023 18:24:17 GMT+1000 (Australian Eastern Standard Time)"
+		"lastSaved": "Sun Aug 27 2023 18:51:15 GMT+1000 (Australian Eastern Standard Time)"
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -2139,7 +2319,7 @@
 			"id": "3c0169c4-dbff-4428-87cd-e9927e4fc88d",
 			"keysgraphics": true,
 			"linegraphics": "detailed",
-			"zoom": 1,
+			"zoom": 0.9,
 			"background": "transparent",
 			"lineColor": "transparent",
 			"isOpen": true,
@@ -2147,8 +2327,8 @@
 			"diagramItems": {
 				"f8305785-7aeb-430a-b0b0-14ae532c900f": {
 					"referencedItemId": "f8305785-7aeb-430a-b0b0-14ae532c900f",
-					"x": 45,
-					"y": 173,
+					"x": 868,
+					"y": 158,
 					"gHeight": 99,
 					"gWidth": 203,
 					"color": "#ffffff",
@@ -2159,10 +2339,10 @@
 				},
 				"9f9721a6-13dd-466f-a64b-4d0c82b673c8": {
 					"referencedItemId": "9f9721a6-13dd-466f-a64b-4d0c82b673c8",
-					"x": 45,
-					"y": 58,
-					"gHeight": 45,
-					"gWidth": 175,
+					"x": 52,
+					"y": 303,
+					"gHeight": 117,
+					"gWidth": 242,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
@@ -2171,10 +2351,10 @@
 				},
 				"989715f4-9879-4b3d-8747-9282040e6eb5": {
 					"referencedItemId": "989715f4-9879-4b3d-8747-9282040e6eb5",
-					"x": 378,
-					"y": 57,
+					"x": 801,
+					"y": 30,
 					"gHeight": 99,
-					"gWidth": 218,
+					"gWidth": 220,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
@@ -2183,8 +2363,8 @@
 				},
 				"61efa08f-cf4d-4c2c-b807-22bc0a008903": {
 					"referencedItemId": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
-					"x": 305,
-					"y": 209,
+					"x": 1273,
+					"y": 253,
 					"gHeight": 279,
 					"gWidth": 289,
 					"color": "#ffffff",
@@ -2195,8 +2375,8 @@
 				},
 				"87999c39-8fbe-4b2e-a733-906184f9a319": {
 					"referencedItemId": "87999c39-8fbe-4b2e-a733-906184f9a319",
-					"x": 674,
-					"y": 92,
+					"x": 1245,
+					"y": 30,
 					"gHeight": 63,
 					"gWidth": 200,
 					"color": "#ffffff",
@@ -2207,8 +2387,8 @@
 				},
 				"4f252ab8-76ca-438f-a124-981b46ee22ac": {
 					"referencedItemId": "4f252ab8-76ca-438f-a124-981b46ee22ac",
-					"x": 661,
-					"y": 245,
+					"x": 1757,
+					"y": 49,
 					"gHeight": 99,
 					"gWidth": 223,
 					"color": "#ffffff",
@@ -2219,8 +2399,8 @@
 				},
 				"54bc7139-b405-4187-9025-8932ebd948c2": {
 					"referencedItemId": "54bc7139-b405-4187-9025-8932ebd948c2",
-					"x": 684,
-					"y": 380,
+					"x": 1754,
+					"y": 433,
 					"gHeight": 63,
 					"gWidth": 216,
 					"color": "#ffffff",
@@ -2231,8 +2411,8 @@
 				},
 				"bc44b73b-d7e9-4a3c-a4c1-173c61f5e5e0": {
 					"referencedItemId": "bc44b73b-d7e9-4a3c-a4c1-173c61f5e5e0",
-					"x": 1013,
-					"y": 373,
+					"x": 1801,
+					"y": 208,
 					"gHeight": 63,
 					"gWidth": 190,
 					"color": "#ffffff",
@@ -2243,8 +2423,8 @@
 				},
 				"a10b4e0b-ef8e-4c88-b4c1-00aa9f9e11a8": {
 					"referencedItemId": "a10b4e0b-ef8e-4c88-b4c1-00aa9f9e11a8",
-					"x": 66,
-					"y": 412,
+					"x": 900,
+					"y": 508,
 					"gHeight": 81,
 					"gWidth": 207,
 					"color": "#ffffff",
@@ -2255,20 +2435,20 @@
 				},
 				"4a1029ec-989d-40fe-80fd-66068bdb64e1": {
 					"referencedItemId": "4a1029ec-989d-40fe-80fd-66068bdb64e1",
-					"x": 49,
-					"y": 773,
-					"gHeight": 99,
-					"gWidth": 220,
+					"x": 45,
+					"y": 30,
+					"gHeight": 118,
+					"gWidth": 400,
 					"color": "#ffffff",
 					"background": "#03a9f4",
-					"resized": false,
+					"resized": true,
 					"autoExpand": true,
 					"backgroundOpacity": "10"
 				},
 				"1bb9666f-8fb0-4c2c-9d3f-e7d8c61ae1c4": {
 					"referencedItemId": "1bb9666f-8fb0-4c2c-9d3f-e7d8c61ae1c4",
-					"x": 706,
-					"y": 499,
+					"x": 562,
+					"y": 446,
 					"gHeight": 45,
 					"gWidth": 175,
 					"color": "#ffffff",
@@ -2279,8 +2459,8 @@
 				},
 				"b9859d1b-b9eb-4e74-94ca-d5594802a84b": {
 					"referencedItemId": "b9859d1b-b9eb-4e74-94ca-d5594802a84b",
-					"x": 1012,
-					"y": 583,
+					"x": 571,
+					"y": 267,
 					"gHeight": 45,
 					"gWidth": 175,
 					"color": "#ffffff",
@@ -2291,8 +2471,8 @@
 				},
 				"7b087de9-b9fc-4e30-b5fc-842f000d5f89": {
 					"referencedItemId": "7b087de9-b9fc-4e30-b5fc-842f000d5f89",
-					"x": 678,
-					"y": 566,
+					"x": 884,
+					"y": 365,
 					"gHeight": 81,
 					"gWidth": 232,
 					"color": "#ffffff",
@@ -2303,8 +2483,8 @@
 				},
 				"e1b50ff6-18de-4896-806a-42da2840144e": {
 					"referencedItemId": "e1b50ff6-18de-4896-806a-42da2840144e",
-					"x": 45,
-					"y": 578,
+					"x": 90,
+					"y": 686,
 					"gHeight": 45,
 					"gWidth": 175,
 					"color": "#ffffff",
@@ -2315,8 +2495,8 @@
 				},
 				"2ce90945-4bb2-4063-97ae-60c803287e2f": {
 					"referencedItemId": "2ce90945-4bb2-4063-97ae-60c803287e2f",
-					"x": 45,
-					"y": 285,
+					"x": 915,
+					"y": 664,
 					"gHeight": 81,
 					"gWidth": 193,
 					"color": "#ffffff",
@@ -2327,8 +2507,8 @@
 				},
 				"97323a4e-266c-4857-b1b1-d67e270f90ed": {
 					"referencedItemId": "97323a4e-266c-4857-b1b1-d67e270f90ed",
-					"x": 52,
-					"y": 505,
+					"x": 395,
+					"y": 544,
 					"gHeight": 63,
 					"gWidth": 193,
 					"color": "#ffffff",
@@ -2358,7 +2538,7 @@
 			"showColumnDataTypes": true,
 			"showSampleData": false,
 			"showTableIndexes": true,
-			"showTableDescriptions": false,
+			"showTableDescriptions": true,
 			"showRelations": true,
 			"backgroundImage": "na",
 			"descriptionsColor": "transparent"

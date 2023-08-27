@@ -7,6 +7,7 @@ let db = null;
 async function databaseConnector(){
 	db = null;
 	try {
+		console.log(`Checking for database at: ${process.env.userStorageDir}/data \n`)
 		db = await camo.connect(`nedb://${process.env.userStorageDir}/data`);
 		
 		console.log("Server connected to database!");

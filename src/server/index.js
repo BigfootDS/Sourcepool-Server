@@ -27,6 +27,7 @@ detect(PORT).then(_port => {
 	if (PORT == _port){
 		// port is available to use
 		app.listen(PORT, HOST, () => {
+			console.clear();
 			console.log("Server running!");
 		});
 	} else {

@@ -1,3 +1,4 @@
+const { Ability } = require('./AbilityModel');
 const { Lore } = require('./LoreEmbeddedModel');
 
 const Document = require('camo').Document;
@@ -21,6 +22,11 @@ class Skill extends Document {
 
 		this.description = {
 			type: [Lore],
+			required: true
+		}
+
+		this.ability = {
+			type: Ability,
 			required: true
 		}
 	}
