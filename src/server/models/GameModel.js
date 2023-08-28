@@ -1,19 +1,14 @@
 const { Ability } = require('./AbilityModel');
 const { Condition } = require('./ConditionModel');
 const { DamageType } = require('./DamageTypeModel');
-const { Lore } = require('./LoreEmbeddedModel');
 const { Skill } = require('./SkillModel');
+const { Source } = require('./SourceModel');
 
-const Document = require('camo').Document;
 
-class Game extends Document{
+class Game extends Source{
 	constructor(){
 		super();
-
-		this.description = {
-			type:[Lore],
-			required: true
-		}		
+	
 
 		this.damageTypes = {
 			type:[DamageType],

@@ -1,6 +1,5 @@
-const { Lore } = require('./LoreEmbeddedModel');
+const { Source } = require('./SourceModel');
 
-const Document = require('camo').Document;
 
 
 /**
@@ -9,17 +8,13 @@ const Document = require('camo').Document;
  * @author BigfootDS
  *
  * @class
- * @property {[Lore]} description Localized name and description data about the item. Requires at least one Lore entry within the array.
- * @extends {Document}
+ * @extends {Source}
  */
-class Condition extends Document{
+class Condition extends Source{
 	constructor(){
 		super();
 
-		this.description = {
-			type:[Lore],
-			required: true
-		}
+
 
 
 	}

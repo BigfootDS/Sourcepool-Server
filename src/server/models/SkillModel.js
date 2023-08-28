@@ -1,7 +1,6 @@
 const { Ability } = require('./AbilityModel');
-const { Lore } = require('./LoreEmbeddedModel');
+const { Source } = require('./SourceModel');
 
-const Document = require('camo').Document;
 
 
 
@@ -14,16 +13,11 @@ const Document = require('camo').Document;
  *
  * @class
  * @property {[Lore]} description Localized name and description data about the item. Requires at least one Lore entry within the array.
- * @extends {Document}
+ * @extends {Source}
  */
-class Skill extends Document {
+class Skill extends Source {
 	constructor(){
 		super();
-
-		this.description = {
-			type: [Lore],
-			required: true
-		}
 
 		this.ability = {
 			type: Ability,

@@ -28,7 +28,12 @@ void process.on('unhandledRejection', (reason, p) => {
 });
 
 const { databaseInitCheck } = require('./functions/serverUtils');
-databaseInitCheck();
+try {
+	databaseInitCheck();
+} catch (error) {
+	console.log("--- Error occured! --- ")
+	console.log(error);
+}
 
 const {readServerConfig} = require('./middleware/serverMiddleware');
 app.use(readServerConfig);

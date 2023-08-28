@@ -16,31 +16,47 @@ const { Universe } = require('../../models/UniverseModel');
 const { User } = require('../../models/UserModel');
 
 
+/**
+ * This function creates default data based on SRD 5.1, available here: 
+ * https://media.wizards.com/2023/downloads/dnd/SRD_CC_v5.1.pdf
+ * And here in the repository:
+ * Sourcepool-Server/src/server/data/presets/SRD_CC_v5.1.pdf
+ * 
+ * Note that (at least on 24th August 2023) D&D Beyond uses different wording in some of these in their Basic Rules (Chapter 9, Damage and Healing), usually due to the referencing or linking functionality of the website/app.
+ * 
+ * For example, the SRD may reference a green dragon - but a green dragon is not a thing. The D&D Beyond content refers to the specific age-appropriate variant of a creature, such as adult green dragon, since that lets them hyperlink to a monster manual entry.
+ * They also refer to the "DM" instead of "GM" - no clear reason for this.
+ * 
+ * So, make sure you use the SRD for data - D&D Beyond's custom content is not covered by the same licence.
+ * @date 8/28/2023 - 4:59:09 PM
+ * @author BigfootDS
+ *
+ * @async
+ * @returns
+ */
 const createDefaultData = async () => {
 	// Check if this game already exists in the DB,
 	// only proceed if it's not found
-	let matchingGame = await Game.count({description: [{name: "srd5.1"}]});
-
+	let matchingGame = await Game.count({'description.name':'SRD 5.1',  tags: ["default data", "srd5.1"]});
+	console.log(`Found ${matchingGame} matching games in the default data.`);
 	if (matchingGame > 0){
 		throw new Error("Attempted to seed default data for SRD 5.1 but the game already exists. Was a prior deletion interrupted?");
 	}
 
 	let adminUsers = await User.find({isAdmin:true});
-
+	console.log("Found admin data:\n" + JSON.stringify(adminUsers, null, 4));
 	if (adminUsers.length == 0){
 		throw new Error("No admins found. Something has gone wrong with the server data.");
 	} else {
+		console.log("Found an admin, mapping their IDs into adminUsers now...")
 		adminUsers = adminUsers.map((user) => {
 			return user._id;
 		});
 	}
 
+	console.log("Processed admin data:\n" + JSON.stringify(adminUsers, null, 4));
 
 	// SRD 5.1 CC page 97
-	// Note that (at least on 24th August 2023) D&D Beyond uses different wording in some of these 
-	// in their Basic Rules (Chapter 9, Damage and Healing), for some reason.
-	// So, make sure you use the SRD for data - 
-	// D&D Beyond's custom content is not covered by the same licence.
 	let srdDamageTypes = [
 		{
 			name:"acid",
@@ -96,15 +112,24 @@ const createDefaultData = async () => {
 		},
 	];
 
-	let newDamageTypes = srdDamageTypes.map(async (dmgType) => {
-		return await DamageType.create({
-			description: {
-				language: "en",
-				name:dmgType.name,
-				content:dmgType.content
-			}
+
+	let newDamageTypes = await Promise.all(srdDamageTypes.map(async (dmgType) => {
+		//console.log("Working through dmgType:\n" + JSON.stringify(dmgType,null,4));
+		let newDmgType = await DamageType.create({
+			tags: ["default data", "srd5.1"],
+			description: [
+				Lore.create({
+					language: 'en',
+					name:dmgType.name,
+					content:dmgType.content
+				})
+			],
 		}).save();
-	});
+		return newDmgType;
+	}));
+
+	//console.log("Damage types:\n" + JSON.stringify(newDamageTypes, null, 4));
+
 
 	// SRD 5.1 CC page 358
 	let srdConditions = [
@@ -166,15 +191,22 @@ const createDefaultData = async () => {
 		}
 	];
 
-	let newConditions = srdConditions.map(async (condition) => {
-		return await Condition.create({
-			description: {
-				language: "en",
-				name:condition.name,
-				content:condition.content
-			}
+	let newConditions = await Promise.all(srdConditions.map(async (condition) => {
+		let newCondition = await Condition.create({
+			tags: ["default data", "srd5.1"],
+			description: [
+				await Lore.create({
+					language: "en",
+					name:condition.name,
+					content:condition.content
+				})
+			],
 		}).save();
-	});
+		return newCondition;
+	}));
+
+	//console.log("Conditions:\n" + JSON.stringify(newConditions, null, 4));
+
 
 	// SRD 5.1 CC pages 76-83
 	let srdAbilities = [
@@ -204,24 +236,35 @@ const createDefaultData = async () => {
 		},
 	];
 
-	let newAbilities = srdAbilities.map(async (ability) => {
-		return await Ability.create({
-			description: {
-				language: "en",
-				name:ability.name,
-				content:ability.content
-			}
+	let newAbilities = await Promise.all(srdAbilities.map(async (ability) => {
+		let newAbility = await Ability.create({
+			tags: ["default data", "srd5.1"],
+			description: [
+				await Lore.create({
+					language: "en",
+					name:ability.name,
+					content:ability.content
+				})
+			],
 		}).save();
-	});
+		return newAbility;
+	}));
+
+	//console.log("Abilities:\n" + JSON.stringify(newAbilities, null, 4));
+
 
 	// We need to retrieve these to associate the skills to abilities.
-	let freshStrength = await Ability.findOne({description:{name:"strength"}});
-	let freshDexterity = await Ability.findOne({description:{name:"dexterity"}});
-	let freshConstitution = await Ability.findOne({description:{name:"constitution"}});
-	let freshIntelligence = await Ability.findOne({description:{name:"intelligence"}});
-	let freshWisdom = await Ability.findOne({description:{name:"wisdom"}});
-	let freshCharisma = await Ability.findOne({description:{name:"charisma"}});
 
+	let freshStrength = await Ability.findOne({'description.name':'strength', 'description.language':'en'});
+	//console.log("Found freshStrength:\n" + JSON.stringify(freshStrength,null,4));
+
+	let freshDexterity = await Ability.findOne({'description.name':'dexterity', 'description.language':'en'});
+	let freshConstitution = await Ability.findOne({'description.name':'constitution', 'description.language':'en'});
+	let freshIntelligence = await Ability.findOne({'description.name':'intelligence', 'description.language':'en'});
+	let freshWisdom = await Ability.findOne({'description.name':'wisdom', 'description.language':'en'});
+	let freshCharisma = await Ability.findOne({'description.name':'charisma', 'description.language':'en'});
+
+	// SRD 5.1 CC pages 79-83
 	let srdSkills = [
 		{
 			ability: freshStrength._id,
@@ -234,144 +277,179 @@ const createDefaultData = async () => {
 			ability: freshDexterity._id,
 			description: {
 				name: "acrobatics",
-				content:""
+				content:"Your Dexterity (Acrobatics) check covers your attempt to stay on your feet in a tricky situation, such as when you're trying to run across a sheet of ice, balance on a tightrope, or stay upright on a rocking ship's deck. The GM might also call for a Dexterity (Acrobatics) check to see if you can perform acrobatic stunts, including dives, rolls, somersaults, and flips."
 			}
 		},
 		{
 			ability: freshDexterity._id,
 			description: {
 				name: "sleight of hand",
-				content:""
+				content:"Whenever you attempt an act of legerdemain or manual trickery, such as planting something on someone else or concealing an object on your person, make a Dexterity (Sleight of Hand) check. The GM might also call for a Dexterity (Sleight of Hand) check to determine whether you can lift a coin purse off another person or slip something out of another person's pocket."
+			}
+		},
+		{
+			ability: freshDexterity._id,
+			description: {
+				name: "stealth",
+				content:"Make a Dexterity (Stealth) check when you attempt to conceal yourself from enemies, slink past guards, slip away without being noticed, or sneak up on someone without being seen or heard."
 			}
 		},
 		{
 			ability: freshIntelligence._id,
 			description: {
 				name: "arcana",
-				content:""
+				content:"Your Intelligence (Arcana) check measures your ability to recall lore about spells, magic items, eldritch symbols, magical traditions, the planes of existence, and the inhabitants of those planes."
 			}
 		},
 		{
 			ability: freshIntelligence._id,
 			description: {
 				name: "history",
-				content:""
+				content:"Your Intelligence (History) check measures your ability to recall lore about historical events, legendary people, ancient kingdoms, past disputes, recent wars, and lost civilizations."
 			}
 		},
 		{
 			ability: freshIntelligence._id,
 			description: {
 				name: "investigation",
-				content:""
+				content:"When you look around for clues and make deductions based on those clues, you make an Intelligence (Investigation) check. You might deduce the location of a hidden object, discern from the appearance of a wound what kind of weapon dealt it, or determine the weakest point in a tunnel that could cause it to collapse. Poring through ancient scrolls in search of a hidden fragment of knowledge might also call for an Intelligence (Investigation) check."
 			}
 		},
 		{
 			ability: freshIntelligence._id,
 			description: {
 				name: "nature",
-				content:""
+				content:"Your Intelligence (Nature) check measures your ability to recall lore about terrain, plants and animals, the weather, and natural cycles."
 			}
 		},
 		{
 			ability: freshIntelligence._id,
 			description: {
 				name: "religion",
-				content:""
+				content:"Your Intelligence (Religion) check measures your ability to recall lore about deities, rites and prayers, religious hierarchies, holy symbols, and the practices of secret cults."
 			}
 		},
 		{
 			ability: freshWisdom._id,
 			description: {
 				name: "animal handling",
-				content:""
+				content:"When there is any question whether you can calm down a domesticated animal, keep a mount from getting spooked, or intuit an animal's intentions, the GM might call for a Wisdom (Animal Handling) check. You also make a Wisdom (Animal Handling) check to control your mount when you attempt a risky maneuver."
 			}
 		},
 		{
 			ability: freshWisdom._id,
 			description: {
 				name: "insight",
-				content:""
+				content:"Your Wisdom (Insight) check decides whether you can determine the true intentions of a creature, such as when searching out a lie or predicting someone's next move. Doing so involves gleaning clues from body language, speech habits, and changes in mannerisms."
 			}
 		},
 		{
 			ability: freshWisdom._id,
 			description: {
 				name: "medicine",
-				content:""
+				content:"A Wisdom (Medicine) check lets you try to stabilize a dying companion or diagnose an illness."
 			}
 		},
 		{
 			ability: freshWisdom._id,
 			description: {
 				name: "perception",
-				content:""
+				content:"Your Wisdom (Perception) check lets you spot, hear, or otherwise detect the presence of something. It measures your general awareness of your surroundings and the keenness of your senses. For example, you might try to hear a conversation through a closed door, eavesdrop under an open window, or hear monsters moving stealthily in the forest. Or you might try to spot things that are obscured or easy to miss, whether they are orcs lying in ambush on a road, thugs hiding in the shadows of an alley, or candlelight under a closed secret door."
 			}
 		},
 		{
 			ability: freshWisdom._id,
 			description: {
 				name: "survival",
-				content:""
+				content:"The GM might ask you to make a Wisdom (Survival) check to follow tracks, hunt wild game, guide your group through frozen wastelands, identify signs that owlbears live nearby, predict the weather, or avoid quicksand and other natural hazards."
 			}
 		},
 		{
 			ability: freshCharisma._id,
 			description: {
 				name: "deception",
-				content:""
+				content:"Your Charisma (Deception) check determines whether you can convincingly hide the truth, either verbally or through your actions. This deception can encompass everything from misleading others through ambiguity to telling outright lies. Typical situations include trying to fast-talk a guard, con a merchant, earn money through gambling, pass yourself off in a disguise, dull someone's suspicions with false assurances, or maintain a straight face while telling a blatant lie."
 			}
 		},
 		{
 			ability: freshCharisma._id,
 			description: {
 				name: "intimidation",
-				content:""
+				content:"When you attempt to influence someone through overt threats, hostile actions, and physical violence, the GM might ask you to make a Charisma (Intimidation) check. Examples include trying to pry information out of a prisoner, convincing street thugs to back down from a confrontation, or using the edge of a broken bottle to convince a sneering vizier to reconsider a decision."
 			}
 		},
 		{
 			ability: freshCharisma._id,
 			description: {
 				name: "performance",
-				content:""
+				content:"Your Charisma (Performance) check determines how well you can delight an audience with music, dance, acting, storytelling, or some other form of entertainment."
 			}
 		},
 		{
 			ability: freshCharisma._id,
 			description: {
 				name: "persuasion",
-				content:""
+				content:"When you attempt to influence someone or a group of people with tact, social graces, or good nature, the GM might ask you to make a Charisma (Persuasion) check. Typically, you use persuasion when acting in good faith, to foster friendships, make cordial requests, or exhibit proper etiquette. Examples of persuading others include convincing a chamberlain to let your party see the king, negotiating peace between warring tribes, or inspiring a crowd of townsfolk."
 			}
 		},
-	]
+	];
+
+
+	let newSkills = await Promise.all(srdSkills.map(async (skill) => {
+		let newSkill = await Skill.create({
+			ability: skill.ability,
+			tags: ["default data", "srd5.1"],
+			description: [
+				await Lore.create({
+					language: "en",
+					name:skill.description.name,
+					content:skill.description.content
+				})
+			],
+		}).save();
+		return newSkill;
+	}));
+
+	//console.log("Skills:\n" + JSON.stringify(newSkills, null, 4));
 
 
 	let newGame = await Game.create({
 		description: [
-			Lore.create({
+			await Lore.create({
 				language: "en",
 				name:"SRD 5.1",
 				content:"Compatible with fifth edition."
 			})
-		]
+		],
+		tags: ["default data", "srd5.1"],
+		damageTypes: newDamageTypes.map(dmg => {return dmg._id}),
+		conditions: newConditions.map(condition => {return condition._id}),
+		abilities: newAbilities.map(ability => {return ability._id}),
+		skills: newSkills.map(skill => {return skill._id})
 	}).save();
 
-
-
-
+	//console.log("Game:\n" + JSON.stringify(newGame, null, 4));
 
 
 	let newCampaign = await Campaign.create({
 		description: [
-			Lore.create({
+			await Lore.create({
 				language: "en",
 				name:"Example campaign",
 				content:`An example campaign using rules and systems from ${newGame.description.name} to show how data can be set up for your own campaigns.`
 			})
 		],
+		tags: ["default data", "srd5.1"],
 		game: newGame._id,
 		managers: adminUsers
 	}).save();
 
 
+	console.log("Campaign:\n" + JSON.stringify(newCampaign, null, 4));
 
+}
+
+
+module.exports = {
+	createDefaultData
 }

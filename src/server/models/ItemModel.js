@@ -1,6 +1,5 @@
-const { Lore } = require('./LoreEmbeddedModel');
+const { Source } = require('./SourceModel');
 
-const Document = require('camo').Document;
 
 /**
  * ORM model for in-game items, such as swords and chests.
@@ -8,18 +7,14 @@ const Document = require('camo').Document;
  * @author BigfootDS
  *
  * @class Item
- * @property {[Lore]} description Localized name and description data about the item. Requires at least one Lore entry within the array.
  * @property {[Item]} subItems Items stored within this item. References other Item entries. Typically useful for chests, bags, or other container items.
-* @extends {Document}
+* @extends {Source}
  */
-class Item extends Document{
+class Item extends Source{
 	constructor(){
 		super();
 
-		this.description = {
-			type:[Lore],
-			required: true
-		}
+
 
 		this.subItems = {
 			type: [Item],

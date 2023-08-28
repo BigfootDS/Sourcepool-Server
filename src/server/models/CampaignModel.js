@@ -1,11 +1,10 @@
 const { Game } = require('./GameModel');
-const { Lore } = require('./LoreEmbeddedModel');
+const { Source } = require('./SourceModel');
 const { Universe } = require('./UniverseModel');
 const { User } = require('./UserModel');
 
-const Document = require('camo').Document;
 
-class Campaign extends Document{
+class Campaign extends Source{
 	constructor(){
 		super();
 		
@@ -15,10 +14,7 @@ class Campaign extends Document{
 			required: true
 		};
 
-		this.description = {
-			type:[Lore],
-			required: true
-		}
+
 
 		this.managers = {
 			type: [User],

@@ -1,17 +1,11 @@
 const { Character } = require('./CharacterModel');
-const { Lore } = require('./LoreEmbeddedModel');
 const { Prop } = require('./PropModel');
+const { Source } = require('./SourceModel');
 
-const Document = require('camo').Document;
 
-class Place extends Document {
+class Place extends Source {
 	constructor(){
 		super();
-
-		this.description = {
-			type: [Lore],
-			required: true
-		}
 
 		this.characters = {
 			type: [Character],

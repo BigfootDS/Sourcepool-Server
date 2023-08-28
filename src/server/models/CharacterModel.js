@@ -3,19 +3,14 @@ const { CharacterSkill } = require('./CharacterSkillModel');
 const { Condition } = require('./ConditionModel');
 const { DamageMultiplier } = require('./DamageMultiplierModel');
 const { Item } = require('./ItemModel');
-const { Lore } = require('./LoreEmbeddedModel');
+const { Source } = require('./SourceModel');
 const { User } = require('./UserModel');
 
-const Document = require('camo').Document;
 
-class Character extends Document{
+class Character extends Source{
 	constructor(){
 		super();
 
-		this.description = {
-			type:[Lore],
-			required: true
-		}
 
 		this.isPlayable = {
 			type: Boolean,
@@ -89,7 +84,7 @@ class Character extends Document{
 		}
 
 		this.tags = {
-			type: [string],
+			type: [String],
 			required: true
 		}
 	}

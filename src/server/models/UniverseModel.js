@@ -1,16 +1,10 @@
-const { Lore } = require('./LoreEmbeddedModel');
 const { Place } = require('./PlaceModel');
+const { Source } = require('./SourceModel');
 
-const Document = require('camo').Document;
 
-class Universe extends Document {
+class Universe extends Source {
 	constructor(){
 		super();
-
-		this.description = {
-			type: [Lore],
-			required: true
-		}
 
 		this.places = {
 			type: [Place],
