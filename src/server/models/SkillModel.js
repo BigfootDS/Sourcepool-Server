@@ -12,7 +12,7 @@ const { Source } = require('./SourceModel');
  * @author BigfootDS
  *
  * @class
- * @property {[Lore]} description Localized name and description data about the item. Requires at least one Lore entry within the array.
+ * @property {Ability} ability Required. The Ability that this skill is usually associated with. This should be an ID (typically, "_id") of an Ability document.
  * @extends {Source}
  */
 class Skill extends Source {

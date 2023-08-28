@@ -8,11 +8,10 @@ const Document = require('camo').Document;
  * @date 8/28/2023 - 8:27:47 PM
  * @author BigfootDS
  * 
- * @property {[Lore]} description Each item in this array contains localized data about this data, so its name and (usually) descriptive content can be localized to appropriate languages for users to read.
- * @property {[String]} tags Array of tags to help identify and find this item.
+ * @property {[Lore]} description Required (at least one). Each item in this array contains localized data about this data, so its name and (usually) descriptive content can be localized to appropriate languages for users to read.
+ * @property {[String]} tags Optional. Array of tags to help identify and find this item.
  *
  * @class
- * @typedef {Source}
  * @extends {Document}
  */
 class Source extends Document {

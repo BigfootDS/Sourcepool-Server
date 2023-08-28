@@ -8,7 +8,7 @@ const { Source } = require('./SourceModel');
  *
  * @class Item
  * @property {[Item]} subItems Items stored within this item. References other Item entries. Typically useful for chests, bags, or other container items.
-* @extends {Source}
+ * @extends {Source}
  */
 class Item extends Source{
 	constructor(){
