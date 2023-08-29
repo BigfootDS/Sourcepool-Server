@@ -990,8 +990,24 @@
 				},
 				{
 					"id": "60ebebb1-1d9d-4bb3-9a06-870327dbab39",
-					"name": "multiplier",
-					"datatype": "double",
+					"name": "applyProficiencyBonus",
+					"datatype": "bool",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "b0d61e11-68a9-481f-97e2-1b1774f7be26",
+					"name": "proficiencyBonusMultiplier",
+					"datatype": "int",
 					"param": "",
 					"pk": false,
 					"nn": true,
@@ -1020,11 +1036,29 @@
 					"estimatedSize": "",
 					"any": "",
 					"fk": true
+				},
+				{
+					"id": "8c6fa119-4e40-47e8-adea-85d0d2222496",
+					"name": "abilityOverride",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": false,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
 				}
 			],
 			"relations": [
 				"4c2e251d-7d71-4dd3-99e4-84319665820b",
-				"342736e2-25bf-481e-a720-ec23ab6767e0"
+				"342736e2-25bf-481e-a720-ec23ab6767e0",
+				"f07a8508-c870-428b-b3fa-9c892bf6ce19"
 			],
 			"lines": [],
 			"keys": [
@@ -1396,7 +1430,8 @@
 			"relations": [
 				"1f645394-9478-4b3c-8c95-3933c2faa7f9",
 				"16ef6856-bebf-43da-a3ea-1bbc8cb18497",
-				"88eb9cb0-6929-42c7-8481-2a6569e021c6"
+				"88eb9cb0-6929-42c7-8481-2a6569e021c6",
+				"f07a8508-c870-428b-b3fa-9c892bf6ce19"
 			],
 			"lines": [],
 			"keys": [
@@ -2272,6 +2307,32 @@
 			"generate": true,
 			"generateCustomCode": true,
 			"customCode": ""
+		},
+		"f07a8508-c870-428b-b3fa-9c892bf6ce19": {
+			"id": "f07a8508-c870-428b-b3fa-9c892bf6ce19",
+			"visible": true,
+			"name": "Ability_CharacterSkill",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "fd9c628d-e8ff-4ea2-b82d-6a7c915e946b",
+			"parent": "e1b50ff6-18de-4896-806a-42da2840144e",
+			"child": "a10b4e0b-ef8e-4c88-b4c1-00aa9f9e11a8",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "914ad22c-73fa-44b7-80a9-5daace4def5e",
+					"parentcol": "614fe20d-4da1-4ef0-b203-68137c7cdd22",
+					"childcol": "8c6fa119-4e40-47e8-adea-85d0d2222496"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
 		}
 	},
 	"notes": {},
@@ -2309,7 +2370,7 @@
 		"def_validationAction": "na",
 		"def_collation": "",
 		"def_others": "",
-		"lastSaved": "Sun Aug 27 2023 18:51:15 GMT+1000 (Australian Eastern Standard Time)"
+		"lastSaved": "Sun Aug 27 2023 18:52:38 GMT+1000 (Australian Eastern Standard Time)"
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -2423,10 +2484,10 @@
 				},
 				"a10b4e0b-ef8e-4c88-b4c1-00aa9f9e11a8": {
 					"referencedItemId": "a10b4e0b-ef8e-4c88-b4c1-00aa9f9e11a8",
-					"x": 900,
-					"y": 508,
-					"gHeight": 81,
-					"gWidth": 207,
+					"x": 816,
+					"y": 510,
+					"gHeight": 117,
+					"gWidth": 281,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
