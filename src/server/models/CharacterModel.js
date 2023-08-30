@@ -2,6 +2,7 @@ const { AbilityScore } = require('./AbilityScoreModel');
 const { CharacterSkill } = require('./CharacterSkillModel');
 const { Condition } = require('./ConditionModel');
 const { DamageMultiplier } = require('./DamageMultiplierModel');
+const { Game } = require('./GameModel');
 const { Item } = require('./ItemModel');
 const { Source } = require('./SourceModel');
 const { User } = require('./UserModel');
@@ -21,7 +22,15 @@ const { User } = require('./UserModel');
  * @property {Number} healthBonus Required, default 0. Additional hit points that are consumed at a higher priority than regular hit points. Usually 0, increases and resets to 0 in specific conditions or events.
  * @property {Number} deathSaveFails Optional. Not all characters will ever need to track this - it's usually just player characters or critical non-player characters. Should be 0 if this.healthCurrent is greater than 0.
  * @property {Number} deathSaveSuccesses Optional. Not all characters will ever need to track this - it's usually just player characters or critical non-player characters. Should be 0 if this.healthCurrent is greater than 0.
- * 
+ * @property {[AbilityScore]} abilityScores Required. The character's stats for things like strength and constitution.
+ * @property {[Item]} inventory Optional. Items carried by a character. Not all characters carry an item all the time though!
+ * @property {[CharacterSkill]} skills Optional. Skills that a character has some sort of bonus or modifier for, if they were to make a check for that skill. This typically means proficient or expertise skills.
+ * @property {[Condition]} conditionActives Optional. Conditions currently applied to the character.
+ * @property {[Condition]} conditionImmunities Optional. Conditions that this character can never have as active conditions.
+ * @property {[DamageMultiplier]} damageVulnerabilities Optional. Damage types and their associated multiplier for how much damage of that type would be done to this character.
+ * @property {[DamageMultiplier]} damageResistances Optional. Damage types and their associated multiplier for how much damage of that type would be done to this character.
+ * @property {[DamageMultiplier]} damageImmunities Optional. Damage types and their associated multiplier for how much damage of that type would be done to this character.
+ * @property {Game} game Required. The game that this character exists in, for determining which mechanics and rules apply during any changes to this character's data. 
  * @class
  * @extends {Source}
  */
@@ -109,6 +118,11 @@ class Character extends Source{
 		this.damageImmunities = {
 			type: [DamageMultiplier],
 			required: false
+		}
+
+		this.game = {
+			type: Game,
+			required: true
 		}
 	}
 
