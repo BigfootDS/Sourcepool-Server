@@ -1,4 +1,5 @@
 const { AbilityScore } = require('./AbilityScoreModel');
+const { CharacterFeature } = require('./CharacterFeatureModel');
 const { CharacterSkill } = require('./CharacterSkillModel');
 const { Condition } = require('./ConditionModel');
 const { DamageMultiplier } = require('./DamageMultiplierModel');
@@ -31,6 +32,7 @@ const { User } = require('./UserModel');
  * @property {[DamageMultiplier]} damageResistances Optional. Damage types and their associated multiplier for how much damage of that type would be done to this character.
  * @property {[DamageMultiplier]} damageImmunities Optional. Damage types and their associated multiplier for how much damage of that type would be done to this character.
  * @property {Game} game Required. The game that this character exists in, for determining which mechanics and rules apply during any changes to this character's data. 
+ * @property {[CharacterFeature]} features Optional. Mechanics, features, feats, and other modular behaviours that this character has.
  * @class
  * @extends {Source}
  */
@@ -123,6 +125,11 @@ class Character extends Source{
 		this.game = {
 			type: Game,
 			required: true
+		}
+
+		this.features = {
+			type: [CharacterFeature],
+			required: false
 		}
 	}
 
