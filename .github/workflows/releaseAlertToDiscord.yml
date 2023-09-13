@@ -35,3 +35,6 @@ jobs:
         content: |
           An update to Sourcepool Server has been released! Please view it here: 
           https://github.com/BigfootDS/Sourcepool-Server/releases/tag/${{ steps.latestrelease.outputs.release}}
+          
+          Release description contains:
+          ${{steps.latestrelease.outputs.description }}
