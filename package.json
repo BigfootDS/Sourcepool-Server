@@ -15,7 +15,7 @@
   "license": "SEE LICENSE IN ORC_License_FINAL.pdf",
   "dependencies": {
     "@seald-io/nedb": "^4.0.2",
-    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "camo": "^0.12.4",
     "cors": "^2.8.5",
     "detect-port": "^1.5.1",
