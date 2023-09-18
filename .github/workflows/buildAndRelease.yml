@@ -17,7 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       release_id: ${{ steps.create_release.outputs.id }}
+      release_version: ${{ steps.tag.outputs.new_tag }}
       upload_url: ${{ steps.create_release.outputs.upload_url }}
+      semver_commit_hash: ${{ steps.semver_commit.outputs.commit_hash }}
     steps:
     - uses: actions/checkout@v3
       with:
@@ -36,6 +38,7 @@ jobs:
         version: ${{ steps.tag.outputs.new_version }}
 
     - name: Commit semver changes to repo
+      id: semver_commit
       uses: stefanzweifel/git-auto-commit-action@v4.16.0
 
 
@@ -58,6 +61,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          ref: ${{ needs.draft_release.outputs.semver_commit_hash }}
       
       - name: Set up NodeJS
         uses: actions/setup-node@v3
@@ -73,17 +78,17 @@ jobs:
       - name: Log the build output
         run: ls out/make -R
 
-      - name: Upload Build As Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: Sourcepool Server for Windows 64-bit
-          path: out/make/squirrel.windows/x64/*.exe
+      # - name: Upload Build As Artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: Sourcepool Server for Windows 64-bit
+      #     path: out/make/squirrel.windows/x64/*.exe
 
       - name: Upload Build to Release
         uses: softprops/action-gh-release@v1
         with:
           files: out/make/squirrel.windows/x64/*.exe
-          tag_name: ${{ needs.draft_release.outputs.release_id }}
+          tag_name: ${{ needs.draft_release.outputs.release_version }}
           draft: true
   
   make_release:
@@ -97,6 +102,6 @@ jobs:
     - name: Mark release as published
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: ${{ needs.draft_release.outputs.release_id }}
+        tag_name: ${{ needs.draft_release.outputs.release_version }}
         draft: false
         
