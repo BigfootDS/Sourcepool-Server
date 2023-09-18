@@ -118,7 +118,7 @@ jobs:
         run: npm run make
 
       - name: Log the build output
-        run: ls out/make -R
+        run: ls out/make
 
       - name: Upload Build to Release
         uses: softprops/action-gh-release@v1
@@ -148,6 +148,9 @@ jobs:
       - name: Install Ubuntu dependencies
         run: sudo apt install libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev
       
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v2
+      
       - name: Install NodeJS dependencies
         run: npm install
 
@@ -167,7 +170,7 @@ jobs:
 
   make_release:
     needs: [draft_release, build_windows, build_macos, build_ubuntu]
-    name: Make release
+    name: Publish release
     runs-on: ubuntu-latest
     steps:
     - name: Checkout GitHub Action
