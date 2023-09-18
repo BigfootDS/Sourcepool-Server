@@ -55,8 +55,7 @@ module.exports = {
         repository: {
           owner: 'BigfootDS',
           name: 'Sourcepool-Server'
-        },
-        draft: true
+        }
       }
     }
   ]

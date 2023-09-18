@@ -127,53 +127,52 @@ jobs:
           tag_name: ${{ needs.draft_release.outputs.release_version }}
           draft: true
           
-  build_ubuntu:
-    needs: [draft_release]
-    name: Build on Ubuntu
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ needs.draft_release.outputs.semver_commit_hash }}
+  # build_ubuntu:
+  #   needs: [draft_release]
+  #   name: Build on Ubuntu
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #       with:
+  #         ref: ${{ needs.draft_release.outputs.semver_commit_hash }}
       
-      - name: Set up NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: lts/*
+  #     - name: Set up NodeJS
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         node-version: lts/*
 
-      - name: Install node-gyp
-        run: npm install -g node-gyp
+  #     - name: Install node-gyp
+  #       run: npm install -g node-gyp
 
-      - name: Install Ubuntu dependencies
-        run: sudo apt install libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev
+  #     - name: Install Ubuntu dependencies
+  #       run: sudo apt install libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev
       
-      - name: Setup Snapcraft
-        run: |
-          sudo snap install snapcraft --classic      
-        env:
-          SNAPCRAFT_BUILD_ENVIRONMENT: host
-  
+  #     - name: Install Snapcraft (1/2)
+  #       uses: samuelmeuli/action-snapcraft@v2
       
-      - name: Install NodeJS dependencies
-        run: npm install
+  #     - name: Install Snapcraft (2/2)
+  #       run: sg lxd -c 'snapcraft --use-lxd'
+      
+  #     - name: Install NodeJS dependencies
+  #       run: npm install
 
-      - name: Build app
-        run: npm run make
+  #     - name: Build app
+  #       run: npm run make
 
-      - name: Log the build output
-        run: ls out/make -R
+  #     - name: Log the build output
+  #       run: ls out/make -R
 
-      - name: Upload Build to Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: out/make/snap/x64/*.snap
-          tag_name: ${{ needs.draft_release.outputs.release_version }}
-          draft: true
+  #     - name: Upload Build to Release
+  #       uses: softprops/action-gh-release@v1
+  #       with:
+  #         files: out/make/snap/x64/*.snap
+  #         tag_name: ${{ needs.draft_release.outputs.release_version }}
+  #         draft: true
 
 
   make_release:
-    needs: [draft_release, build_windows, build_macos, build_ubuntu]
+    needs: [draft_release, build_windows, build_macos]
     name: Publish the Draft Release
     runs-on: ubuntu-latest
     steps:
