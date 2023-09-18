@@ -89,7 +89,7 @@ jobs:
         with:
           files: |
             Sourcepool-Server-Windows-${{ needs.draft_release.outputs.release_version }}.zip
-            Sourcepool-Server-Windows-${{ needs.draft_release.outputs.release_version }}.exe
+            out/make/squirrel.windows/x64/Sourcepool-Server-Windows-${{ needs.draft_release.outputs.release_version }}.exe
           tag_name: ${{ needs.draft_release.outputs.release_version }}
           draft: true
   
@@ -123,7 +123,7 @@ jobs:
         run: ls out/make
 
       - name: Put build into ZIP
-        run: zip -r Sourcepool-Server-MacOS-${{ needs.draft_release.outputs.release_version }}.zip out/make/*.dmg
+        run: zip -j Sourcepool-Server-MacOS-${{ needs.draft_release.outputs.release_version }}.zip out/make/*.dmg
 
       - name: Upload Build to Release
         uses: softprops/action-gh-release@v1
