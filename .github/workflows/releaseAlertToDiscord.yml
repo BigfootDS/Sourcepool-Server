@@ -10,7 +10,7 @@ name: Release Alert to Discord
 # the release/changelog generator action has completed:
 on:
   workflow_run:
-    workflows: ["Generate Release with Changelog on PR Merge"]
+    workflows: ["Build & Release on PR Merge"]
     types: [completed]
 
 jobs:

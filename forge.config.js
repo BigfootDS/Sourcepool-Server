@@ -48,4 +48,16 @@ module.exports = {
       config: {},
     },
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'BigfootDS',
+          name: 'Sourcepool-Server'
+        },
+        draft: true
+      }
+    }
+  ]
 };
