@@ -13,7 +13,7 @@ jobs:
   draft_release:
     permissions:
       contents: write
-    name: Create GitHub Release
+    name: Create Draft Release
     runs-on: ubuntu-latest
     outputs:
       release_id: ${{ steps.create_release.outputs.id }}
@@ -148,8 +148,11 @@ jobs:
       - name: Install Ubuntu dependencies
         run: sudo apt install libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev
       
-      - name: Install Snapcraft
+      - name: Install Snapcraft (1/2)
         uses: samuelmeuli/action-snapcraft@v2
+      
+      - name: Install Snapcraft (2/2)
+        run: sg lxd -c 'snapcraft --use-lxd'
       
       - name: Install NodeJS dependencies
         run: npm install
@@ -170,7 +173,7 @@ jobs:
 
   make_release:
     needs: [draft_release, build_windows, build_macos, build_ubuntu]
-    name: Publish release
+    name: Publish the Draft Release
     runs-on: ubuntu-latest
     steps:
     - name: Checkout GitHub Action
