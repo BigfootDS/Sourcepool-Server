@@ -78,16 +78,18 @@ jobs:
       - name: Log the build output
         run: ls out/make -R
 
-      # - name: Upload Build As Artifact
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: Sourcepool Server for Windows 64-bit
-      #     path: out/make/squirrel.windows/x64/*.exe
+      - name: Put build into ZIP
+        run: Compress-Archive -Path out/make/squirrel.windows/x64/*.exe Sourcepool-Server-Windows-${{ needs.draft_release.outputs.release_version }}.zip
+
+      - name: Rename EXE to standard
+        run: Rename-Item out/make/squirrel.windows/x64/*.exe Sourcepool-Server-Windows-${{ needs.draft_release.outputs.release_version }}.exe
 
       - name: Upload Build to Release
         uses: softprops/action-gh-release@v1
         with:
-          files: out/make/squirrel.windows/x64/*.exe
+          files: |
+            Sourcepool-Server-Windows-${{ needs.draft_release.outputs.release_version }}.zip
+            Sourcepool-Server-Windows-${{ needs.draft_release.outputs.release_version }}.exe
           tag_name: ${{ needs.draft_release.outputs.release_version }}
           draft: true
   
@@ -120,10 +122,13 @@ jobs:
       - name: Log the build output
         run: ls out/make
 
+      - name: Put build into ZIP
+        run: zip -r Sourcepool-Server-MacOS-${{ needs.draft_release.outputs.release_version }}.zip out/make/*.dmg
+
       - name: Upload Build to Release
         uses: softprops/action-gh-release@v1
         with:
-          files: out/make/*.dmg
+          files: Sourcepool-Server-MacOS-${{ needs.draft_release.outputs.release_version }}.zip
           tag_name: ${{ needs.draft_release.outputs.release_version }}
           draft: true
           

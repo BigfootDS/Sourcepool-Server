@@ -1,6 +1,11 @@
 // Prevent weird behaviours during Windows installation:
 if(require('electron-squirrel-startup')) return;
 
+// May be useless until we get code signing sorted out on 
+// MacOS and Windows:
+require('update-electron-app')()
+
+
 const fs = require('fs');
 const path = require('node:path');
 
