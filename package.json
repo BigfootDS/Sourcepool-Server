@@ -16,7 +16,7 @@
     "type": "git",
     "url": "https://github.com/BigfootDS/Sourcepool-Server.git"
   },
-  "license": "SEE LICENSE IN ORC_License_FINAL.pdf",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "@seald-io/nedb": "^4.0.2",
     "bcryptjs": "^2.4.3",
