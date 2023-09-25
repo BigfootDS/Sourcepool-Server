@@ -16,6 +16,12 @@ class ServerConfig extends Document{
 	constructor(){
 		super();
 
+		this.ftueComplete = {
+			type: Boolean,
+			default: false,
+			required: true
+		}
+
 		this.usersNeedPasswords = {
 			type: Boolean,
 			default: false,
@@ -31,6 +37,18 @@ class ServerConfig extends Document{
 		this.onlyAdminCanEditContent = {
 			type: Boolean,
 			default: false,
+			required: true
+		}
+
+		this.allowUpserts = {
+			type: Boolean,
+			default: true,
+			required: true
+		}
+
+		this.usersCanDeleteSelf = {
+			type: Boolean,
+			default: true,
 			required: true
 		}
 

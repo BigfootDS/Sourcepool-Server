@@ -27,6 +27,7 @@ class User extends Document{
 		};
 		this.isAdmin = {
 			type: Boolean,
+			default: false,
 			required: false
 		}
 
