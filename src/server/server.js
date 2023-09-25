@@ -66,7 +66,7 @@ app.get("/", (request, response) => {
 
 
 const serverUtilsRouter = require('./controllers/serverUtilities');
-app.use("/server", requiresAdminUser, serverUtilsRouter);
+app.use("/server", serverUtilsRouter);
 
 const userController = require('./controllers/UsersController');
 const { User } = require('./models/UserModel');
