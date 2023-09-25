@@ -41,6 +41,8 @@ jobs:
     - name: Commit semver changes to repo
       id: semver_commit
       uses: stefanzweifel/git-auto-commit-action@v4.16.0
+      with:
+        branch: main
 
 
     - name: Create Release
