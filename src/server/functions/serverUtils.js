@@ -36,6 +36,11 @@ const databaseInitCheck = async () => {
 			});
 			let savedServerSettings = await newServerSettings.save();
 			console.log("New server settings now exists:\n" + JSON.stringify(savedServerSettings, null, 4));
+		} else {
+			console.log("Server settings found.");
+			if (!serverSettings.ftueComplete){
+				console.log("Server setup has not been completed.\nPlease log in with your admin credentials and read the online documentation to finish setting up the server.");
+			}
 		}
 
 		console.log("Seeding default game data...");

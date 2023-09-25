@@ -38,6 +38,22 @@ try {
 const {readServerConfig} = require('./middleware/serverMiddleware');
 app.use(readServerConfig);
 
+// Keeping the admin creation route separate so that it is usable regardless of auth settings
+app.post("/users/admin/create/emergency", async (request, response) => {
+	let adminCheck = await User.count({isAdmin: true});
+	if (adminCheck > 0){
+		response.json({
+			message:"Other admin accounts exist, please use those to do whatever you're trying to do."
+		});
+	} else {
+		let newUser = User.create({ username: request.body.username, password: request.body.password, isAdmin: true});
+		let result = await newUser.save();
+		response.json({
+			user: result
+		});
+	}
+});
+
 const { validateBasicAuth, requiresAdminUser } = require('./middleware/authMiddleware');
 app.use(validateBasicAuth);
 
@@ -51,6 +67,10 @@ app.get("/", (request, response) => {
 
 const serverUtilsRouter = require('./controllers/serverUtilities');
 app.use("/server", requiresAdminUser, serverUtilsRouter);
+
+const userController = require('./controllers/UsersController');
+const { User } = require('./models/UserModel');
+app.use("/users", userController);
 
 
 app.use((error, request, response, next) => {

@@ -13,7 +13,18 @@ const readServerConfig = async (request, response, next) => {
 	}
 }
 
+const checkUpsertFlag = async (request, response, next) => {
+	if (!request.serverSettings.allowUpserts){
+		response.status(403).json({
+			message: "Upserts are not allowed, so PUT requests are not allowed.\nPlease use a PATCH request instead, or ask a server admin to change the upsert setting within the server."
+		});
+	} else {
+		next();
+	}
+}
+
 
 module.exports = {
-	readServerConfig
+	readServerConfig,
+	checkUpsertFlag
 }

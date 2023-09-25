@@ -7,8 +7,13 @@ const requiresAdminUser = async (request, response, next) => {
 			error: "Authentication failed."
 		});
 	}
-	let requestUser = await User.findOne({ username: request.auth.username, password: request.auth.password });
-	if (requestUser.isAdmin) {
+	let requestUser = await User.findOne({ username: request.auth.username, password: request.auth.password }).catch(error => {
+		return response.status(500).json({
+			error: "Authentication failed due to a server error.",
+			dump: error,
+		})
+	});
+	if (requestUser != undefined && requestUser.isAdmin) {
 		console.log("Admin is doing stuff!");
 		request.auth.isAdmin = true;
 		next();
@@ -33,6 +38,8 @@ const validateBasicAuth = async (request, response, next) => {
 		return response.status(403).json({
 			error: "Authentication required to access this resource."
 		});
+	} else if (!request.serverSettings.requireAuth && (authHeader == null || authHeader?.length < 1)){
+		return next();
 	}
 
 	// Confirm it's a Basic auth string, 
@@ -55,6 +62,12 @@ const validateBasicAuth = async (request, response, next) => {
 		// Add decoded data to the request object
 		// for other middleware and functions to access.
 		request.auth = { ...objDecodedAuth };
+
+		let adminStatus = await User.findOne({isAdmin: true, username: objDecodedAuth.username, password: objDecodedAuth.password});
+		if (adminStatus){
+			request.auth.isAdmin = adminStatus.isAdmin;
+			request.auth._id = adminStatus._id;
+		}
 
 		// Call the next step in the server's middleware chain or go to the route's callback.
 		next();
