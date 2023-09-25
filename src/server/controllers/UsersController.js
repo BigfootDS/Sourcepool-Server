@@ -9,6 +9,8 @@ router.get("/", async (request, response) => {
 
 	let result = await User.find({});
 
+	// If admin & query param "full=true" provided, show full user data
+	// otherwise, strip sensitive data out of the result array
 	if (!actingUser?.isAdmin || request.query.full != "true"){
 		result = result.map((user) => {
 			return {_id: user._id, username: user.username}
