@@ -31,7 +31,8 @@ router.get("/clientHandshake", async (request, response) => {
 	let adminCount = await User.count({isAdmin: true});
 
 	response.json({
-		adminCount: adminCount
+		adminCount: adminCount,
+		name: request.serverSettings.name
 	});
 });
 
