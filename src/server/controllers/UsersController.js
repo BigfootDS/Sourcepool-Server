@@ -53,7 +53,11 @@ router.post("/", async (request, response) => {
 	});
 
 	// Only admins can make admins!
-	if (request.auth.isAdmin){
+	// Or, if no admins exist, then the first user made is the admin
+	let adminCount = await User.count({isAdmin: true});
+	if (adminCount == 0){
+		newModelInstance.isAdmin = true;
+	} else if (request.auth.isAdmin){
 		newModelInstance.isAdmin = request.body.isAdmin;
 	}
 

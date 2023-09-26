@@ -16,6 +16,12 @@ class ServerConfig extends Document{
 	constructor(){
 		super();
 
+		this.name = {
+			type:String,
+			default: "Sourcepool Server",
+			required: true
+		}
+
 		this.ftueComplete = {
 			type: Boolean,
 			default: false,
