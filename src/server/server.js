@@ -57,6 +57,9 @@ app.post("/users/admin/create/emergency", async (request, response) => {
 const apiRouter = require('./api');
 app.use('/api', apiRouter);
 
+const electronHelpers = require('./controllers/electronUtilities');
+app.use("/electron", electronHelpers);
+
 const path = require('node:path');
 
 let localWebClientPath = path.join(process.env.userStorageDir, 'localWebClient');

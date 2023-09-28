@@ -11,7 +11,6 @@ const { app } = require('electron');
 
 async function checkForLocalClient(){
 	let webClientTargetPath = path.join(app.getPath('userData'), "localWebClient");
-	let doesClientExist = false;
 	if (!fs.existsSync(webClientTargetPath)){
 		console.log("webClientTargetPath directory did not exist, creating it now...");
 		fs.mkdirSync(webClientTargetPath, {recursive: true});
@@ -35,6 +34,30 @@ async function downloadNewClient(){
 	return result;
 }
 
+async function checkForUpdatedClientOnline(PORT = 7474,){
+	let clientUpdateCheck = await fetch(`http://localhost:${PORT}/electron/checkForNewLocalWebClient`)
+	.catch(error => {
+		console.log("Error when Electron checking for web client updates via Express.");
+		console.log(error);
+		return {
+			error: error,
+			abort: true
+		}
+	});
+
+	if (clientUpdateCheck.abort){
+		return {
+			error: clientUpdateCheck.error
+		}
+	}
+
+
+	let clientUpdateData = await clientUpdateCheck.json();
+	console.log("Client update check complete with this data:\n" + JSON.stringify(clientUpdateData, null, 4));
+	return clientUpdateData;
+
+}
+
 module.exports = {
-	checkForLocalClient, downloadNewClient
+	checkForLocalClient, downloadNewClient, checkForUpdatedClientOnline
 }
