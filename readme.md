@@ -2,6 +2,14 @@
 
 This repository contains the source code for the core "server" component of Sourcepool.
 
+## Contributing
+
+To see the to-do list of the Sourcepool ecosystem, please refer to these resources:
+
+- [BigfootDS/Projects/Sourcepool](https://github.com/orgs/BigfootDS/projects/5/views/1)
+
+The GitHub project `Sourcepool` is the primary source of info for task planning, and includes links to the official repositories of the various bits of Sourcepool.
+
 ## Installation
 
 Installers are provided in [the Releases page](https://github.com/BigfootDS/Sourcepool-Server/releases) for MacOS and Windows platforms. Releases towards the top of the page are newer, with the release labelled "latest" being the newest version of the server.

@@ -65,11 +65,6 @@ app.get('*', (request, response) => {
 	response.sendFile('index.html', {root: localWebClientPath});
 });
 
-
-
-
-
-
 app.use((error, request, response, next) => {
 	response.status(500).json({
 		message: "You did something that we haven't accounted for. Please raise an issue on GitHub!",
