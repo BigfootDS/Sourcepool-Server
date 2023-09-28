@@ -58,6 +58,25 @@ class ServerConfig extends Document{
 			required: true
 		}
 
+		this.localWebClientVersion = {
+			type: String,
+			default: 'v0.0.0',
+			required: true
+		}
+
+		this.shouldAutoUpdateLocalWebClient = {
+			type: Boolean,
+			default: true,
+			required: true
+		}
+
+		// Check once per hour
+		this.clientAutoUpdateInterval = {
+			type: Number,
+			default: 1000 * 60 * 60,
+			required: true
+		}
+
 	}
 
 	static collectionName() {
