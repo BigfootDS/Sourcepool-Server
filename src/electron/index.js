@@ -10,6 +10,7 @@ const fs = require('fs');
 const path = require('node:path');
 
 const { app, Tray, Menu, shell, nativeImage } = require('electron');
+const { checkForLocalClient, downloadNewClient } = require('./webClientManager');
 
 let tray = null;
 const PORT = 7474;
@@ -50,6 +51,10 @@ app.whenReady().then(async () => {
 		tray = new Tray(iconNativeImage);
 	}
 
+	let doesLocalWebClientExist = await checkForLocalClient();
+	if (!doesLocalWebClientExist){
+		downloadNewClient();
+	}
 
 	// Tray logic stored in a function:
 	updateMenu();

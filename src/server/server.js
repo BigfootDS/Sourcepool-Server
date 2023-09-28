@@ -54,23 +54,20 @@ app.post("/users/admin/create/emergency", async (request, response) => {
 	}
 });
 
-const { validateBasicAuth, requiresAdminUser } = require('./middleware/authMiddleware');
-app.use(validateBasicAuth);
+const apiRouter = require('./api');
+app.use('/api', apiRouter);
 
-app.get("/", (request, response) => {
-	response.json({
-		message:"Hello world!"
-	});
+const path = require('node:path');
+
+let localWebClientPath = path.join(process.env.userStorageDir, 'localWebClient');
+app.use(express.static(localWebClientPath));
+app.get('*', (request, response) => {
+	response.sendFile('index.html', {root: localWebClientPath});
 });
 
 
 
-const serverUtilsRouter = require('./controllers/serverUtilities');
-app.use("/server", serverUtilsRouter);
 
-const userController = require('./controllers/UsersController');
-const { User } = require('./models/UserModel');
-app.use("/users", userController);
 
 
 app.use((error, request, response, next) => {
