@@ -38,6 +38,9 @@ try {
 const {readServerConfig} = require('./middleware/serverMiddleware');
 app.use(readServerConfig);
 
+
+const { User } = require('./models/UserModel');
+
 // Keeping the admin creation route separate so that it is usable regardless of auth settings
 app.post("/users/admin/create/emergency", async (request, response) => {
 	let adminCheck = await User.count({isAdmin: true});
@@ -61,6 +64,7 @@ const electronHelpers = require('./controllers/electronUtilities');
 app.use("/electron", electronHelpers);
 
 const path = require('node:path');
+
 
 let localWebClientPath = path.join(process.env.userStorageDir, 'localWebClient');
 app.use(express.static(localWebClientPath));

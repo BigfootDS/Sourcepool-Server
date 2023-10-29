@@ -2,6 +2,12 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+
+if (!process.env.userStorageDir || process.env.userStorageDir == undefined){
+	let home = process.env.APPDATA || process.env.HOME;
+	process.env.userStorageDir = home + "/" + process.env.npm_package_name;
+}
+
 // If no process.env.X is found, assign a default value instead.
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 7474;
