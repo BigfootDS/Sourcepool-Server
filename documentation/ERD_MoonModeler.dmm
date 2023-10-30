@@ -635,7 +635,8 @@
 				"57869056-fe22-4979-8266-812fd7976ba7",
 				"8766560c-b968-4979-8468-26c53b8b6a75",
 				"bc6b7c97-7079-4820-b036-859bb0e2ffb0",
-				"989b2c80-00ad-497a-a72b-b5b6269bc805"
+				"989b2c80-00ad-497a-a72b-b5b6269bc805",
+				"67be55eb-20f1-412f-b9e1-9e898aefdf75"
 			],
 			"lines": [],
 			"keys": [
@@ -838,7 +839,8 @@
 				"678ecd9c-0618-4646-a864-b41e86cc7bb6",
 				"1b99e75a-bcde-4334-9dcc-734a9aff62be",
 				"665c1789-acce-4c78-9e21-78181f21a262",
-				"a5386f39-514e-45ff-be40-60ad94f87ab5"
+				"a5386f39-514e-45ff-be40-60ad94f87ab5",
+				"69e00bc5-fb1a-45bc-98bb-2e34ee0b4eee"
 			],
 			"lines": [],
 			"keys": [
@@ -2687,6 +2689,269 @@
 			"max": "",
 			"validation": "",
 			"capped": false
+		},
+		"60e9e581-de51-4e7d-a057-17803d55a62d": {
+			"id": "60e9e581-de51-4e7d-a057-17803d55a62d",
+			"visible": true,
+			"name": "Encounter",
+			"desc": "",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "1f315d48-3d22-485b-9360-d98afeb1c800",
+					"name": "_id",
+					"datatype": "objectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "a119a6dd-5775-41e7-a0d4-d7ce25fe8866",
+					"name": "Initiative",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "36085fc1-8557-4e4b-a6fc-e28a2d9ddf06",
+					"name": "Place",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "c81942af-d620-4472-9363-109eef594091",
+					"name": "notes",
+					"datatype": "string",
+					"param": "",
+					"pk": false,
+					"nn": false,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "535ab4e4-d898-4791-86d1-3ce98af660b5",
+					"name": "round",
+					"datatype": "int",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "de8f8dbe-e0ea-4853-b627-b4d391bbb056",
+					"name": "turn",
+					"datatype": "int",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "c5192534-40ce-4682-9e6e-25c4552954b4",
+					"name": "playersAccess",
+					"datatype": "bool",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "6244774b-21d2-4403-a6ca-064197de0c90",
+					"name": "playersCanSeeEnemies",
+					"datatype": "bool",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				}
+			],
+			"relations": [
+				"69e00bc5-fb1a-45bc-98bb-2e34ee0b4eee",
+				"360c900d-f6d9-4701-8720-227e4ea28f05"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "6ea8feab-0265-4685-b5f0-15821d250106",
+					"name": "Primary key",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "22772e25-b39e-414e-a955-97512cbf520c",
+							"colid": "1f315d48-3d22-485b-9360-d98afeb1c800"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"validationLevel": "na",
+			"validationAction": "na",
+			"collation": "",
+			"others": "",
+			"size": "",
+			"max": "",
+			"validation": "",
+			"capped": false
+		},
+		"8d381400-806d-4596-93ff-4d02a77454da": {
+			"id": "8d381400-806d-4596-93ff-4d02a77454da",
+			"visible": true,
+			"name": "Initiative",
+			"desc": "",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "61c31c45-2047-4c26-bdeb-eb9cf394e52c",
+					"name": "_id",
+					"datatype": "objectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				},
+				{
+					"id": "56b16a5f-eb45-41dc-a283-efbbcd8019ab",
+					"name": "Character",
+					"datatype": "objectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": "",
+					"fk": true
+				},
+				{
+					"id": "36483e7c-cb53-400c-81ee-e8f430e615d1",
+					"name": "order",
+					"datatype": "int",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"enum": "",
+					"validation": "",
+					"pattern": false,
+					"estimatedSize": "",
+					"any": ""
+				}
+			],
+			"relations": [
+				"67be55eb-20f1-412f-b9e1-9e898aefdf75",
+				"360c900d-f6d9-4701-8720-227e4ea28f05"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "b1b62912-a674-4034-9005-dab87e3927b2",
+					"name": "Primary key",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "be3f8e27-1303-4dcd-afaf-889bd9af6a6e",
+							"colid": "61c31c45-2047-4c26-bdeb-eb9cf394e52c"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"validationLevel": "na",
+			"validationAction": "na",
+			"collation": "",
+			"others": "",
+			"size": "",
+			"max": "",
+			"validation": "",
+			"capped": false
 		}
 	},
 	"relations": {
@@ -3885,6 +4150,84 @@
 			"generate": true,
 			"generateCustomCode": true,
 			"customCode": ""
+		},
+		"69e00bc5-fb1a-45bc-98bb-2e34ee0b4eee": {
+			"id": "69e00bc5-fb1a-45bc-98bb-2e34ee0b4eee",
+			"visible": true,
+			"name": "Place_Encounter",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "86e5d693-657f-493c-b3ba-6f1f5ef20563",
+			"parent": "4f252ab8-76ca-438f-a124-981b46ee22ac",
+			"child": "60e9e581-de51-4e7d-a057-17803d55a62d",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "857f8c96-a25e-418a-a495-f871546d9a4f",
+					"parentcol": "b0438504-c391-4375-892f-bc05a9821560",
+					"childcol": "36085fc1-8557-4e4b-a6fc-e28a2d9ddf06"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"67be55eb-20f1-412f-b9e1-9e898aefdf75": {
+			"id": "67be55eb-20f1-412f-b9e1-9e898aefdf75",
+			"visible": true,
+			"name": "Character_Initiative",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "23703926-0c90-44e3-80c5-8ebc5ca900b6",
+			"parent": "61efa08f-cf4d-4c2c-b807-22bc0a008903",
+			"child": "8d381400-806d-4596-93ff-4d02a77454da",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "c3a64ba1-4442-4977-9b85-a6166cc0ae36",
+					"parentcol": "dded48d2-ebba-4d10-9618-84f05443c72a",
+					"childcol": "56b16a5f-eb45-41dc-a283-efbbcd8019ab"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
+		},
+		"360c900d-f6d9-4701-8720-227e4ea28f05": {
+			"id": "360c900d-f6d9-4701-8720-227e4ea28f05",
+			"visible": true,
+			"name": "Initiative_Encounter",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "b1b62912-a674-4034-9005-dab87e3927b2",
+			"parent": "8d381400-806d-4596-93ff-4d02a77454da",
+			"child": "60e9e581-de51-4e7d-a057-17803d55a62d",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "6f4f4c5d-3228-4f75-9f0a-6e6201cea98b",
+					"parentcol": "61c31c45-2047-4c26-bdeb-eb9cf394e52c",
+					"childcol": "a119a6dd-5775-41e7-a0d4-d7ce25fe8866"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": ""
 		}
 	},
 	"notes": {},
@@ -3922,7 +4265,7 @@
 		"def_validationAction": "na",
 		"def_collation": "",
 		"def_others": "",
-		"lastSaved": "Tue Sep 12 2023 10:10:23 GMT+1000 (Australian Eastern Standard Time)"
+		"lastSaved": "Mon Oct 30 2023 11:19:37 GMT+1100 (Australian Eastern Daylight Time)"
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -4000,8 +4343,8 @@
 				},
 				"4f252ab8-76ca-438f-a124-981b46ee22ac": {
 					"referencedItemId": "4f252ab8-76ca-438f-a124-981b46ee22ac",
-					"x": 2619,
-					"y": 462,
+					"x": 2674,
+					"y": 433,
 					"gHeight": 99,
 					"gWidth": 223,
 					"color": "#ffffff",
@@ -4232,6 +4575,30 @@
 					"y": 789,
 					"gHeight": 45,
 					"gWidth": 175,
+					"color": "#ffffff",
+					"background": "#03a9f4",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10"
+				},
+				"60e9e581-de51-4e7d-a057-17803d55a62d": {
+					"referencedItemId": "60e9e581-de51-4e7d-a057-17803d55a62d",
+					"x": 2643,
+					"y": 81,
+					"gHeight": 171,
+					"gWidth": 270,
+					"color": "#ffffff",
+					"background": "#03a9f4",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10"
+				},
+				"8d381400-806d-4596-93ff-4d02a77454da": {
+					"referencedItemId": "8d381400-806d-4596-93ff-4d02a77454da",
+					"x": 2339,
+					"y": 99,
+					"gHeight": 81,
+					"gWidth": 214,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": false,
