@@ -11,4 +11,7 @@ router.use("/server", serverUtilsRouter);
 const userController = require('./controllers/UsersController');
 router.use("/users", userController);
 
+const abilityController = require('./controllers/AbilitiesController');
+router.use("/abilities", abilityController);
+
 module.exports = router;
