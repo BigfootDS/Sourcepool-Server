@@ -29,4 +29,7 @@ router.use("/damagetypes", damageTypeController);
 const itemsController = require('./controllers/ItemsController');
 router.use("/items", itemsController);
 
+const propsController = require('./controllers/PropsController');
+router.use("/props", propsController);
+
 module.exports = router;
