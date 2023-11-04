@@ -1,4 +1,4 @@
-const { Feature } = require('./FeatureModel');
+const { Feature } = require('../FeatureModel');
 
 const EmbeddedDocument = require('camo').EmbeddedDocument;
 

@@ -23,4 +23,10 @@ router.use("/features", featureController);
 const conditionController = require('./controllers/ConditionsController');
 router.use("/conditions", conditionController);
 
+const damageTypeController = require('./controllers/DamageTypesController');
+router.use("/damagetypes", damageTypeController);
+
+const itemsController = require('./controllers/ItemsController');
+router.use("/items", itemsController);
+
 module.exports = router;

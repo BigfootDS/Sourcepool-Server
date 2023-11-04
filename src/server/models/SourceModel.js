@@ -1,4 +1,4 @@
-const { Lore } = require('./LoreEmbeddedModel');
+const { Lore } = require('./Subdocuments/LoreEmbeddedModel');
 
 const Document = require('camo').Document;
 

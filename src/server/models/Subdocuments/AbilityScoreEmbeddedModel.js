@@ -1,4 +1,4 @@
-const { Ability } = require('./AbilityModel');
+const { Ability } = require('../AbilityModel');
 
 const EmbeddedDocument = require('camo').EmbeddedDocument;
 
