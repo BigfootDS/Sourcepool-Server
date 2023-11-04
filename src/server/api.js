@@ -20,4 +20,7 @@ router.use("/skills", skillController);
 const featureController = require('./controllers/FeaturesController');
 router.use("/features", featureController);
 
+const conditionController = require('./controllers/ConditionsController');
+router.use("/conditions", conditionController);
+
 module.exports = router;

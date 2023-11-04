@@ -78,10 +78,10 @@ router.post("/one", async (request, response) => {
 	// 	],
 	// }).save();
 
-	let newAbility = await Ability.create(request.body).save().catch(error => error);
+	let newDoc = await Ability.create(request.body).save().catch(error => error);
 
 	response.json({
-		result: newAbility
+		result: newDoc
 	});
 });
 

@@ -1,10 +1,10 @@
-const { Feature } = require('../models/FeatureModel');
+const { Condition } = require('../models/ConditionModel');
 
 const router = require('express').Router();
 
 // Get all objects of this model.
 router.get("/all", async (request, response) => {
-	let result = await Feature.find({}).catch(error => error);
+	let result = await Condition.find({}).catch(error => error);
 
 	response.json({
 		result
@@ -13,7 +13,7 @@ router.get("/all", async (request, response) => {
 
 // Get one object of this model, searching by its document "_id" property.
 router.get("/one/:id", async (request, response) => {
-	let result = await Feature.findOne({_id: request.params.id}).catch(error => error);
+	let result = await Condition.findOne({_id: request.params.id}).catch(error => error);
 
 	response.json({
 		result
@@ -24,18 +24,18 @@ router.get("/one/:id", async (request, response) => {
 // If no key is provided, or if a key is provided without a value, this returns nothing.
 router.get("/multiple/:key/:value", async (request, response) => {
 	// Our data structure is too nested to do this simply:
-	//let result = await Feature.find({[request.params.key]: request.params.value}).catch(error => error);
+	//let result = await Condition.find({[request.params.key]: request.params.value}).catch(error => error);
 	let results = [];
 
-	// let allDocuments = await Feature.find({});
+	// let allDocuments = await Condition.find({});
 
 	switch (request.params.key) {
 		case "name":
-			results = await Feature.find({"description.name": {$regex: new RegExp(`(${request.params.value})`, 'gi')}}).catch(error => error);
+			results = await Condition.find({"description.name": {$regex: new RegExp(`(${request.params.value})`, 'gi')}}).catch(error => error);
 			break;
 		case "tags":
 		case "tag":
-			results = await Feature.find({"tags": {$regex: new RegExp(`(${request.params.value})`, 'gi')}}).catch(error => error);
+			results = await Condition.find({"tags": {$regex: new RegExp(`(${request.params.value})`, 'gi')}}).catch(error => error);
 			break;
 		default:
 			break;
@@ -55,19 +55,19 @@ router.get("/multiple/:key/:value", async (request, response) => {
     "description": [
         {
             "language":"en",
-            "name":"Testo Feature",
+            "name":"Testo Condition",
             "content":"Test of functionality."
         },
                 {
             "language":"fr",
-            "name":"Feature de Testo",
+            "name":"Condition de Testo",
             "content":"Test de logicel."
         }
     ]
 }
 */
 router.post("/one", async (request, response) => {
-	// let newAbility = await Feature.create({
+	// let newAbility = await Condition.create({
 	// 	tags: request.body.tags,
 	// 	description: [
 	// 		await Lore.create({
@@ -78,7 +78,7 @@ router.post("/one", async (request, response) => {
 	// 	],
 	// }).save();
 
-	let newDoc = await Feature.create(request.body).save().catch(error => error);
+	let newDoc = await Condition.create(request.body).save().catch(error => error);
 
 	response.json({
 		result: newDoc
@@ -97,7 +97,7 @@ router.post("/one", async (request, response) => {
 }
 */
 router.patch("/one", async (request, response) => {
-	let result = await Feature.findOne({_id: request.body.targetDocId});
+	let result = await Condition.findOne({_id: request.body.targetDocId});
 
 	Object.keys(request.body.newData).forEach((key, index) => {
 		console.log(key, result[key]);
@@ -113,7 +113,7 @@ router.patch("/one", async (request, response) => {
 
 // Delete an object and return a success/fail result of the delete operation.
 router.delete("/one", async (request, response) => {
-	let result = await Feature.findOneAndDelete({_id: request.body.targetDocId});
+	let result = await Condition.findOneAndDelete({_id: request.body.targetDocId});
 
 	response.json({
 		result: result

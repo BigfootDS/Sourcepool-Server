@@ -60,10 +60,10 @@ router.get("/multiple/:key/:value", async (request, response) => {
 }
 */
 router.post("/one", async (request, response) => {
-	let newSkill = await Skill.create(request.body).save().catch(error => error);
+	let newDoc = await Skill.create(request.body).save().catch(error => error);
 
 	response.json({
-		result: newSkill
+		result: newDoc
 	});
 });
 
