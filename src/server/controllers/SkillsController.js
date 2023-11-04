@@ -1,10 +1,11 @@
 const { Ability } = require('../models/AbilityModel');
+const { Skill } = require('../models/SkillModel');
 
 const router = require('express').Router();
 
 // Get all objects of this model.
 router.get("/all", async (request, response) => {
-	let result = await Ability.find({}).catch(error => error);
+	let result = await Skill.find({}).catch(error => error);
 
 	response.json({
 		result
@@ -13,7 +14,7 @@ router.get("/all", async (request, response) => {
 
 // Get one object of this model, searching by its document "_id" property.
 router.get("/one/:id", async (request, response) => {
-	let result = await Ability.findOne({_id: request.params.id}).catch(error => error);
+	let result = await Skill.findOne({_id: request.params.id}).catch(error => error);
 
 	response.json({
 		result
@@ -24,18 +25,22 @@ router.get("/one/:id", async (request, response) => {
 // If no key is provided, or if a key is provided without a value, this returns nothing.
 router.get("/multiple/:key/:value", async (request, response) => {
 	// Our data structure is too nested to do this simply:
-	//let result = await Ability.find({[request.params.key]: request.params.value}).catch(error => error);
+	//let result = await Skill.find({[request.params.key]: request.params.value}).catch(error => error);
 	let results = [];
 
-	// let allDocuments = await Ability.find({});
+	// let allDocuments = await Skill.find({});
 
 	switch (request.params.key) {
 		case "name":
-			results = await Ability.find({"description.name": {$regex: new RegExp(`(${request.params.value})`, 'gi')}}).catch(error => error);
+			results = await Skill.find({"description.name": {$regex: new RegExp(`(${request.params.value})`, 'gi')}}).catch(error => error);
 			break;
 		case "tags":
 		case "tag":
-			results = await Ability.find({"tags": {$regex: new RegExp(`(${request.params.value})`, 'gi')}}).catch(error => error);
+			results = await Skill.find({"tags": {$regex: new RegExp(`(${request.params.value})`, 'gi')}}).catch(error => error);
+			break;
+		case "ability":
+			let tempAbility = await Ability.findOne({"description.name":{$regex: new RegExp(`(${request.params.value})`, 'gi')}});
+			results = await Skill.find({"ability":tempAbility._id}).catch(error => error);
 			break;
 		default:
 			break;
@@ -51,37 +56,14 @@ router.get("/multiple/:key/:value", async (request, response) => {
 // Expects request.body to look like:
 /*
 {
-    "tags":"testo",
-    "description": [
-        {
-            "language":"en",
-            "name":"Testo Ability",
-            "content":"Test of functionality."
-        },
-                {
-            "language":"fr",
-            "name":"Ability de Testo",
-            "content":"Test de logicel."
-        }
-    ]
+    "ability": "7865123476485"
 }
 */
 router.post("/one", async (request, response) => {
-	// let newAbility = await Ability.create({
-	// 	tags: request.body.tags,
-	// 	description: [
-	// 		await Lore.create({
-	// 			language: "en",
-	// 			name:ability.name,
-	// 			content:ability.content
-	// 		})
-	// 	],
-	// }).save();
-
-	let newAbility = await Ability.create(request.body).save().catch(error => error);
+	let newSkill = await Skill.create(request.body).save().catch(error => error);
 
 	response.json({
-		result: newAbility
+		result: newSkill
 	});
 });
 
@@ -97,7 +79,7 @@ router.post("/one", async (request, response) => {
 }
 */
 router.patch("/one", async (request, response) => {
-	let result = await Ability.findOne({_id: request.body.targetDocId});
+	let result = await Skill.findOne({_id: request.body.targetDocId});
 
 	Object.keys(request.body.newData).forEach((key, index) => {
 		console.log(key, result[key]);
@@ -113,7 +95,7 @@ router.patch("/one", async (request, response) => {
 
 // Delete an object and return a success/fail result of the delete operation.
 router.delete("/one", async (request, response) => {
-	let result = await Ability.findOneAndDelete({_id: request.body.targetDocId});
+	let result = await Skill.findOneAndDelete({_id: request.body.targetDocId});
 
 	response.json({
 		result: result

@@ -14,4 +14,7 @@ router.use("/users", userController);
 const abilityController = require('./controllers/AbilitiesController');
 router.use("/abilities", abilityController);
 
+const skillController = require('./controllers/SkillsController');
+router.use("/skills", skillController);
+
 module.exports = router;
