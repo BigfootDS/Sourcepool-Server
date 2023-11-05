@@ -23,8 +23,7 @@ router.get("/one/:id", async (request, response) => {
 // Get one or many objects.
 // If no key is provided, or if a key is provided without a value, this returns nothing.
 router.get("/multiple/:key/:value", async (request, response) => {
-	// Our data structure is too nested to do this simply:
-	//let result = await Ability.find({[request.params.key]: request.params.value}).catch(error => error);
+
 	let results = [];
 
 	// let allDocuments = await Ability.find({});
