@@ -101,12 +101,18 @@ jobs:
   build_macos:
     needs: [draft_release]
     name: Build on MacOS
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           ref: ${{ needs.draft_release.outputs.semver_commit_hash }}
+      
+        # macOS: appears to fix https://github.com/electron/forge/issues/2807
+      - name: Setup Python 3.11 (macOS)
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
       
       - name: Set up NodeJS
         uses: actions/setup-node@v3
