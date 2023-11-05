@@ -71,4 +71,8 @@ router.use("/calendars", calendarsController);
 const universesController = require('./controllers/UniversesController');
 router.use("/universes", universesController);
 
+
+const configsController = require('./controllers/ServerConfigsController');
+router.use("/config", configsController);
+
 module.exports = router;

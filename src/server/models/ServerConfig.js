@@ -77,6 +77,22 @@ class ServerConfig extends Document{
 			required: true
 		}
 
+		this.jwtEncryptionKey = {
+			type: String,
+			default: "Customise this to increase the security level of the server's password encryption.",
+			required: true
+		}
+
+		this.jwtLifetimeBeforeExpiry = {
+			type: String,
+			default: "7d",
+			// Choices provided here are arbitrary, but functionally this shouldn't matter
+			// as the frontend can refresh JWTs periodically automatically anyway, and
+			// it's not like users can do anything if they're not connected to the server.
+			choices: ["1h", "12h", "1d", "2d", "3d", "7d", "14d", "21d", "28d", "30d"],
+			required: true
+		}
+
 	}
 
 	static collectionName() {
