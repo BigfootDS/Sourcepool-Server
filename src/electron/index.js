@@ -3,7 +3,8 @@ if(require('electron-squirrel-startup')) return;
 
 // May be useless until we get code signing sorted out on 
 // MacOS and Windows:
-require('update-electron-app')()
+const autoUpdater = require('update-electron-app');
+autoUpdater.updateElectronApp();
 
 
 const fs = require('fs');
