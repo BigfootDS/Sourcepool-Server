@@ -1,4 +1,4 @@
-const { Initiative } = require('./InitiativeEmbeddedModel');
+const { Initiative } = require('./Subdocuments/InitiativeEmbeddedModel');
 const { Place } = require('./PlaceModel');
 const { Source } = require('./SourceModel');
 
