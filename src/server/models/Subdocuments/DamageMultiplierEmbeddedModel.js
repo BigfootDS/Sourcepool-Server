@@ -1,4 +1,4 @@
-const { DamageType } = require('./DamageTypeModel');
+const { DamageType } = require('../DamageTypeModel');
 
 const EmbeddedDocument = require('camo').EmbeddedDocument;
 

@@ -1,8 +1,8 @@
-const { AbilityScore } = require('./AbilityScoreModel');
-const { CharacterFeature } = require('./CharacterFeatureModel');
-const { CharacterSkill } = require('./CharacterSkillModel');
+const { AbilityScore } = require('./Subdocuments/AbilityScoreEmbeddedModel');
+const { CharacterFeature } = require('./Subdocuments/CharacterFeatureEmbeddedModel');
+const { CharacterSkill } = require('./Subdocuments/CharacterSkillEmbeddedModel');
 const { Condition } = require('./ConditionModel');
-const { DamageMultiplier } = require('./DamageMultiplierModel');
+const { DamageMultiplier } = require('./Subdocuments/DamageMultiplierEmbeddedModel');
 const { Game } = require('./GameModel');
 const { Item } = require('./ItemModel');
 const { Source } = require('./SourceModel');

@@ -1,4 +1,5 @@
-const { Lore } = require('./LoreEmbeddedModel');
+const { Lore } = require('./Subdocuments/LoreEmbeddedModel');
+const { Product } = require('./ProductModel');
 
 const Document = require('camo').Document;
 
@@ -27,7 +28,14 @@ class Source extends Document {
 			type: [String],
 			required: false
 		}
+
+		this.product = {
+			type: Product,
+			required: true
+		}
 	}
+
+
 }
 
 module.exports = {

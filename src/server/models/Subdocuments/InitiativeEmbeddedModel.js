@@ -1,4 +1,4 @@
-const { Character } = require('./CharacterModel');
+const { Character } = require('../CharacterModel');
 
 const EmbeddedDocument = require('camo').EmbeddedDocument;
 
