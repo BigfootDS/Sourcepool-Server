@@ -1,87 +1,103 @@
+const { validateUserJwt } = require("../functions/userAuthUtils");
 const { User } = require("../models/UserModel")
 
 
-const requiresAdminUser = async (request, response, next) => {
-	if (!request.auth || (!request.auth.username || !request.auth.password)){
-		return response.status(500).json({
-			error: "Authentication failed."
-		});
-	}
-	let requestUser = await User.findOne({ username: request.auth.username, password: request.auth.password }).catch(error => {
-		return response.status(500).json({
-			error: "Authentication failed due to a server error.",
-			dump: error,
-		})
-	});
-	if (requestUser != undefined && requestUser.isAdmin) {
-		console.log("Admin is doing stuff!");
-		request.auth.isAdmin = true;
-		next();
-	} else {
-		return response.status(403).json({
-			error: "You do not have access to this resource."
-		})
+const prepareJwtHeader = async (request, response, next) => {
+	if (!request.user || typeof(request.user) != "object") {
+		request.user = {}
 	}
 
+	// Assign the header to something easier to work with, if it exists.
+	let jwtHeader = request.headers["jwt"] ?? null;
+	console.log("jwtHeader:" + jwtHeader);
+
+	// If auth not provided, check if that matters:
+	// - return an error if auth is required
+	// - move on to next middleware in chain if auth is not required	
+	if (jwtHeader == null || jwtHeader?.length < 1){
+		// request.serverSettings is provided by another, global, middleware function.
+		if (request.serverSettings.requireAuth){
+			return response.status(403).json({
+				error: "Authentication required to access this resource."
+			});
+		} else {
+			return next();
+		}
+	}
+
+
+	// So, JWT is required AND is provided.
+	// Verify that the JWT is valid.
+	let result = await validateUserJwt(jwtHeader);
+
+	// result is an object if JWT is valid, or false if JWT is invalid.
+	if (result){
+		request.user = await User.findOne({_id: result.userId});
+		return next();
+	} else {
+		return response.status(403).json({
+			error:"User session token is invalid, please sign in again."
+		});
+	}
 }
 
 
-const validateBasicAuth = async (request, response, next) => {
+const enableFullDocumentDataInQueries = async (request, response, next) => {
+	let showFullDocuments = false;
+	showFullDocuments = request.user?.isAdmin && request.query.full == "true";
 
+	request.showFullDocuments = showFullDocuments;
+	return next();
+}
+
+const requiresValidUserJwt = async (request, response ,next) => {
+	if (!request.user || typeof(request.user) != "object") {
+		request.user = {}
+	}
 
 	// Assign the header to something easier to work with, if it exists.
-	let authHeader = request.headers["authorization"] ?? null;
-	console.log("authheader:" + authHeader);
+	let jwtHeader = request.headers["jwt"] ?? null;
+	console.log("jwtHeader:" + jwtHeader);
 
-	// If no auth header provided, don't waste our time on the rest of this function.
-	if (request.serverSettings.requireAuth && (authHeader == null || authHeader?.length < 1)) {
+	if (jwtHeader == null || jwtHeader?.length < 1){
 		return response.status(403).json({
 			error: "Authentication required to access this resource."
 		});
-	} else if (!request.serverSettings.requireAuth && (authHeader == null || authHeader?.length < 1)){
-		return next();
 	}
 
-	// Confirm it's a Basic auth string, 
-	// and store only the encoded string.
-	if (authHeader?.startsWith("Basic ")) {
-		authHeader = authHeader.substring(5).trim();
+	// So, JWT is required AND is provided.
+	// Verify that the JWT is valid.
+	let result = await validateUserJwt(jwtHeader);
 
-		//console.log("Provided base64 auth string is: " + authHeader);
-
-		// Decode the string.
-		let decodedAuth = Buffer.from(authHeader, 'base64').toString('ascii');
-		//console.log("Decoded auth data is: " + decodedAuth);
-
-		// Convert it into a usable object.
-		let objDecodedAuth = { username: '', password: '' };
-		objDecodedAuth.username = decodedAuth.substring(0, decodedAuth.indexOf(":"));
-		objDecodedAuth.password = decodedAuth.substring(decodedAuth.indexOf(":") + 1);
-		// console.log(objDecodedAuth)
-
-		// Add decoded data to the request object
-		// for other middleware and functions to access.
-		request.auth = { ...objDecodedAuth };
-
-		let adminStatus = await User.findOne({isAdmin: true, username: objDecodedAuth.username, password: objDecodedAuth.password});
-		if (adminStatus){
-			request.auth.isAdmin = adminStatus.isAdmin;
-			request.auth._id = adminStatus._id;
-		}
-
-		// Call the next step in the server's middleware chain or go to the route's callback.
-		next();
-
+	// result is an object if JWT is valid, or false if JWT is invalid.
+	if (result){
+		request.user = await User.findOne({_id: result.userId});
+		return next();
 	} else {
-		// If it's not basic, other stuff needs to be done to process
-		// the auth data.
-		next();
+		return response.status(403).json({
+			error:"User session token is invalid, please sign in again."
+		});
+	}
+}
+
+const requiresAdminUser = async (request, response, next) => {
+	if (request.user.isAdmin){
+		return next();
+	} else {
+		return response.status(403).json({
+			error:"You do not have permissions to perform that action."
+		});
 	}
 
 }
+
+
 
 
 
 module.exports = {
-	validateBasicAuth, requiresAdminUser
+	requiresValidUserJwt, 
+	requiresAdminUser,
+	prepareJwtHeader,
+	enableFullDocumentDataInQueries
 }

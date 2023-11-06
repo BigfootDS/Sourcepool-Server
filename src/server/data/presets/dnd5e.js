@@ -10,6 +10,7 @@ const { Game } = require('../../models/GameModel');
 const { Item } = require('../../models/ItemModel');
 const { Lore } = require('../../models/Subdocuments/LoreEmbeddedModel');
 const { Place } = require('../../models/PlaceModel');
+const { Product } = require("../../models/ProductModel");
 const { Prop } = require('../../models/PropModel');
 const { Skill } = require('../../models/SkillModel');
 const { Universe } = require('../../models/UniverseModel');
@@ -55,6 +56,19 @@ const createDefaultData = async () => {
 	}
 
 	console.log("Processed admin data:\n" + JSON.stringify(adminUsers, null, 4));
+
+	let newDndProduct = await Product.create({
+		tags: ["default data", "srd5.1"],
+		description: [
+			Lore.create({
+				language: 'en',
+				name:' Dungeons & Dragons 5th Edition: SRD 5.1',
+				content: 'The freebie content available so that players can get their taste of Dungeons & Dragons 5th Edition.'
+			})
+		],
+		abbreviation: "SRD5.1",
+		releaseDate: new Date(2023, 0, 23)
+	}).save();
 
 	// SRD 5.1 CC page 97
 	let srdDamageTypes = [
@@ -124,6 +138,7 @@ const createDefaultData = async () => {
 					content:dmgType.content
 				})
 			],
+			product: newDndProduct._id
 		}).save();
 		return newDmgType;
 	}));
@@ -201,6 +216,7 @@ const createDefaultData = async () => {
 					content:condition.content
 				})
 			],
+			product: newDndProduct._id
 		}).save();
 		return newCondition;
 	}));
@@ -246,6 +262,7 @@ const createDefaultData = async () => {
 					content:ability.content
 				})
 			],
+			product: newDndProduct._id
 		}).save();
 		return newAbility;
 	}));
@@ -406,6 +423,7 @@ const createDefaultData = async () => {
 					content:skill.description.content
 				})
 			],
+			product: newDndProduct._id
 		}).save();
 		return newSkill;
 	}));
@@ -421,6 +439,7 @@ const createDefaultData = async () => {
 				content:"Compatible with fifth edition."
 			})
 		],
+		product: newDndProduct._id,
 		tags: ["default data", "srd5.1"],
 		damageTypes: newDamageTypes.map(dmg => {return dmg._id}),
 		conditions: newConditions.map(condition => {return condition._id}),

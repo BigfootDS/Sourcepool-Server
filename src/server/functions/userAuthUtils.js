@@ -9,7 +9,15 @@ const hashPassword = async (unsecurePassword) => {
 }
 
 const comparePassword = async (unsecurePassword, securePassword) => {
-	let result = await bcrypt.compare(unsecurePassword, securePassword)
+	let result = await bcrypt.compare(unsecurePassword, securePassword).catch(error => {
+		console.log(error);
+		return false;
+	});
+	if (result){
+		return result;
+	} else {
+		throw new Error("Password was not correct.");
+	}
 }
 
 const generateUserJwt = async (userId) => {

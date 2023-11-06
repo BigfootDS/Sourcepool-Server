@@ -11,7 +11,7 @@ const Document = require('camo').Document;
  * @property {String} language Required. The language of this Lore entry. Should be an ISO-639-1-compliant two-letter code.
  * @property {String} name Required. The name of this item in the appropriate language. 
  * @property {String} content Optional. A brief explanation of this item.
- * @extends {EmbeddedDocument}
+ * @extends {Document}
  */
 class Product extends Document {
 	constructor(){
@@ -20,6 +20,11 @@ class Product extends Document {
 		this.description = {
 			type:[Lore],
 			required: true
+		}
+
+		this.tags = {
+			type: [String],
+			required: false
 		}
 
 		this.abbreviation = {

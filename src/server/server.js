@@ -40,6 +40,7 @@ app.use(readServerConfig);
 
 
 const { User } = require('./models/UserModel');
+const bcrypt = require('bcryptjs');
 
 // Keeping the admin creation route separate so that it is usable regardless of auth settings
 app.post("/users/admin/create/emergency", async (request, response) => {
@@ -49,10 +50,17 @@ app.post("/users/admin/create/emergency", async (request, response) => {
 			message:"Other admin accounts exist, please use those to do whatever you're trying to do."
 		});
 	} else {
-		let newUser = User.create({ username: request.body.username, password: request.body.password, isAdmin: true});
-		let result = await newUser.save();
+		let hashedAndSaltedPassword = await bcrypt.hash(request.body.password, 16);
+		let newModelInstance = User.create({
+			username: request.body.username,
+			password: hashedAndSaltedPassword,
+			isAdmin: true
+		});
+		let result = await newModelInstance.save();
+		let freshJwt = await generateUserJwt(result._id);
 		response.json({
-			user: result
+			user: result,
+			jwt: freshJwt
 		});
 	}
 });
@@ -64,6 +72,7 @@ const electronHelpers = require('./controllers/electronUtilities');
 app.use("/electron", electronHelpers);
 
 const path = require('node:path');
+const { generateUserJwt } = require('./functions/userAuthUtils');
 
 
 let localWebClientPath = path.join(process.env.userStorageDir, 'localWebClient');

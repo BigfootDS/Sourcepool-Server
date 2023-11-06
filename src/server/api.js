@@ -2,8 +2,17 @@ const express = require('express');
 const router = express.Router();
 
 
-const { validateBasicAuth, requiresAdminUser } = require('./middleware/authMiddleware');
-router.use(validateBasicAuth);
+const { 
+	prepareJwtHeader, requiresAdminUser, requiresValidUserJwt, 
+	enableFullDocumentDataInQueries, 
+	
+} = require('./middleware/authMiddleware');
+
+router.use(prepareJwtHeader);
+router.use(enableFullDocumentDataInQueries);
+
+
+
 
 const serverUtilsRouter = require('./controllers/serverUtilities');
 router.use("/server", serverUtilsRouter);
