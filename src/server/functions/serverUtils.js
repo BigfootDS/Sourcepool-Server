@@ -46,19 +46,7 @@ const databaseInitCheck = async () => {
 
 		console.log("Seeding default game data...");
 		await createDefaultData().catch(error => console.log(error));
-		// Just force models to exist for structure/debugging purposes
-		// let dummyGame = Game.create({
-		// 	name:"SYSTEM game please ignore"
-		// });
 
-		// let dummyCampaign = Campaign.create({
-		// 	name: "SYSTEM campaign please ignore",
-		// 	game: dummyGame._id,
-		// 	manager: await User.findOne({isAdmin: true})._id
-		// });
-
-		// await Campaign.deleteOne({name:"SYSTEM campaign please ignore"});
-		// await Game.deleteOne({name:"SYSTEM game please ignore"});
 
 		console.log("Database loaded.");
 	}

@@ -2,8 +2,17 @@ const express = require('express');
 const router = express.Router();
 
 
-const { validateBasicAuth, requiresAdminUser } = require('./middleware/authMiddleware');
-router.use(validateBasicAuth);
+const { 
+	prepareJwtHeader, requiresAdminUser, requiresValidUserJwt, 
+	enableFullDocumentDataInQueries, 
+	
+} = require('./middleware/authMiddleware');
+
+router.use(prepareJwtHeader);
+router.use(enableFullDocumentDataInQueries);
+
+
+
 
 const serverUtilsRouter = require('./controllers/serverUtilities');
 router.use("/server", serverUtilsRouter);
@@ -70,5 +79,9 @@ router.use("/calendars", calendarsController);
 
 const universesController = require('./controllers/UniversesController');
 router.use("/universes", universesController);
+
+
+const configsController = require('./controllers/ServerConfigsController');
+router.use("/config", configsController);
 
 module.exports = router;

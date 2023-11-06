@@ -3,15 +3,15 @@ const { User } = require('../models/UserModel');
 const { checkUpsertFlag } = require('../middleware/serverMiddleware');
 const { requiresAdminUser } = require('../middleware/authMiddleware');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
+const { comparePassword, generateUserJwt, validateUserJwt, regenerateUserJwt } = require('../functions/userAuthUtils');
 
 router.get("/", async (request, response) => {
-	let actingUser = await User.findOne({username: request.auth?.username, password: request.auth?.password});
-
 	let result = await User.find({});
 
 	// If admin & query param "full=true" provided, show full user data
 	// otherwise, strip sensitive data out of the result array
-	if (!actingUser?.isAdmin || request.query.full != "true"){
+	if (!request.showFullDocuments){
 		result = result.map((user) => {
 			return {_id: user._id, username: user.username}
 		});
@@ -25,6 +25,15 @@ router.get("/", async (request, response) => {
 router.get("/id/:userId", async (request, response) => {
 	let result = await User.findOne({_id: request.params.userId})
 
+	// If admin & query param "full=true" provided, show full user data
+	// otherwise, strip sensitive data out of the result array
+	if (!request.showFullDocuments){
+		result = {
+			_id: result._id, 
+			username: result.username
+		}
+	}
+
 	response.json({
 		user: result
 	});
@@ -32,6 +41,15 @@ router.get("/id/:userId", async (request, response) => {
 
 router.get("/username/:userUsername", async (request, response) => {
 	let result = await User.findOne({username: request.params.userUsername})
+
+	// If admin & query param "full=true" provided, show full user data
+	// otherwise, strip sensitive data out of the result array
+	if (!request.showFullDocuments){
+		result = {
+			_id: result._id, 
+			username: result.username
+		}
+	}
 
 	response.json({
 		user: result
@@ -41,15 +59,24 @@ router.get("/username/:userUsername", async (request, response) => {
 router.get("/admins", async (request, response) => {
 	let result = await User.find({isAdmin: true});
 
+	// If admin & query param "full=true" provided, show full user data
+	// otherwise, strip sensitive data out of the result array
+	if (!request.showFullDocuments){
+		result = result.map((user) => {
+			return {_id: user._id, username: user.username}
+		});
+	}
+
 	response.json({
 		users: result
 	});
 });
 
 router.post("/", async (request, response) => {
+	let hashedAndSaltedPassword = await bcrypt.hash(request.body.password, 16);
 	let newModelInstance = User.create({
 		username: request.body.username,
-		password: request.body.password
+		password: hashedAndSaltedPassword
 	});
 
 	// Only admins can make admins!
@@ -62,12 +89,90 @@ router.post("/", async (request, response) => {
 	}
 
 	let result = await newModelInstance.save();
+	let freshJwt = await generateUserJwt(result._id);
 
 	response.json({
-		user: result
+		user: result,
+		jwt: freshJwt
 	});
 
 });
+
+
+/*
+Assume that request.body is:
+body: {
+	username: "someUser", // human-friendly unique username
+	password: "Password1" // unhashed password!
+}
+*/
+router.post("/jwt/login", async (request, response) => {
+	console.log("Starting JWT login process.");
+	try {
+		let targetUser = await User.findOne({username: request.body.username});
+		console.log(targetUser);
+		if (targetUser == null) {
+			throw new Error("User does not exist.");
+		}
+		let passwordsMatch = await comparePassword(request.body.password, targetUser.password).catch(error => {
+			console.log(error);
+			return false;
+		});
+		if (passwordsMatch){
+			let newJwt = await generateUserJwt(targetUser._id).catch(error => {
+				console.log(error);
+				throw error;
+			});
+			response.json({
+				jwt: newJwt
+			});
+		} else {
+			throw new Error("Login details are incorrect.");
+		}
+	} catch (error) {
+
+		response.status(403).json({
+			error:error.message
+		});
+	}
+
+
+});
+
+router.post("/jwt/regenerate", async (request, response) => {
+	// regenerateUserJwt validates the provided original JWT already
+	let freshJwt = await regenerateUserJwt(request.body.jwt);
+
+	if (freshJwt){
+		response.json({
+			jwt: freshJwt
+		});
+	} else {
+		response.status(403).json({
+			error:"User session token is invalid, please sign in again."
+		});
+	}
+});
+
+
+router.post("/jwt/validate", async (request, response) => {
+	let result = await validateUserJwt(request.body.jwt);
+
+	if (result){
+		response.json({
+			jwt: result
+		});
+	} else {
+		response.status(403).json({
+			error:"User session token is invalid, please sign in again."
+		});
+	}
+})
+
+
+
+
+// Routes below need authentication and authorization middleware
 
 router.put("/", checkUpsertFlag, requiresAdminUser, async (request, response) => {
 	let targetModelInstance = await User.findOneAndUpdate(

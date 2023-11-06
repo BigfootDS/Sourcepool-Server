@@ -31,7 +31,7 @@ class Source extends Document {
 
 		this.product = {
 			type: Product,
-			required: true
+			required: false
 		}
 	}
 

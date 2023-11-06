@@ -8,6 +8,11 @@ if (!process.env.userStorageDir || process.env.userStorageDir == undefined){
 	process.env.userStorageDir = home + "/" + process.env.npm_package_name;
 }
 
+const ip = require('ip');
+let localIp = ip.address();
+// let autoHostname = require('os').hostname();
+console.log("Sourcepool Server now starting up on " + localIp);
+
 // If no process.env.X is found, assign a default value instead.
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 7474;
