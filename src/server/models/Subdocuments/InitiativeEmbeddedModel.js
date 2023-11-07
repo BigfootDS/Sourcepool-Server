@@ -14,7 +14,7 @@ class Initiative extends EmbeddedDocument {
 	constructor(){
 		super();
 
-		this.order = {
+		this.rolledInitiative = {
 			type: Number,
 			unique: false,
 			required: true,

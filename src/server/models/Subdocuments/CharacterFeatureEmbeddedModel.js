@@ -1,4 +1,7 @@
 const { Feature } = require('../FeatureModel');
+const { AbilityScore } = require('./AbilityScoreEmbeddedModel');
+const { CharacterSkill } = require('./CharacterSkillEmbeddedModel');
+const { TemplateLevel } = require('./TemplateLevelGateEmbeddedModel');
 
 const EmbeddedDocument = require('camo').EmbeddedDocument;
 
@@ -16,9 +19,38 @@ class CharacterFeature extends EmbeddedDocument{
 	constructor(){
 		super();
 
-		this.feature = {
-			type: Feature,
-			required: true
+		this.isUnlocked = {
+			type: Boolean,
+			required: true,
+			default: false,
+			unique: false
+		}
+
+		this.requiredTotalLevel = {
+			type: Number,
+			required: false,
+			unique: false
+		}
+
+		this.unlockableFeatures = {
+			type: [Feature],
+			required: true,
+			unique: false
+		}
+
+		this.requiredTemplateLevels = {
+			type: [TemplateLevel],
+			required: false
+		}
+
+		this.requiredProficiencies = {
+			type: [CharacterSkill],
+			required: false
+		}
+
+		this.requiredAbilityScores = {
+			type: [AbilityScore],
+			required: false
 		}
 	}
 }

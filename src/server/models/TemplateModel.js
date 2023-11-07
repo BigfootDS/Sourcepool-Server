@@ -3,7 +3,6 @@ const { CharacterFeature } = require('./Subdocuments/CharacterFeatureEmbeddedMod
 const { CharacterSkill } = require('./Subdocuments/CharacterSkillEmbeddedModel');
 const { Condition } = require('./ConditionModel');
 const { DamageMultiplier } = require('./Subdocuments/DamageMultiplierEmbeddedModel');
-const { Game } = require('./GameModel');
 const { Source } = require('./SourceModel');
 
 
@@ -21,7 +20,6 @@ const { Source } = require('./SourceModel');
  * @property {[DamageMultiplier]} damageVulnerabilities Optional. Damage types and their associated multiplier for how much damage of that type would be done to this template.
  * @property {[DamageMultiplier]} damageResistances Optional. Damage types and their associated multiplier for how much damage of that type would be done to this template.
  * @property {[DamageMultiplier]} damageImmunities Optional. Damage types and their associated multiplier for how much damage of that type would be done to this template.
- * @property {Game} game Required. The game that this template exists in, for determining which mechanics and rules apply during any changes to this template's data. 
  * @property {[CharacterFeature]} features Optional. Mechanics, features, feats, and other modular behaviours that this template has.
  * @class
  * @extends {Source}
@@ -30,9 +28,15 @@ class Template extends Source{
 	constructor(){
 		super();
 
+		this.level = {
+			type: Number,
+			required: true, 
+			default: 0
+		}
+
 		this.abilityScores = {
 			type: [AbilityScore],
-			required: true
+			required: false
 		}
 
 		this.skills = {
@@ -65,10 +69,6 @@ class Template extends Source{
 			required: false
 		}
 
-		this.game = {
-			type: Game,
-			required: true
-		}
 
 		this.features = {
 			type: [CharacterFeature],

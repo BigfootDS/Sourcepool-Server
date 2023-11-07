@@ -1,3 +1,4 @@
+const { Game } = require('./GameModel');
 const { Lore } = require('./Subdocuments/LoreEmbeddedModel');
 
 const Document = require('camo').Document;
@@ -37,6 +38,12 @@ class Product extends Document {
 			type: Date,
 			unique: false,
 			default: new Date(Date.now())
+		}
+
+		this.game = {
+			type: Game,
+			required: false,
+			unique: false
 		}
 	}
 }

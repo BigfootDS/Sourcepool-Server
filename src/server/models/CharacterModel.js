@@ -3,10 +3,14 @@ const { CharacterFeature } = require('./Subdocuments/CharacterFeatureEmbeddedMod
 const { CharacterSkill } = require('./Subdocuments/CharacterSkillEmbeddedModel');
 const { Condition } = require('./ConditionModel');
 const { DamageMultiplier } = require('./Subdocuments/DamageMultiplierEmbeddedModel');
-const { Game } = require('./GameModel');
 const { Item } = require('./ItemModel');
 const { Source } = require('./SourceModel');
 const { User } = require('./UserModel');
+const { TemplateLevel } = require('./Subdocuments/TemplateLevelGateEmbeddedModel');
+const { Language } = require('./LanguageModel');
+const { Alignment } = require('./AlignmentModel');
+const { Sense } = require('./SenseModel');
+const { Size } = require('./SizeModel');
 
 
 
@@ -31,7 +35,6 @@ const { User } = require('./UserModel');
  * @property {[DamageMultiplier]} damageVulnerabilities Optional. Damage types and their associated multiplier for how much damage of that type would be done to this character.
  * @property {[DamageMultiplier]} damageResistances Optional. Damage types and their associated multiplier for how much damage of that type would be done to this character.
  * @property {[DamageMultiplier]} damageImmunities Optional. Damage types and their associated multiplier for how much damage of that type would be done to this character.
- * @property {Game} game Required. The game that this character exists in, for determining which mechanics and rules apply during any changes to this character's data. 
  * @property {[CharacterFeature]} features Optional. Mechanics, features, feats, and other modular behaviours that this character has.
  * @class
  * @extends {Source}
@@ -39,6 +42,17 @@ const { User } = require('./UserModel');
 class Character extends Source{
 	constructor(){
 		super();
+
+		this.totalLevel = {
+			type: Number,
+			required: true,
+			default: 1
+		}
+
+		this.templateLevels = {
+			type: [TemplateLevel],
+			required: false
+		}
 
 		this.isPlayable = {
 			type: Boolean,
@@ -122,14 +136,30 @@ class Character extends Source{
 			required: false
 		}
 
-		this.game = {
-			type: Game,
-			required: true
-		}
 
 		this.features = {
 			type: [CharacterFeature],
 			required: false
+		}
+
+		this.knownLanguages = {
+			type: [Language],
+			required: false
+		}
+
+		this.alignment = {
+			type: Alignment,
+			required: false
+		}
+
+		this.senses = {
+			type: [Sense],
+			required: false
+		}
+
+		this.size = {
+			type: Size,
+			required: true
 		}
 	}
 
