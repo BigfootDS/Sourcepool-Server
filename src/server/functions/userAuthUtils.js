@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { ServerConfig } = require('../models/ServerConfig');
+const { ServerConfig } = require('../models/extendsDocument/ServerConfig');
 
 
 const hashPassword = async (unsecurePassword) => {

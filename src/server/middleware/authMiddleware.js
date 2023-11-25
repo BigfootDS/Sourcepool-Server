@@ -1,5 +1,5 @@
 const { validateUserJwt } = require("../functions/userAuthUtils");
-const { User } = require("../models/UserModel")
+const { User } = require("../models/extendsDocument/UserModel")
 
 
 const prepareJwtHeader = async (request, response, next) => {

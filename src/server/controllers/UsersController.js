@@ -1,5 +1,5 @@
 const express = require('express');
-const { User } = require('../models/UserModel');
+const { User } = require('../models/extendsDocument/UserModel');
 const { checkUpsertFlag } = require('../middleware/serverMiddleware');
 const { requiresAdminUser } = require('../middleware/authMiddleware');
 const router = express.Router();

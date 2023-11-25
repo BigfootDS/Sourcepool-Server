@@ -39,7 +39,7 @@ const {readServerConfig} = require('./middleware/serverMiddleware');
 app.use(readServerConfig);
 
 
-const { User } = require('./models/UserModel');
+const { User } = require('./models/extendsDocument/UserModel');
 const bcrypt = require('bcryptjs');
 
 // Keeping the admin creation route separate so that it is usable regardless of auth settings

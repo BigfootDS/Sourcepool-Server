@@ -2,10 +2,10 @@
 
 
 const {databaseConnector} = require('../database');
-const { Game } = require('../models/GameModel');
-const { User } = require('../models/UserModel');
-const { Campaign } = require('../models/CampaignModel');
-const {ServerConfig} = require('../models/ServerConfig');
+const { Game } = require('../models/extendsCustomBaseDocument/GameModel');
+const { User } = require('../models/extendsDocument/UserModel');
+const { Campaign } = require('../models/extendsCustomBaseDocument/CampaignModel');
+const {ServerConfig} = require('../models/extendsDocument/ServerConfig');
 const { createDefaultData } = require('../data/presets/dnd5e');
 let db = null;
 const databaseInitCheck = async () => {

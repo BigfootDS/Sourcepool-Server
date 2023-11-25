@@ -1,20 +1,12 @@
-const { Ability } = require('../../models/AbilityModel');
-const { AbilityScore } = require('../../models/Subdocuments/AbilityScoreEmbeddedModel');
-const { Campaign } = require('../../models/CampaignModel');
-const { Character } = require('../../models/CharacterModel');
-const { CharacterSkill } = require('../../models/Subdocuments/CharacterSkillEmbeddedModel');
-const { Condition } = require('../../models/ConditionModel');
-const { DamageMultiplier } = require('../../models/Subdocuments/DamageMultiplierEmbeddedModel');
-const { DamageType } = require('../../models/DamageTypeModel');
-const { Game } = require('../../models/GameModel');
-const { Item } = require('../../models/ItemModel');
-const { Lore } = require('../../models/Subdocuments/LoreEmbeddedModel');
-const { Place } = require('../../models/PlaceModel');
-const { Product } = require("../../models/ProductModel");
-const { Prop } = require('../../models/PropModel');
-const { Skill } = require('../../models/SkillModel');
-const { Universe } = require('../../models/UniverseModel');
-const { User } = require('../../models/UserModel');
+const { Ability } = require('../../models/extendsContentBaseDocument/AbilityModel');
+const { Campaign } = require('../../models/extendsCustomBaseDocument/CampaignModel');
+const { Condition } = require('../../models/extendsContentBaseDocument/ConditionModel');
+const { DamageType } = require('../../models/extendsContentBaseDocument/DamageTypeModel');
+const { Game } = require('../../models/extendsCustomBaseDocument/GameModel');
+const { LocalizedContent } = require('../../models/extendsEmbeddedDocument/LocalizedContentSubdocument');
+const { Product } = require("../../models/extendsCustomBaseDocument/ProductModel");
+const { Skill } = require('../../models/extendsContentBaseDocument/SkillModel');
+const { User } = require('../../models/extendsDocument/UserModel');
 
 
 /**
@@ -60,7 +52,7 @@ const createDefaultData = async () => {
 	let newDndProduct = await Product.create({
 		tags: ["default data", "srd5.1"],
 		description: [
-			Lore.create({
+			LocalizedContent.create({
 				language: 'en',
 				name:' Dungeons & Dragons 5th Edition: SRD 5.1',
 				content: 'The freebie content available so that players can get their taste of Dungeons & Dragons 5th Edition.'
@@ -132,7 +124,7 @@ const createDefaultData = async () => {
 		let newDmgType = await DamageType.create({
 			tags: ["default data", "srd5.1"],
 			description: [
-				Lore.create({
+				LocalizedContent.create({
 					language: 'en',
 					name:dmgType.name,
 					content:dmgType.content
@@ -210,7 +202,7 @@ const createDefaultData = async () => {
 		let newCondition = await Condition.create({
 			tags: ["default data", "srd5.1"],
 			description: [
-				await Lore.create({
+				await LocalizedContent.create({
 					language: "en",
 					name:condition.name,
 					content:condition.content
@@ -256,7 +248,7 @@ const createDefaultData = async () => {
 		let newAbility = await Ability.create({
 			tags: ["default data", "srd5.1"],
 			description: [
-				await Lore.create({
+				await LocalizedContent.create({
 					language: "en",
 					name:ability.name,
 					content:ability.content
@@ -417,7 +409,7 @@ const createDefaultData = async () => {
 			ability: skill.ability,
 			tags: ["default data", "srd5.1"],
 			description: [
-				await Lore.create({
+				await LocalizedContent.create({
 					language: "en",
 					name:skill.description.name,
 					content:skill.description.content
@@ -433,7 +425,7 @@ const createDefaultData = async () => {
 
 	let newGame = await Game.create({
 		description: [
-			await Lore.create({
+			await LocalizedContent.create({
 				language: "en",
 				name:"SRD 5.1",
 				content:"Compatible with fifth edition."
@@ -452,7 +444,7 @@ const createDefaultData = async () => {
 
 	let newCampaign = await Campaign.create({
 		description: [
-			await Lore.create({
+			await LocalizedContent.create({
 				language: "en",
 				name:"Example campaign",
 				content:`An example campaign using rules and systems from ${newGame.description.name} to show how data can be set up for your own campaigns.`
