@@ -1,3 +1,7 @@
+const { ContentPermission } = require('../extendsEmbeddedDocument/ContentPermissionSubdocument');
+const { Role } = require('./RoleModel');
+const { User } = require('./UserModel');
+
 const Document = require('camo').Document;
 
 
@@ -30,7 +34,7 @@ class ServerConfig extends Document{
 
 		this.usersNeedPasswords = {
 			type: Boolean,
-			default: false,
+			default: true,
 			required: true
 		}
 
@@ -42,15 +46,11 @@ class ServerConfig extends Document{
 
 		this.onlyAdminCanEditContent = {
 			type: Boolean,
-			default: false,
-			required: true
-		}
-
-		this.allowUpserts = {
-			type: Boolean,
 			default: true,
 			required: true
 		}
+
+
 
 		this.usersCanDeleteSelf = {
 			type: Boolean,
@@ -93,12 +93,61 @@ class ServerConfig extends Document{
 			required: true
 		}
 
+		this.passwordSaltCostFactor = {
+			type: Number,
+			default: 8,
+			required: true
+		}
+
+		this.permissions = {
+			type: [ContentPermission],
+			required: false
+		}
+
+		this.editedBy = {
+			type: [User],
+			required: false
+		}
+
 	}
 
 	static collectionName() {
 		return 'serverconfigs';
 	}
 
+
+	async preSave(){
+		if (this.permissions == null || this.permissions == [] || this.permissions.length == 0){
+			//console.log("Applying default content permissions to a document.");
+			let regularUserRole = await Role.findOne({"descriptions.name":"User"});
+			let adminUserRole = await Role.findOne({admin: true});
+
+			if (regularUserRole == null || adminUserRole == null) {
+				throw ("Roles for default content permissions were not found!");
+			}
+
+			let regularUserRoleSubdoc = await ContentPermission.create({
+				role: regularUserRole._id,
+				create: false,
+				read: true,
+				update: false,
+				delete: false
+			});
+
+			let adminUserRoleSubdoc = await ContentPermission.create({
+				role: adminUserRole._id,
+				create: true,
+				read: true,
+				update: true,
+				delete: true
+			});
+
+			this.permissions = [
+				regularUserRoleSubdoc,
+				adminUserRoleSubdoc
+			];
+		}
+	}
 
 }
 

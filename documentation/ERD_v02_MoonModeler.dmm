@@ -124,12 +124,27 @@
 					"data": "",
 					"after": "",
 					"options": ""
+				},
+				{
+					"id": "6d3e3633-49c9-42d1-81da-4b10cf1c412c",
+					"name": "pbProgression",
+					"datatype": "ObjectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": "",
+					"fk": true
 				}
 			],
 			"relations": [
 				"b7908432-5f6e-4919-b89e-b95e8c919109",
 				"d939159f-d66e-4138-b5af-a85e948888d8",
-				"13c38bc5-4f1e-4067-8c5d-2ea5dbe3aada"
+				"13c38bc5-4f1e-4067-8c5d-2ea5dbe3aada",
+				"e0eff8fe-b32e-484e-8fe1-2423e7ca5331"
 			],
 			"lines": [],
 			"keys": [
@@ -1000,7 +1015,7 @@
 				},
 				{
 					"id": "46c0caed-0873-434d-bab4-d9a927601f76",
-					"name": "Game",
+					"name": "game",
 					"datatype": "ObjectId",
 					"param": "",
 					"pk": false,
@@ -1238,6 +1253,20 @@
 					"options": "",
 					"fk": true,
 					"list": true
+				},
+				{
+					"id": "e2effa88-b229-40dc-b4a4-495c0e1e1265",
+					"name": "permissions",
+					"datatype": "7a9ad9f4-d566-4465-8e19-059a55fd779f",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": true,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
 				}
 			],
 			"relations": [
@@ -8316,6 +8345,266 @@
 			"beforeScript": "",
 			"afterScript": "",
 			"others": ""
+		},
+		"a2b070de-234a-474a-a8c3-bdc53ead0420": {
+			"id": "a2b070de-234a-474a-a8c3-bdc53ead0420",
+			"visible": true,
+			"name": "ServerConfig",
+			"desc": "Extends Document.",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "6b53916f-f6a1-49e8-8377-96ca2f9fd423",
+					"name": "_id",
+					"datatype": "ObjectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
+					"id": "aeb519e3-6243-4771-b79d-40904536f874",
+					"name": "name",
+					"datatype": "String",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
+					"id": "32cf7113-41e3-46dc-a679-51a5135449f2",
+					"name": "ftueComplete",
+					"datatype": "Boolean",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
+					"id": "4268c9da-1b89-47ce-a3f8-a2964e9c6580",
+					"name": "usersNeedPasswords",
+					"datatype": "Boolean",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
+					"id": "fd5c5995-d24c-4ff9-a5ea-02c46484dc3c",
+					"name": "onlyAdminCanEditContent",
+					"datatype": "Boolean",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
+					"id": "e48a91c3-b427-4ed1-86b4-9797aacb1693",
+					"name": "usersCanDeleteSelf",
+					"datatype": "Boolean",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
+					"id": "c546c45a-f44b-4836-9e2b-6bdb46d59b3e",
+					"name": "localWebClientVersion",
+					"datatype": "String",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
+					"id": "8517eb6e-53c5-4aca-9038-d605341c7c4e",
+					"name": "shouldAutoUpdateLocalClient",
+					"datatype": "Boolean",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
+					"id": "cd1e1311-2210-4a58-86aa-6eaebe55a0e6",
+					"name": "clientAutoUpdateInterval",
+					"datatype": "Number",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
+					"id": "4f5a128d-f576-4d50-9890-c3c5b0ff72f4",
+					"name": "jwtEncryptionKey",
+					"datatype": "String",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
+					"id": "2ca1dbf5-3dcc-47f6-baae-be73a146c67a",
+					"name": "jwtLifetimeBeforeExpiry",
+					"datatype": "String",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
+					"id": "460640cb-36b2-49e5-a576-b001746275ea",
+					"name": "passwordSaltCostFactor",
+					"datatype": "String",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				}
+			],
+			"relations": [],
+			"lines": [],
+			"keys": [
+				{
+					"id": "f891d265-53a0-497e-8867-6c0188ea0d2c",
+					"name": "Primary",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "f427dd0a-6f3d-45a6-948e-c440e96f16c6",
+							"colid": "6b53916f-f6a1-49e8-8377-96ca2f9fd423"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"others": ""
+		},
+		"4f42cb3d-400b-473d-81b5-6a816db75fde": {
+			"id": "4f42cb3d-400b-473d-81b5-6a816db75fde",
+			"visible": true,
+			"name": "LevelledProficiencyBonusTable",
+			"desc": "Extends ContentBaseDocument.",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "2cd5b724-5866-48d9-9869-9e795bed8b90",
+					"name": "_id",
+					"datatype": "ObjectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
+					"id": "63b0c9ff-552f-43ed-9194-345106bf5dbd",
+					"name": "values",
+					"datatype": "Number",
+					"param": "",
+					"pk": false,
+					"nn": false,
+					"list": true,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				}
+			],
+			"relations": [
+				"e0eff8fe-b32e-484e-8fe1-2423e7ca5331"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "a5179bfa-2e3a-4d9c-925a-341b948fc2dc",
+					"name": "Primary",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "d5f1b5c6-9e0d-4e98-a8e7-29ed64a62a3b",
+							"colid": "2cd5b724-5866-48d9-9869-9e795bed8b90"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"others": ""
 		}
 	},
 	"relations": {
@@ -10235,6 +10524,33 @@
 			"generateCustomCode": true,
 			"customCode": "",
 			"relationColor": "transparent"
+		},
+		"e0eff8fe-b32e-484e-8fe1-2423e7ca5331": {
+			"id": "e0eff8fe-b32e-484e-8fe1-2423e7ca5331",
+			"visible": true,
+			"name": "_id_HeroClass",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "a5179bfa-2e3a-4d9c-925a-341b948fc2dc",
+			"parent": "4f42cb3d-400b-473d-81b5-6a816db75fde",
+			"child": "84c38aa0-5ab2-4c24-8cb0-8fb4e177b95c",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "1e262437-2579-4267-a9d6-a5be1c360d30",
+					"parentcol": "2cd5b724-5866-48d9-9869-9e795bed8b90",
+					"childcol": "6d3e3633-49c9-42d1-81da-4b10cf1c412c"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"relationColor": "transparent"
 		}
 	},
 	"notes": {},
@@ -10269,7 +10585,7 @@
 		"companyUrl": "",
 		"def_coltopk": true,
 		"def_others": "",
-		"lastSaved": 1700907500388
+		"lastSaved": 1700992019081
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -10302,7 +10618,7 @@
 					"referencedItemId": "84c38aa0-5ab2-4c24-8cb0-8fb4e177b95c",
 					"x": 4110,
 					"y": 4406,
-					"gHeight": 82,
+					"gHeight": 100,
 					"gWidth": 294,
 					"color": "#ffffff",
 					"background": "#03a9f4",
@@ -10339,8 +10655,8 @@
 				},
 				"028027b6-9c16-4e68-993e-f1b03db8fe3e": {
 					"referencedItemId": "028027b6-9c16-4e68-993e-f1b03db8fe3e",
-					"x": 4516,
-					"y": 4388,
+					"x": 4063,
+					"y": 4721,
 					"gHeight": 99,
 					"gWidth": 206,
 					"color": "#ffffff",
@@ -10404,8 +10720,8 @@
 				},
 				"8f5c840d-85c8-46d1-9fdc-6186da0d15db": {
 					"referencedItemId": "8f5c840d-85c8-46d1-9fdc-6186da0d15db",
-					"x": 345,
-					"y": 228,
+					"x": 487,
+					"y": 229,
 					"gHeight": 117,
 					"gWidth": 289,
 					"color": "#ffffff",
@@ -10417,8 +10733,8 @@
 				},
 				"9779c123-fd76-42e7-aedf-c2d270e070eb": {
 					"referencedItemId": "9779c123-fd76-42e7-aedf-c2d270e070eb",
-					"x": 938,
-					"y": 61,
+					"x": 1044,
+					"y": 62,
 					"gHeight": 82,
 					"gWidth": 214,
 					"color": "#ffffff",
@@ -10471,8 +10787,8 @@
 					"referencedItemId": "1c47ded0-27a7-40ce-91a1-4bed42b2587b",
 					"x": 909,
 					"y": 272,
-					"gHeight": 99,
-					"gWidth": 204,
+					"gHeight": 117,
+					"gWidth": 289,
 					"color": "#ffffff",
 					"background": "#000000",
 					"resized": false,
@@ -10482,8 +10798,8 @@
 				},
 				"ed4c8330-6053-4b33-bcdc-3b9b0da2fa33": {
 					"referencedItemId": "ed4c8330-6053-4b33-bcdc-3b9b0da2fa33",
-					"x": 350,
-					"y": 405,
+					"x": 468,
+					"y": 409,
 					"gHeight": 81,
 					"gWidth": 280,
 					"color": "#ffffff",
@@ -10508,8 +10824,8 @@
 				},
 				"68c40a1c-52b6-4833-89de-cf5d335e5d4c": {
 					"referencedItemId": "68c40a1c-52b6-4833-89de-cf5d335e5d4c",
-					"x": 1232,
-					"y": 40,
+					"x": 1545,
+					"y": 41,
 					"gHeight": 117,
 					"gWidth": 275,
 					"color": "#ffffff",
@@ -11346,6 +11662,32 @@
 					"gWidth": 220,
 					"color": "#ffffff",
 					"background": "#4caf50",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10",
+					"collapsed": false
+				},
+				"a2b070de-234a-474a-a8c3-bdc53ead0420": {
+					"referencedItemId": "a2b070de-234a-474a-a8c3-bdc53ead0420",
+					"x": 45,
+					"y": 309,
+					"gHeight": 244,
+					"gWidth": 321,
+					"color": "#ffffff",
+					"background": "#000000",
+					"resized": true,
+					"autoExpand": true,
+					"backgroundOpacity": "10",
+					"collapsed": false
+				},
+				"4f42cb3d-400b-473d-81b5-6a816db75fde": {
+					"referencedItemId": "4f42cb3d-400b-473d-81b5-6a816db75fde",
+					"x": 4472,
+					"y": 4191,
+					"gHeight": 63,
+					"gWidth": 260,
+					"color": "#ffffff",
+					"background": "#03a9f4",
 					"resized": false,
 					"autoExpand": true,
 					"backgroundOpacity": "10",

@@ -1,7 +1,7 @@
 // const Datastore = require('@seald-io/nedb');
 
 var camo = require('camo');
-const modelUtils = require('./models/modelUtils');
+const modelUtils = require('./functions/modelUtils');
 
 let db = null;
 

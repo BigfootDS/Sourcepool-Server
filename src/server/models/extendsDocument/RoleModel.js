@@ -1,5 +1,6 @@
 const camo = require('camo');
 const { LocalizedContent } = require('../extendsEmbeddedDocument/LocalizedContentSubdocument');
+
 const Document = camo.Document;
 
 class Role extends Document {
@@ -17,11 +18,16 @@ class Role extends Document {
 			required: true
 		}
 		
+
+
+		
 	}
 
 	static getCollectionName() {
 		return 'roles';
 	}
+
+	
 }
 
 

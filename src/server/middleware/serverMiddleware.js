@@ -4,7 +4,7 @@ const readServerConfig = async (request, response, next) => {
 	let serverSettings = await ServerConfig.findOne({});
 	if (serverSettings) {
 		request.serverSettings = serverSettings;
-		console.log("Attached server settings to request:\n" + JSON.stringify(request.serverSettings,null,4));
+		//console.log("Attached server settings to request:\n" + JSON.stringify(request.serverSettings,null,4));
 		return next();
 	} else {
 		return response.status(500).json({

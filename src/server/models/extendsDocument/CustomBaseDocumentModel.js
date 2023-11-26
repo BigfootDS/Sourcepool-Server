@@ -3,6 +3,7 @@ const Document = camo.Document;
 const { LocalizedContent } = require('../extendsEmbeddedDocument/LocalizedContentSubdocument');
 const { ContentPermission } = require('../extendsEmbeddedDocument/ContentPermissionSubdocument');
 const { User } = require('./UserModel');
+const { Role } = require('./RoleModel');
 
 
 /**
@@ -60,7 +61,7 @@ class CustomBaseDocument extends Document {
 
 		this.permissions = {
 			type: [ContentPermission],
-			required: true,
+			required: false
 		}
 
 		this.editedBy = {
@@ -71,6 +72,39 @@ class CustomBaseDocument extends Document {
 
 	static getCollectionName() {
 		return 'customBaseDocuments';
+	}
+
+	async preSave(){
+		if (this.permissions == null || this.permissions == [] || this.permissions.length == 0){
+			//console.log("Applying default content permissions to a document.");
+			let regularUserRole = await Role.findOne({"descriptions.name":"User"});
+			let adminUserRole = await Role.findOne({admin: true});
+
+			if (regularUserRole == null || adminUserRole == null) {
+				throw ("Roles for default content permissions were not found!");
+			}
+
+			let regularUserRoleSubdoc = await ContentPermission.create({
+				role: regularUserRole._id,
+				create: false,
+				read: true,
+				update: false,
+				delete: false
+			});
+
+			let adminUserRoleSubdoc = await ContentPermission.create({
+				role: adminUserRole._id,
+				create: true,
+				read: true,
+				update: true,
+				delete: true
+			});
+
+			this.permissions = [
+				regularUserRoleSubdoc,
+				adminUserRoleSubdoc
+			];
+		}
 	}
 }
 

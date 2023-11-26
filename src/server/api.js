@@ -24,6 +24,6 @@ const configsController = require('./controllers/ServerConfigsController');
 router.use("/config", configsController);
 
 const genericModelsController = require('./controllers/GenericModelsController');
-router.use("/models", genericModelsController);
+router.use("/models", requiresValidUserJwt, genericModelsController);
 
 module.exports = router;

@@ -7,6 +7,7 @@ const { LocalizedContent } = require('../../models/extendsEmbeddedDocument/Local
 const { Product } = require("../../models/extendsCustomBaseDocument/ProductModel");
 const { Skill } = require('../../models/extendsContentBaseDocument/SkillModel');
 const { User } = require('../../models/extendsDocument/UserModel');
+const modelUtils = require('../../functions/modelUtils');
 
 
 /**
@@ -28,39 +29,68 @@ const { User } = require('../../models/extendsDocument/UserModel');
  * @returns
  */
 const createDefaultData = async () => {
-	// Check if this game already exists in the DB,
-	// only proceed if it's not found
-	let matchingGame = await Game.count({'description.name':'SRD 5.1',  tags: ["default data", "srd5.1"]});
+
+	let srdTags = [
+		"dnd5e", "srd5.1", "default data",
+	]
+
+	// Check if data already exists.
+	let matchingGame = await Game.count({'descriptions.name':'Dungeons & Dragons 5th Edition',  tags: srdTags});
 	console.log(`Found ${matchingGame} matching games in the default data.`);
 	if (matchingGame > 0){
-		throw new Error("Attempted to seed default data for SRD 5.1 but the game already exists. Was a prior deletion interrupted?");
+		// Stop if data already exists, we shouldn't overwrite it.
+		console.warn("Attempted to seed default data for SRD 5.1 but the game already exists. Seeding did not proceed.");
+		return;
 	}
 
-	let adminUsers = await User.find({isAdmin:true});
-	console.log("Found admin data:\n" + JSON.stringify(adminUsers, null, 4));
-	if (adminUsers.length == 0){
-		throw new Error("No admins found. Something has gone wrong with the server data.");
-	} else {
-		console.log("Found an admin, mapping their IDs into adminUsers now...")
-		adminUsers = adminUsers.map((user) => {
-			return user._id;
-		});
-	}
 
-	console.log("Processed admin data:\n" + JSON.stringify(adminUsers, null, 4));
+	// let admins = await modelUtils.helpers.getAdminCount();
+	// if (admins.count == 0){
+	// 	throw new Error("No admins found. Something has gone wrong with the server data.");
+	// } 
+	// console.log("Retrieved admin data:\n" + JSON.stringify(admins, null, 4));
+
+
+
+
+
+
+
+	// Create data 
+
+	let newDndGame = await Game.create({
+		abbreviation: "D&D5e",
+		releaseDate: new Date(2014, 6, 3), // 3rd July 2014
+		descriptions: [
+			{
+				language: "en",
+				name: "Dungeons & Dragons 5th Edition",
+				content:"As of 2023, this is the latest edition of the most popular tabletop roleplaying game in the world."
+			}
+		],
+		tags: srdTags
+	}).save();
+
+	console.log(`New D&D Game entry: `);
+	console.log(newDndGame);
+
 
 	let newDndProduct = await Product.create({
-		tags: ["default data", "srd5.1"],
-		description: [
+		tags: srdTags,
+		descriptions: [
 			LocalizedContent.create({
 				language: 'en',
-				name:' Dungeons & Dragons 5th Edition: SRD 5.1',
+				name:'System Reference Document 5.1',
 				content: 'The freebie content available so that players can get their taste of Dungeons & Dragons 5th Edition.'
 			})
 		],
 		abbreviation: "SRD5.1",
-		releaseDate: new Date(2023, 0, 23)
+		releaseDate: new Date(2023, 0, 23),
+		game: newDndGame._id
 	}).save();
+
+	console.log("New product entry:");
+	console.log(newDndProduct);
 
 	// SRD 5.1 CC page 97
 	let srdDamageTypes = [
@@ -122,8 +152,8 @@ const createDefaultData = async () => {
 	let newDamageTypes = await Promise.all(srdDamageTypes.map(async (dmgType) => {
 		//console.log("Working through dmgType:\n" + JSON.stringify(dmgType,null,4));
 		let newDmgType = await DamageType.create({
-			tags: ["default data", "srd5.1"],
-			description: [
+			tags: srdTags,
+			descriptions: [
 				LocalizedContent.create({
 					language: 'en',
 					name:dmgType.name,
@@ -200,8 +230,8 @@ const createDefaultData = async () => {
 
 	let newConditions = await Promise.all(srdConditions.map(async (condition) => {
 		let newCondition = await Condition.create({
-			tags: ["default data", "srd5.1"],
-			description: [
+			tags: srdTags,
+			descriptions: [
 				await LocalizedContent.create({
 					language: "en",
 					name:condition.name,
@@ -246,8 +276,8 @@ const createDefaultData = async () => {
 
 	let newAbilities = await Promise.all(srdAbilities.map(async (ability) => {
 		let newAbility = await Ability.create({
-			tags: ["default data", "srd5.1"],
-			description: [
+			tags: srdTags,
+			descriptions: [
 				await LocalizedContent.create({
 					language: "en",
 					name:ability.name,
@@ -264,14 +294,12 @@ const createDefaultData = async () => {
 
 	// We need to retrieve these to associate the skills to abilities.
 
-	let freshStrength = await Ability.findOne({'description.name':'strength', 'description.language':'en'});
-	//console.log("Found freshStrength:\n" + JSON.stringify(freshStrength,null,4));
-
-	let freshDexterity = await Ability.findOne({'description.name':'dexterity', 'description.language':'en'});
-	let freshConstitution = await Ability.findOne({'description.name':'constitution', 'description.language':'en'});
-	let freshIntelligence = await Ability.findOne({'description.name':'intelligence', 'description.language':'en'});
-	let freshWisdom = await Ability.findOne({'description.name':'wisdom', 'description.language':'en'});
-	let freshCharisma = await Ability.findOne({'description.name':'charisma', 'description.language':'en'});
+	let freshStrength = await Ability.findOne({'descriptions.name':'strength', 'descriptions.language':'en'});
+	let freshDexterity = await Ability.findOne({'descriptions.name':'dexterity', 'descriptions.language':'en'});
+	let freshConstitution = await Ability.findOne({'descriptions.name':'constitution', 'descriptions.language':'en'});
+	let freshIntelligence = await Ability.findOne({'descriptions.name':'intelligence', 'descriptions.language':'en'});
+	let freshWisdom = await Ability.findOne({'descriptions.name':'wisdom', 'descriptions.language':'en'});
+	let freshCharisma = await Ability.findOne({'descriptions.name':'charisma', 'descriptions.language':'en'});
 
 	// SRD 5.1 CC pages 79-83
 	let srdSkills = [
@@ -407,8 +435,8 @@ const createDefaultData = async () => {
 	let newSkills = await Promise.all(srdSkills.map(async (skill) => {
 		let newSkill = await Skill.create({
 			ability: skill.ability,
-			tags: ["default data", "srd5.1"],
-			description: [
+			tags: srdTags,
+			descriptions: [
 				await LocalizedContent.create({
 					language: "en",
 					name:skill.description.name,
@@ -423,40 +451,6 @@ const createDefaultData = async () => {
 	//console.log("Skills:\n" + JSON.stringify(newSkills, null, 4));
 
 
-	let newGame = await Game.create({
-		description: [
-			await LocalizedContent.create({
-				language: "en",
-				name:"SRD 5.1",
-				content:"Compatible with fifth edition."
-			})
-		],
-		product: newDndProduct._id,
-		tags: ["default data", "srd5.1"],
-		damageTypes: newDamageTypes.map(dmg => {return dmg._id}),
-		conditions: newConditions.map(condition => {return condition._id}),
-		abilities: newAbilities.map(ability => {return ability._id}),
-		skills: newSkills.map(skill => {return skill._id})
-	}).save();
-
-	//console.log("Game:\n" + JSON.stringify(newGame, null, 4));
-
-
-	let newCampaign = await Campaign.create({
-		description: [
-			await LocalizedContent.create({
-				language: "en",
-				name:"Example campaign",
-				content:`An example campaign using rules and systems from ${newGame.description.name} to show how data can be set up for your own campaigns.`
-			})
-		],
-		tags: ["default data", "srd5.1"],
-		game: newGame._id,
-		managers: adminUsers
-	}).save();
-
-
-	console.log("Campaign:\n" + JSON.stringify(newCampaign, null, 4));
 
 }
 
