@@ -8,6 +8,7 @@ const { Product } = require("../../models/extendsCustomBaseDocument/ProductModel
 const { Skill } = require('../../models/extendsContentBaseDocument/SkillModel');
 const { User } = require('../../models/extendsDocument/UserModel');
 const modelUtils = require('../../functions/modelUtils');
+const { Dice } = require('../../models/extendsCustomBaseDocument/DiceModel');
 
 
 /**
@@ -91,6 +92,201 @@ const createDefaultData = async () => {
 
 	console.log("New product entry:");
 	console.log(newDndProduct);
+
+
+	let diceSizes = [
+		{
+			size: 2,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:'Two-sided Dice or Coin',
+					content: 'Two possible outcomes - heads or tails, true or false, yes or no, and so on...'
+				})
+			],
+		},
+		{
+			size: 4,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:'Four-sided Dice',
+					content: 'Four possible outcomes - a small pool of numbers. Usually used for some damage rolls and hit dice.'
+				})
+			],
+		},
+		{
+			size: 6,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:'Six-sided Dice',
+					content: 'Six possible outcomes - the standard non-TTRPG dice size, too. Usually used for some damage rolls and hit dice.'
+				})
+			],
+		},
+		{
+			size: 8,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:'Eight-sided Dice',
+					content: 'Eight possible outcomes - typically a pool of numbers. Usually used for some damage rolls and hit dice.'
+				})
+			],
+		},
+		{
+			size: 10,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:'Ten-sided Dice',
+					content: 'Ten possible outcomes - typically a pool of numbers. Usually used for some damage rolls and hit dice.'
+				})
+			],
+		},
+		{
+			size: 12,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:'Twelve-sided Dice',
+					content: 'Twelve possible outcomes - typically a pool of numbers. Usually used for some damage rolls and hit dice.'
+				})
+			],
+		},
+		{
+			size: 20,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:'Twenty-sided Dice',
+					content: 'Twenty possible outcomes - typically a pool of numbers. Usually used for ability checks, attack rolls, saving throws, and hit dice.'
+				})
+			],
+		},
+		{
+			size: 100,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:'One Hundred-sided Dice or Percentile Dice',
+					content: 'A hundred possible outcomes - typically a pool of numbers. Usually used for picking a single option from a random table, or for rolling for something really rare such as a Cleric\'s Divine Intervention.'
+				})
+			],
+		},
+	];
+
+	let newDiceSizes = await Promise.all(diceSizes.map(async (dice) => {
+		let newDiceSize = await Dice.create(dice).save();
+		return newDiceSize;
+	}))
+
+
+	let actionTypes = [
+		{
+			// Inherited fields:
+			product: newDndProduct._id,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:'Melee',
+					content: 'Melee attacks require the attacker to be "touching bases" or within reach of the defender.'
+				})
+			],
+			// Model-specific fields:
+			// None, for this particular model
+		},
+		{
+			// Inherited fields:
+			product: newDndProduct._id,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:'Ranged',
+					content: 'Ranged attacks allow an attacker to harm a defender at a distance. The ranged attack will typically require a line of sight, but sometimes don\'t. In any case, a ranged attack will have two ranges specified with it. One number is its normal range, the other number is its long-range - a distance where attacks can be made at disadvantage.'
+				})
+			],
+			// Model-specific fields:
+			// None, for this particular model
+		},
+		{
+			// Inherited fields:
+			product: newDndProduct._id,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:'Other',
+					content: 'A miscellaneous action type for attacks that the developers of Sourcepool haven\'t implemented, or that the designers of the game system haven\'t specified.'
+				})
+			],
+			// Model-specific fields:
+			// None, for this particular model
+		},
+	];
+
+	let newActionTypes = await Promise.all(actionTypes.map(async (action) => {
+		let newActionType = await Dice.create(action).save();
+		return newActionType;
+	}));
+
+	let castingComponentTypes = [
+		{
+			// Inherited fields:
+			product: newDndProduct._id,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:"Verbal (V)",
+					content: "Most spells require the chanting of mystic words. The words themselves aren't the source of the spell's power; rather, the particular combination of sounds, with specific pitch and resonance, sets the threads of magic in motion. Thus, a character who is gagged or in an area of silence, such as one created by the [[Spell:Silence]] spell, can't cast a spell with a verbal component."
+				})
+			],
+			// Model-specific fields:
+			// None, for this particular model
+		},
+		{
+			// Inherited fields:
+			product: newDndProduct._id,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:"Somatic (S)",
+					content: "Spellcasting gestures might include a forceful gesticulation or an intricate set of gestures. If a spell requires somatic components, the caster must have free use of at least one hand to perform these gestures."
+				})
+			],
+			// Model-specific fields:
+			// None, for this particular model
+		},
+		{
+			// Inherited fields:
+			product: newDndProduct._id,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:"Material (M)",
+					content: "Casting some spells requires particular objects, specified in parentheses in the component entry. A character can use a component pouch of a spellcasting focus (found in \"Equipment\") in place of the components specified for a spell. But if a cost is indicated for a component, a character must have that specific component before he or she can cast the spell.\nIf a spell states that a material component is consumed by the spell, the caster must provide this component for each casting of the spell.\nA spellcaster must have a free hand to access a spell's material components - or to hold a spellcasting focus - but it can be the same hand that he or she uses to perform somatic components."
+				})
+			],
+			// Model-specific fields:
+			// None, for this particular model
+		},
+	]
+
+
 
 	// SRD 5.1 CC page 97
 	let srdDamageTypes = [

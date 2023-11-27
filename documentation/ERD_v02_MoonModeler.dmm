@@ -1106,7 +1106,7 @@
 				},
 				{
 					"id": "b103f88e-f5a9-4310-a91b-35e25909f1e8",
-					"name": "Product",
+					"name": "product",
 					"datatype": "ObjectId",
 					"param": "",
 					"pk": false,
@@ -10688,7 +10688,7 @@
 		"companyUrl": "",
 		"def_coltopk": true,
 		"def_others": "",
-		"lastSaved": 1700998966080
+		"lastSaved": 1700999019291
 	},
 	"otherObjects": {},
 	"diagrams": {
