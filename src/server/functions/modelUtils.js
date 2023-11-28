@@ -294,8 +294,7 @@ async function filterForUserRead (userId, targetDocuments) {
 	return filteredDocuments;
 }
 
-
-module.exports = {
+let utils = {
 	helpers: {
 		pingAllModels,
 		serverMinimalSetup,
@@ -305,5 +304,8 @@ module.exports = {
 	models: models,
 	modelsFlat: referenceModelsFlat
 }
+
+global.modelUtils = {...utils};
+module.exports = {...utils};
 
 

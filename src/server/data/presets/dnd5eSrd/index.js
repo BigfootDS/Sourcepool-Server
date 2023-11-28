@@ -1,14 +1,14 @@
-const { Ability } = require('../../models/extendsContentBaseDocument/AbilityModel');
-const { Campaign } = require('../../models/extendsCustomBaseDocument/CampaignModel');
-const { Condition } = require('../../models/extendsContentBaseDocument/ConditionModel');
-const { DamageType } = require('../../models/extendsContentBaseDocument/DamageTypeModel');
-const { Game } = require('../../models/extendsCustomBaseDocument/GameModel');
-const { LocalizedContent } = require('../../models/extendsEmbeddedDocument/LocalizedContentSubdocument');
-const { Product } = require("../../models/extendsCustomBaseDocument/ProductModel");
-const { Skill } = require('../../models/extendsContentBaseDocument/SkillModel');
-const { User } = require('../../models/extendsDocument/UserModel');
-const modelUtils = require('../../functions/modelUtils');
-const { Dice } = require('../../models/extendsCustomBaseDocument/DiceModel');
+const { Ability } = require('../../../models/extendsContentBaseDocument/AbilityModel');
+const { Condition } = require('../../../models/extendsContentBaseDocument/ConditionModel');
+const { DamageType } = require('../../../models/extendsContentBaseDocument/DamageTypeModel');
+const { Game } = require('../../../models/extendsCustomBaseDocument/GameModel');
+const { LocalizedContent } = require('../../../models/extendsEmbeddedDocument/LocalizedContentSubdocument');
+const { Product } = require("../../../models/extendsCustomBaseDocument/ProductModel");
+const { Skill } = require('../../../models/extendsContentBaseDocument/SkillModel');
+const modelUtils = require('../../../functions/modelUtils');
+const { Dice } = require('../../../models/extendsCustomBaseDocument/DiceModel');
+const { CastingComponent } = require('../../../models/extendsContentBaseDocument/CastingComponentModel');
+const { ActionType } = require('../../../models/extendsContentBaseDocument/ActionTypeModel');
 
 
 /**
@@ -59,187 +59,26 @@ const createDefaultData = async () => {
 
 	// Create data 
 
-	let newDndGame = await Game.create({
-		abbreviation: "D&D5e",
-		releaseDate: new Date(2014, 6, 3), // 3rd July 2014
-		descriptions: [
-			{
-				language: "en",
-				name: "Dungeons & Dragons 5th Edition",
-				content:"As of 2023, this is the latest edition of the most popular tabletop roleplaying game in the world."
-			}
-		],
-		tags: srdTags
-	}).save();
+	let newGames = await require("./models/Game").createData({
+		tags:srdTags
+	});
 
-	console.log(`New D&D Game entry: `);
-	console.log(newDndGame);
+	let newProducts = await require("./models/Product").createData({
+		game: newGames[0],
+		tags:srdTags
+	});
 
+	let newDice = await require("./models/Dice").createData({
+		tags:srdTags
+	});
 
-	let newDndProduct = await Product.create({
-		tags: srdTags,
-		descriptions: [
-			LocalizedContent.create({
-				language: 'en',
-				name:'System Reference Document 5.1',
-				content: 'The freebie content available so that players can get their taste of Dungeons & Dragons 5th Edition.'
-			})
-		],
-		abbreviation: "SRD5.1",
-		releaseDate: new Date(2023, 0, 23),
-		game: newDndGame._id
-	}).save();
-
-	console.log("New product entry:");
-	console.log(newDndProduct);
+	let newAttackTypes = await require('./models/AttackType').createData({
+		tags:srdTags
+	});
 
 
-	let diceSizes = [
-		{
-			size: 2,
-			tags: srdTags,
-			descriptions: [
-				LocalizedContent.create({
-					language: 'en',
-					name:'Two-sided Dice or Coin',
-					content: 'Two possible outcomes - heads or tails, true or false, yes or no, and so on...'
-				})
-			],
-		},
-		{
-			size: 4,
-			tags: srdTags,
-			descriptions: [
-				LocalizedContent.create({
-					language: 'en',
-					name:'Four-sided Dice',
-					content: 'Four possible outcomes - a small pool of numbers. Usually used for some damage rolls and hit dice.'
-				})
-			],
-		},
-		{
-			size: 6,
-			tags: srdTags,
-			descriptions: [
-				LocalizedContent.create({
-					language: 'en',
-					name:'Six-sided Dice',
-					content: 'Six possible outcomes - the standard non-TTRPG dice size, too. Usually used for some damage rolls and hit dice.'
-				})
-			],
-		},
-		{
-			size: 8,
-			tags: srdTags,
-			descriptions: [
-				LocalizedContent.create({
-					language: 'en',
-					name:'Eight-sided Dice',
-					content: 'Eight possible outcomes - typically a pool of numbers. Usually used for some damage rolls and hit dice.'
-				})
-			],
-		},
-		{
-			size: 10,
-			tags: srdTags,
-			descriptions: [
-				LocalizedContent.create({
-					language: 'en',
-					name:'Ten-sided Dice',
-					content: 'Ten possible outcomes - typically a pool of numbers. Usually used for some damage rolls and hit dice.'
-				})
-			],
-		},
-		{
-			size: 12,
-			tags: srdTags,
-			descriptions: [
-				LocalizedContent.create({
-					language: 'en',
-					name:'Twelve-sided Dice',
-					content: 'Twelve possible outcomes - typically a pool of numbers. Usually used for some damage rolls and hit dice.'
-				})
-			],
-		},
-		{
-			size: 20,
-			tags: srdTags,
-			descriptions: [
-				LocalizedContent.create({
-					language: 'en',
-					name:'Twenty-sided Dice',
-					content: 'Twenty possible outcomes - typically a pool of numbers. Usually used for ability checks, attack rolls, saving throws, and hit dice.'
-				})
-			],
-		},
-		{
-			size: 100,
-			tags: srdTags,
-			descriptions: [
-				LocalizedContent.create({
-					language: 'en',
-					name:'One Hundred-sided Dice or Percentile Dice',
-					content: 'A hundred possible outcomes - typically a pool of numbers. Usually used for picking a single option from a random table, or for rolling for something really rare such as a Cleric\'s Divine Intervention.'
-				})
-			],
-		},
-	];
-
-	let newDiceSizes = await Promise.all(diceSizes.map(async (dice) => {
-		let newDiceSize = await Dice.create(dice).save();
-		return newDiceSize;
-	}))
 
 
-	let actionTypes = [
-		{
-			// Inherited fields:
-			product: newDndProduct._id,
-			tags: srdTags,
-			descriptions: [
-				LocalizedContent.create({
-					language: 'en',
-					name:'Melee',
-					content: 'Melee attacks require the attacker to be "touching bases" or within reach of the defender.'
-				})
-			],
-			// Model-specific fields:
-			// None, for this particular model
-		},
-		{
-			// Inherited fields:
-			product: newDndProduct._id,
-			tags: srdTags,
-			descriptions: [
-				LocalizedContent.create({
-					language: 'en',
-					name:'Ranged',
-					content: 'Ranged attacks allow an attacker to harm a defender at a distance. The ranged attack will typically require a line of sight, but sometimes don\'t. In any case, a ranged attack will have two ranges specified with it. One number is its normal range, the other number is its long-range - a distance where attacks can be made at disadvantage.'
-				})
-			],
-			// Model-specific fields:
-			// None, for this particular model
-		},
-		{
-			// Inherited fields:
-			product: newDndProduct._id,
-			tags: srdTags,
-			descriptions: [
-				LocalizedContent.create({
-					language: 'en',
-					name:'Other',
-					content: 'A miscellaneous action type for attacks that the developers of Sourcepool haven\'t implemented, or that the designers of the game system haven\'t specified.'
-				})
-			],
-			// Model-specific fields:
-			// None, for this particular model
-		},
-	];
-
-	let newActionTypes = await Promise.all(actionTypes.map(async (action) => {
-		let newActionType = await Dice.create(action).save();
-		return newActionType;
-	}));
 
 	let castingComponentTypes = [
 		{
@@ -284,7 +123,11 @@ const createDefaultData = async () => {
 			// Model-specific fields:
 			// None, for this particular model
 		},
-	]
+	];
+	let newCastingComponentTypes = await Promise.all(castingComponentTypes.map(async (component) => {
+		let newCCT = await CastingComponent.create(component).save();
+		return newCCT;
+	}));
 
 
 
