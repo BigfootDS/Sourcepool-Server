@@ -14,7 +14,7 @@ async function createData(sharedData){
 		],
 		abbreviation: "SRD5.1",
 		releaseDate: new Date(2023, 0, 23),
-		game: sharedData.game.newDndGame._id
+		game: sharedData.game._id
 	}).save();
 
 	return [newProduct];

@@ -1,4 +1,4 @@
-const AttackType = global.modelUtils.models.extendsCustomBaseDocument.AttackType;
+const ActionType = global.modelUtils.models.extendsCustomBaseDocument.ActionType;
 const LocalizedContent = global.modelUtils.models.extendsEmbeddedDocument.LocalizedContent;
 
 
@@ -6,7 +6,9 @@ async function createData(sharedData){
 	let srdTags = sharedData.tags;
 	let newDndProduct = sharedData.product;
 
-	let attackTypes = [
+	// Should be stuff like:
+	// Action, Bonus Action, Reaction, Other
+	let dataSet = [
 		{
 			// Inherited fields:
 			product: newDndProduct._id,
@@ -14,8 +16,8 @@ async function createData(sharedData){
 			descriptions: [
 				LocalizedContent.create({
 					language: 'en',
-					name:'Melee',
-					content: 'Melee attacks require the attacker to be "touching bases" or within reach of the defender.'
+					name:'Action',
+					content: ''
 				})
 			],
 			// Model-specific fields:
@@ -28,8 +30,22 @@ async function createData(sharedData){
 			descriptions: [
 				LocalizedContent.create({
 					language: 'en',
-					name:'Ranged',
-					content: 'Ranged attacks allow an attacker to harm a defender at a distance. The ranged attack will typically require a line of sight, but sometimes don\'t. In any case, a ranged attack will have two ranges specified with it. One number is its normal range, the other number is its long-range - a distance where attacks can be made at disadvantage.'
+					name:'Bonus Action',
+					content: ''
+				})
+			],
+			// Model-specific fields:
+			// None, for this particular model
+		},
+		{
+			// Inherited fields:
+			product: newDndProduct._id,
+			tags: srdTags,
+			descriptions: [
+				LocalizedContent.create({
+					language: 'en',
+					name:'Reaction',
+					content: ''
 				})
 			],
 			// Model-specific fields:
@@ -43,7 +59,7 @@ async function createData(sharedData){
 				LocalizedContent.create({
 					language: 'en',
 					name:'Other',
-					content: 'A miscellaneous action type for attacks that the developers of Sourcepool haven\'t implemented, or that the designers of the game system haven\'t specified.'
+					content: ''
 				})
 			],
 			// Model-specific fields:
@@ -51,12 +67,12 @@ async function createData(sharedData){
 		},
 	];
 
-	let newData = await Promise.all(attackTypes.map(async (action) => {
-		let newAttackType = await AttackType.create(action).save();
-		return newAttackType;
+	let newDataDocs = await Promise.all(dataSet.map(async (action) => {
+		let newDoc = await ActionType.create(action).save();
+		return newDoc;
 	}));
 
-	return newData;
+	return newDataDocs;
 }
 
 module.exports = {createData};

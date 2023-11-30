@@ -5140,6 +5140,20 @@
 					"fk": true
 				},
 				{
+					"id": "9d749ab2-7474-4377-8a21-21152cd63c99",
+					"name": "castingTimeNote",
+					"datatype": "be05d3a8-b046-4f32-ae62-356df9522e7e",
+					"param": "",
+					"pk": false,
+					"nn": false,
+					"list": true,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
 					"id": "c282c4b4-4d5b-48e1-a412-91af9d582f63",
 					"name": "school",
 					"datatype": "ObjectId",
@@ -10688,7 +10702,7 @@
 		"companyUrl": "",
 		"def_coltopk": true,
 		"def_others": "",
-		"lastSaved": 1700999019291
+		"lastSaved": 1701043619538
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -11384,7 +11398,7 @@
 					"referencedItemId": "a4b419a5-76f9-4bba-b238-5e8e3cac32fc",
 					"x": 2112,
 					"y": 3891,
-					"gHeight": 225,
+					"gHeight": 243,
 					"gWidth": 317,
 					"color": "#ffffff",
 					"background": "#03a9f4",

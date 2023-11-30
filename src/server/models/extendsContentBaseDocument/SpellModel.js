@@ -2,6 +2,7 @@ const { ContentBaseDocument } = require('../extendsCustomBaseDocument/ContentBas
 const { Action } = require('../extendsEmbeddedDocument/ActionSubdocument');
 const { AppliedCondition } = require('../extendsEmbeddedDocument/AppliedConditionSubdocument');
 const { DiceRoll } = require('../extendsEmbeddedDocument/DiceRollSubdocument');
+const { LocalizedContent } = require('../extendsEmbeddedDocument/LocalizedContentSubdocument');
 const { SpellComponent } = require('../extendsEmbeddedDocument/SpellComponentSubdocument');
 const { Ability } = require('./AbilityModel');
 const { ActionType } = require('./ActionTypeModel');
@@ -39,6 +40,13 @@ class Spell extends ContentBaseDocument {
 		this.castingTime = {
 			type: ActionType,
 			required: true
+		}
+		// if casting time is "Other", a note should be 
+		// written to explain what that time is. 
+		// eg. 1 hour
+		this.castingTimeNote = {
+			type: [LocalizedContent],
+			required: false
 		}
 
 		this.school = {

@@ -15,16 +15,16 @@ https://creativecommons.org/licenses/by/4.0/legalcode.
 
 ## Extends ContentBaseDocument, smaller amounts of data 
 
-- [ ] ActionType
-- [ ] CastingComponent
-- [ ] SpellSchool
+- [x] ActionType
+- [x] CastingComponent
+- [x] SpellSchool
 - [ ] SpellLevel
 - [x] AttackType
-- [ ] DamageType
-- [ ] Condition
-- [ ] Alignment
-- [ ] Ability
-- [ ] Skill
+- [x] DamageType
+- [x] Condition
+- [x] Alignment
+- [x] Ability
+- [x] Skill
 - [ ] Currency
 - [ ] CurrencyExchange
 - [ ] Language
@@ -38,10 +38,10 @@ https://creativecommons.org/licenses/by/4.0/legalcode.
 
 ## Extends ContentBaseDocument, does not use SRD-specific data
 
-- [ ] Day
-- [ ] Month
-- [ ] Epoch
-- [ ] Calendar
+- [x] Day
+- [x] Month
+- [x] Epoch
+- [x] Calendar
 
 ## Extends ContentBaseDocument, larger amounts of data 
 
@@ -56,7 +56,7 @@ https://creativecommons.org/licenses/by/4.0/legalcode.
 ## Extends ContentBaseDocument, but NOT needed
 
 - [x] Encounter
-- [x] Lore
+- [x] Lore (could be used to add in the SRD as readable content, useful for explanations of rules or whatever else?)
 
 ## Extends CustomBaseDocument, but NOT needed
 
