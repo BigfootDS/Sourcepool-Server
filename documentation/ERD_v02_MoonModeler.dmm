@@ -521,6 +521,34 @@
 					"data": "",
 					"after": "",
 					"options": ""
+				},
+				{
+					"id": "54e26dc4-1103-4087-bd18-2ccbe91d9bb1",
+					"name": "typicalSpeakersTags",
+					"datatype": "String",
+					"param": "",
+					"pk": false,
+					"nn": false,
+					"list": true,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
+				},
+				{
+					"id": "e6e05724-d65d-49c7-ba9e-b5e06ff59939",
+					"name": "script",
+					"datatype": "be05d3a8-b046-4f32-ae62-356df9522e7e",
+					"param": "",
+					"pk": false,
+					"nn": false,
+					"list": true,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"after": "",
+					"options": ""
 				}
 			],
 			"relations": [
@@ -10702,7 +10730,7 @@
 		"companyUrl": "",
 		"def_coltopk": true,
 		"def_others": "",
-		"lastSaved": 1701043619538
+		"lastSaved": 1701310562251
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -10785,10 +10813,10 @@
 				},
 				"5470e8f6-20a2-42a8-967c-dd79747cbb5b": {
 					"referencedItemId": "5470e8f6-20a2-42a8-967c-dd79747cbb5b",
-					"x": 2579,
-					"y": 1332,
-					"gHeight": 46,
-					"gWidth": 216,
+					"x": 2534,
+					"y": 1319,
+					"gHeight": 82,
+					"gWidth": 244,
 					"color": "#ffffff",
 					"background": "#03a9f4",
 					"resized": true,
@@ -10811,8 +10839,8 @@
 				},
 				"65e91e82-defe-4b26-9abb-009af8e1a193": {
 					"referencedItemId": "65e91e82-defe-4b26-9abb-009af8e1a193",
-					"x": 2577,
-					"y": 1424,
+					"x": 2532,
+					"y": 1442,
 					"gHeight": 81,
 					"gWidth": 237,
 					"color": "#ffffff",
@@ -10889,8 +10917,8 @@
 				},
 				"90459e07-9660-45d4-a7c1-d35b65cfcd64": {
 					"referencedItemId": "90459e07-9660-45d4-a7c1-d35b65cfcd64",
-					"x": 2244,
-					"y": 1324,
+					"x": 2199,
+					"y": 1342,
 					"gHeight": 46,
 					"gWidth": 242,
 					"color": "#ffffff",
@@ -10980,8 +11008,8 @@
 				},
 				"48fd3028-39b2-4e6a-97a1-06deb879f5ee": {
 					"referencedItemId": "48fd3028-39b2-4e6a-97a1-06deb879f5ee",
-					"x": 2231,
-					"y": 1414,
+					"x": 2186,
+					"y": 1432,
 					"gHeight": 135,
 					"gWidth": 293,
 					"color": "#ffffff",

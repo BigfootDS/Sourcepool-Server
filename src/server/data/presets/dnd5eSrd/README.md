@@ -18,15 +18,15 @@ https://creativecommons.org/licenses/by/4.0/legalcode.
 - [x] ActionType
 - [x] CastingComponent
 - [x] SpellSchool
-- [ ] SpellLevel
+- [x] SpellLevel
 - [x] AttackType
 - [x] DamageType
 - [x] Condition
 - [x] Alignment
 - [x] Ability
 - [x] Skill
-- [ ] Currency
-- [ ] CurrencyExchange
+- [x] Currency
+- [x] CurrencyExchange
 - [ ] Language
 - [ ] LevelledProficiencyBonusTable
 - [ ] Sense

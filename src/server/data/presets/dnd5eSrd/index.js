@@ -188,11 +188,58 @@ const createDefaultData = async () => {
 		tags: srdTags,
 		product: newProducts[0]
 	});
+	let newSpellLevels = await require('./models/SpellLevel').createData({
+		tags: srdTags,
+		product: newProducts[0]
+	});
 
 	
 	let newAlignments = await require('./models/Alignment').createData({
 		tags: srdTags,
 		product: newProducts[0]
+	});
+
+
+	let newCurrencies = await require('./models/Currency').createData({
+		tags: srdTags,
+		product: newProducts[0]
+	});
+	let newCurrenciesNamed = {
+		copper: 1,
+		silver: 1,
+		electrum: 1,
+		gold: 1,
+		platinum: 1
+	};
+
+	newCurrencies.forEach(currency => {
+		currency.descriptions.forEach(localContent => {
+			switch (localContent.name.toLowerCase()) {
+				case 'copper':
+					newCurrenciesNamed.copper = currency;
+					break;
+				case 'silver':
+					newCurrenciesNamed.silver = currency;
+					break;
+				case 'electrum':
+					newCurrenciesNamed.electrum = currency;
+					break;
+				case 'gold':
+					newCurrenciesNamed.gold = currency;
+					break;
+				case 'platinum':
+					newCurrenciesNamed.platinum = currency;
+					break;
+				default:
+					break;
+			}
+		})
+	});
+
+	let newCurrencyExchanges = await require('./models/CurrencyExchange').createData({
+		tags: srdTags,
+		product: newProducts[0],
+		currencies: newCurrenciesNamed
 	});
 }
 
