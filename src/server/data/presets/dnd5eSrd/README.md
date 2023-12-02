@@ -34,7 +34,6 @@ https://creativecommons.org/licenses/by/4.0/legalcode.
 - [ ] Species
 - [x] SubcreatureCategory
 - [x] Universe
-- [ ] Place
 
 ## Extends ContentBaseDocument, does not use SRD-specific data
 
@@ -57,6 +56,7 @@ https://creativecommons.org/licenses/by/4.0/legalcode.
 
 - [x] Encounter
 - [x] Lore (could be used to add in the SRD as readable content, useful for explanations of rules or whatever else?)
+- [x] Place
 
 ## Extends CustomBaseDocument, but NOT needed
 
