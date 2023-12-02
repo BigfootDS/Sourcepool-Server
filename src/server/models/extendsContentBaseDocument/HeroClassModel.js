@@ -1,7 +1,7 @@
 const { ContentBaseDocument } = require('../extendsCustomBaseDocument/ContentBaseDocument');
 const { AdditionalModifier } = require('../extendsEmbeddedDocument/AdditionalModifierSubdocument');
 const { HitDice } = require('../extendsEmbeddedDocument/HitDiceSubdocument');
-const { LevelledProficiencyBonusTable } = require('./LevelledProficiencyBonusTableModel');
+const { CharacterAdvancement } = require('./CharacterAdvancementModel');
 
 
 
@@ -19,10 +19,6 @@ class HeroClass extends ContentBaseDocument {
 			required: false
 		}
 
-		this.pbProgression = {
-			type: LevelledProficiencyBonusTable,
-			required: true
-		}
 		
 	}
 }

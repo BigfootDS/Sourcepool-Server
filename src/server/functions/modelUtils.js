@@ -29,7 +29,7 @@ const { Feature } = require("../models/extendsContentBaseDocument/FeatureModel")
 const { HeroClass } = require("../models/extendsContentBaseDocument/HeroClassModel");
 const { Item } = require("../models/extendsContentBaseDocument/ItemModel");
 const { Language } = require("../models/extendsContentBaseDocument/LanguageModel");
-const { LevelledProficiencyBonusTable } = require("../models/extendsContentBaseDocument/LevelledProficiencyBonusTableModel");
+const { CharacterAdvancement } = require("../models/extendsContentBaseDocument/CharacterAdvancementModel");
 const { Lore } = require("../models/extendsContentBaseDocument/LoreModel");
 const { Month } = require("../models/extendsContentBaseDocument/MonthModel");
 const { Place } = require("../models/extendsContentBaseDocument/PlaceModel");
@@ -122,7 +122,7 @@ const models = {
 		HeroClass,
 		Item,
 		Language,
-		LevelledProficiencyBonusTable, 
+		CharacterAdvancement, 
 		Lore,
 		Month,
 		Place,

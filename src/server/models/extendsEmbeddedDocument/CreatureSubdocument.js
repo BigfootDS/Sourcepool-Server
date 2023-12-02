@@ -18,6 +18,8 @@ const { CreatureSkill } = require("./CreatureSkillSubdocument");
 const { ItemProficiency } = require("./ItemProficiencySubdocument");
 const { FeatureInstance } = require("./FeatureInstanceSubdocument");
 const { SubcreatureCategory } = require("../extendsContentBaseDocument/SubcreatureCategoryModel");
+const { CharacterAdvancement } = require("../extendsContentBaseDocument/CharacterAdvancementModel");
+
 const EmbeddedDocument = camo.EmbeddedDocument;
 
 
@@ -135,6 +137,11 @@ class Creature extends EmbeddedDocument {
 
 		this.subcreatureCategory = {
 			type: SubcreatureCategory,
+			required: false
+		}
+
+		this.characterAdvancementTable = {
+			type: CharacterAdvancement,
 			required: false
 		}
 

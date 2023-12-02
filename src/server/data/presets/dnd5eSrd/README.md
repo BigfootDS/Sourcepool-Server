@@ -27,9 +27,9 @@ https://creativecommons.org/licenses/by/4.0/legalcode.
 - [x] Skill
 - [x] Currency
 - [x] CurrencyExchange
-- [ ] Language
-- [ ] LevelledProficiencyBonusTable
-- [ ] Sense
+- [x] Language
+- [x] CharacterAdvancementTable
+- [x] Sense
 - [ ] Size
 - [ ] Species
 - [ ] SubcreatureCategory

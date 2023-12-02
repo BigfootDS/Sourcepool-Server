@@ -241,6 +241,22 @@ const createDefaultData = async () => {
 		product: newProducts[0],
 		currencies: newCurrenciesNamed
 	});
+
+	let newLanguages = await require('./models/Language').createData({
+		tags: srdTags,
+		product: newProducts[0]
+	});
+
+	let newCharacterAdvancementTables = await require('./models/CharacterAdvancement').createData({
+		tags: srdTags,
+		product: newProducts[0]
+	});
+
+
+	let newSenses = await require('./models/Sense').createData({
+		tags: srdTags,
+		product: newProducts[0]
+	});
 }
 
 
