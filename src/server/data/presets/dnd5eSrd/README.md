@@ -30,10 +30,10 @@ https://creativecommons.org/licenses/by/4.0/legalcode.
 - [x] Language
 - [x] CharacterAdvancementTable
 - [x] Sense
-- [ ] Size
+- [x] Size
 - [ ] Species
-- [ ] SubcreatureCategory
-- [ ] Universe
+- [x] SubcreatureCategory
+- [x] Universe
 - [ ] Place
 
 ## Extends ContentBaseDocument, does not use SRD-specific data

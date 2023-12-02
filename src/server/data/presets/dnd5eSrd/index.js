@@ -257,6 +257,22 @@ const createDefaultData = async () => {
 		tags: srdTags,
 		product: newProducts[0]
 	});
+
+	let newSizes = await require('./models/Size').createData({
+		tags: srdTags,
+		product: newProducts[0]
+	});
+
+	let newSubcreatureCategories = await require('./models/SubcreatureCategory').createData({
+		tags: srdTags,
+		product: newProducts[0]
+	});
+
+
+	let newUniverses = await require('./models/Universe').createData({
+		tags: srdTags,
+		product: newProducts[0]
+	});
 }
 
 
