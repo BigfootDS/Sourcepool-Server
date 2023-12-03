@@ -3,6 +3,7 @@ const LocalizedContent = global.modelUtils.models.extendsEmbeddedDocument.Locali
 const Size = global.modelUtils.models.extendsCustomBaseDocument.Size;
 const Movement = global.modelUtils.models.extendsEmbeddedDocument.Movement;
 const Language = global.modelUtils.models.extendsCustomBaseDocument.Language;
+const Alignment = global.modelUtils.models.extendsCustomBaseDocument.Alignment;
 
 async function createData(sharedData){
 	let srdTags = sharedData.tags;
@@ -11,6 +12,11 @@ async function createData(sharedData){
 	let sizeSmall = await Size.findOne({'descriptions.name':'Small', 'descriptions.language':'en', product: newDndProduct._id});
 	let languageDwarvish = await Language.findOne({'descriptions.name':'Dwarvish', 'descriptions.language':'en', product: newDndProduct._id});
 	let languageCommon = await Language.findOne({'descriptions.name':'Common', 'descriptions.language':'en', product: newDndProduct._id});
+	// For dwarf:
+	let lawfulAlignments = await Alignment.find({'description.name': {$regex: /lawful/i}, product: newDndProduct._id});
+	lawfulAlignments = lawfulAlignments.map((alignment) => {
+		return alignment._id;
+	});
 
 	// SRD5.1 pages 3-7
 	let dataSet = [
@@ -46,7 +52,7 @@ async function createData(sharedData){
 				languageCommon._id
 			],
 			typicalAlignments: [
-				// TODO
+				...lawfulAlignments
 			], 
 			grantedFeatures: [
 				// TODO

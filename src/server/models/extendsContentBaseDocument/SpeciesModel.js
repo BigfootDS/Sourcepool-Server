@@ -1,9 +1,9 @@
 const { ContentBaseDocument } = require('../extendsCustomBaseDocument/ContentBaseDocument');
 const { CreatureLanguage } = require('../extendsEmbeddedDocument/CreatureLanguageSubdocument');
 const { CreatureSize } = require('../extendsEmbeddedDocument/CreatureSizeSubdocument');
+const { FeatureInstance } = require('../extendsEmbeddedDocument/FeatureInstanceSubdocument');
 const { Movement } = require('../extendsEmbeddedDocument/MovementSubdocument');
 const { Alignment } = require('./AlignmentModel');
-const { Feature } = require('./FeatureModel');
 
 
 
@@ -17,7 +17,7 @@ class Species extends ContentBaseDocument {
 		}
 
 		this.grantedFeatures = {
-			type: [Feature],
+			type: [FeatureInstance],
 			required: false
 		}
 		
