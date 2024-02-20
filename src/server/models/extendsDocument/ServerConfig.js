@@ -101,12 +101,32 @@ class ServerConfig extends Document{
 
 		this.permissions = {
 			type: [ContentPermission],
-			required: false
+			required: true
 		}
 
 		this.editedBy = {
 			type: [User],
 			required: false
+		}
+
+		this.defaultDatapacksCRUDPermissions = {
+			type: [ContentPermission],
+			required: true,
+		}
+
+		this.defaultPluginsCRUDPermissions = {
+			type: [ContentPermission],
+			required: true,
+		}
+
+		// eg. if two datapacks both belong to "D&D SRD 5.1 CC", 
+		// this setting being true will cause two copies of that Product to exist.
+		// Otherwise, the datapack importer will find products of the same name first
+		// and use the first found Product document instead.
+		this.datapacksCreateDuplicateProducts = {
+			type: Boolean,
+			required: true,
+			default: false
 		}
 
 	}

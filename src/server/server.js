@@ -27,13 +27,7 @@ app.use(express.urlencoded({extended: true}));
 // 	console.log(`That error happened because of:\n` + reason);
 // });
 
-const { databaseInitCheck } = require('./functions/serverUtils');
-try {
-	databaseInitCheck();
-} catch (error) {
-	console.log("--- Error occured! --- ")
-	console.log(error);
-}
+
 
 const {readServerConfig} = require('./middleware/serverMiddleware');
 app.use(readServerConfig);

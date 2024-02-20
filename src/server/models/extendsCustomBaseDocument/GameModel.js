@@ -16,6 +16,11 @@ class Game extends CustomBaseDocument {
 			unique: false,
 			default: new Date(Date.now())
 		}
+
+		this.authorName = {
+			type: String,
+			required: true
+		}
 	}
 
 	static getCollectionName() {

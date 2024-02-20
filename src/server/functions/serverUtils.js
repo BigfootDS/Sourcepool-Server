@@ -4,7 +4,6 @@
 const {databaseConnector} = require('../database');
 const { User } = require('../models/extendsDocument/UserModel');
 const {ServerConfig} = require('../models/extendsDocument/ServerConfig');
-const { createDefaultData } = require('../data/presets/dnd5eSrd');
 const modelUtils = require('./modelUtils');
 let db = null;
 const databaseInitCheck = async () => {
@@ -41,7 +40,7 @@ const databaseInitCheck = async () => {
 	await modelUtils.helpers.serverMinimalSetup();
 
 	// console.log("Seeding default game data...");
-	await createDefaultData().catch(error => console.log(error));
+	// await createDefaultData().catch(error => console.log(error));
 
 
 	console.log("Database loaded.");

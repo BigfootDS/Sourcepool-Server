@@ -210,7 +210,6 @@ let utils = {
 	modelsFlat: referenceModelsFlat
 }
 
-global.modelUtils = {...utils};
 module.exports = {...utils};
 
 

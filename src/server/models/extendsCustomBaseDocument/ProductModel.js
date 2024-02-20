@@ -30,6 +30,11 @@ class Product extends CustomBaseDocument {
 			required: true,
 			unique: false
 		}
+
+		this.authorName = {
+			type: String,
+			required: true
+		}
 	}
 
 	static getCollectionName() {
