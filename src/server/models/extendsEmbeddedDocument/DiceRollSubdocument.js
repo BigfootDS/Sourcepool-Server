@@ -1,6 +1,6 @@
 const camo = require('camo');
 const { Dice } = require('../extendsCustomBaseDocument/DiceModel');
-const { DamageType } = require('../extendsContentBaseDocument/DamageTypeModel');
+const { ValueModifier } = require('./ValueModifierSubdocument');
 const EmbeddedDocument = camo.EmbeddedDocument;
 
 class DiceRoll extends EmbeddedDocument {
@@ -18,10 +18,6 @@ class DiceRoll extends EmbeddedDocument {
 			required: true
 		}
 
-		this.damageType = {
-			type: DamageType,
-			required: true
-		}
 
 		this.advantage = {
 			type: Boolean,
@@ -33,6 +29,11 @@ class DiceRoll extends EmbeddedDocument {
 			type: Boolean,
 			required: true,
 			default: false
+		}
+
+		this.bonuses = {
+			type: [ValueModifier],
+			required: false
 		}
 
 	}

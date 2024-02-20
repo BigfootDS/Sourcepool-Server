@@ -75,7 +75,8 @@ class CampaignCalendar extends EmbeddedDocument {
 							name:"The Campaign Begins",
 							content:"This is the in-game date for when the players began their journey in the campaign."
 						})
-					]
+					],
+					isCurrent: true
 				})
 			]
 		}

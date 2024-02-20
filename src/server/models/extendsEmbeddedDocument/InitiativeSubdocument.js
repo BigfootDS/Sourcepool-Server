@@ -1,5 +1,6 @@
 const camo = require("camo");
 const { CreatureInstance } = require("../extendsContentBaseDocument/CreatureInstanceModel");
+const { Entity } = require("../extendsContentBaseDocument/EntityModel");
 const EmbeddedDocument = camo.EmbeddedDocument;
 
 
@@ -9,7 +10,7 @@ class Initiative extends EmbeddedDocument {
 		super();
 		
 		this.creature = {
-			type: [CreatureInstance],
+			type: [Entity],
 			required: true
 		}
 

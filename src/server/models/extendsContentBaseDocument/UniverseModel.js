@@ -1,6 +1,6 @@
 const { ContentBaseDocument } = require('../extendsCustomBaseDocument/ContentBaseDocument');
 const { Calendar } = require('./CalendarModel');
-const { Place } = require('./PlaceModel');
+const { Entity } = require('./EntityModel');
 
 
 
@@ -14,7 +14,7 @@ class Universe extends ContentBaseDocument {
 		}
 
 		this.places = {
-			type: [Place],
+			type: [Entity],
 			required: false
 		}
 		

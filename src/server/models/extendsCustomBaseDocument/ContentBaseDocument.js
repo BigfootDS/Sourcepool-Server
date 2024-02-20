@@ -46,6 +46,16 @@ class ContentBaseDocument extends CustomBaseDocument {
 			type: Product,
 			required: true
 		}
+
+		/**
+		 * An entity can be an instance based on another entity. Instances may have looser permissions, or may synchronise from an upstream "prototype" entity.
+		 * Required. Gotta know whether or not it's true or false. Default is false.
+		 */
+		this.isInstance = {
+			type: Boolean,
+			required: true,
+			default: false
+		}
 	}
 
 	static getCollectionName() {

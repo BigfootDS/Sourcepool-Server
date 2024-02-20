@@ -1,6 +1,6 @@
 const { ContentBaseDocument } = require('../extendsCustomBaseDocument/ContentBaseDocument');
 const { Initiative } = require('../extendsEmbeddedDocument/InitiativeSubdocument');
-const { Place } = require('./PlaceModel');
+const { Entity } = require('./EntityModel');
 
 
 
@@ -9,7 +9,7 @@ class Encounter extends ContentBaseDocument {
 		super();
 		
 		this.location = {
-			type: Place,
+			type: Entity,
 			required: false
 		}
 

@@ -11,31 +11,6 @@ const { Role } = require('./RoleModel');
  * @author BigfootDS
  *
  * @class
- * @property {[LocalizedContent]} descriptions Required. A collection of LocalizedContent subdocuments to store variations of names & descriptions of this entity in multiple languages. At least one LocalizedContent (title and content) must exist so that humans can see what entity they're looking at.
- * @property {[String]} tags Optional. A list of strings that can be used to filter and search for this entity.
- * @extends {Document}
- 
-Example data:
- ```js
- {
-	descriptions: [
-		 {
-			language: "en",
-			name: "Excalibur",
-			content: "That super cool sword from legends of old. "
-		},
-		{
-			language: "fr",
-			name: "Excalibur",
-			content: "C'est l'epee super cool de myths. "
-		}
-	],
-	tags: [
-		"sword", 
-		"magic"
-	]
- }
- ```
  */
 class CustomBaseDocument extends Document {
 	constructor(){
@@ -44,10 +19,21 @@ class CustomBaseDocument extends Document {
 		/**
 		 * A collection of LocalizedContent subdocuments to store variations of names & descriptions of this entity in multiple languages.
 		 * Required. At least one LocalizedContent (title and content) must exist so that humans can see what entity they're looking at.
+		 * This is the short version of the descriptor, shown in places like character sheets or hover-hints on documents.
 		 */
-		this.descriptions = {
+		this.descriptionsBrief = {
 			type: [LocalizedContent],
 			required: true
+		}
+
+		/**
+		 * A collection of LocalizedContent subdocuments to store variations of names & descriptions of this entity in multiple languages.
+		 * Optional. If not provided, the descriptionsBrief content will be used instead so that humans can see what entity they're looking at.
+		 * This is the full descriptor, shown in places like individual pages or full-page modals about a document.
+		 */
+		this.descriptionsFull = {
+			type: [LocalizedContent],
+			required: false
 		}
 
 		/**

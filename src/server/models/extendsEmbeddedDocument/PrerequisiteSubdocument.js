@@ -1,6 +1,5 @@
 const camo = require("camo");
 const { LocalizedContent } = require("./LocalizedContentSubdocument");
-const { Reference } = require("./ReferenceSubdocument");
 const EmbeddedDocument = camo.EmbeddedDocument;
 
 
@@ -26,36 +25,30 @@ class Prerequisite extends EmbeddedDocument {
 			default: new Date(Date.now())
 		}
 
-		this.greaterThan = {
-			type: Boolean,
-			required: false
-		}
-
-		this.equalTo = {
-			type: Boolean,
-			required: false
-		}
-
-		this.lesserThan = {
-			type: Boolean,
-			required: false
-		}
-
-		this.anyOf = {
-			type: Boolean,
-			required: false
-		}
-
-		this.allOf = {
-			type: Boolean,
-			required: false
-		}
-
-		this.reference = {
-			type: Reference,
+		this.requiredPropertyName = {
+			type: String,
 			required: true
 		}
 		
+		this.requiredPropertyValueMatch = {
+			type: String,
+			required: false
+		}
+
+		this.requiredPropertyValueMinimum = {
+			type: Number,
+			required: false
+		}
+
+		this.requiredPropertyValueMaximum = {
+			type: Number,
+			required: false
+		}
+
+		this.requiredPropertyValuePresence = {
+			type: Boolean,
+			required: false
+		}
 	}
 }
 
