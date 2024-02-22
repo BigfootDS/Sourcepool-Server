@@ -4,6 +4,7 @@ const { LocalizedContent } = require('../extendsEmbeddedDocument/LocalizedConten
 const { ContentPermission } = require('../extendsEmbeddedDocument/ContentPermissionSubdocument');
 const { User } = require('./UserModel');
 const { Role } = require('./RoleModel');
+const { Datapack } = require('./DatapackModel');
 
 
 /**
@@ -52,6 +53,11 @@ class CustomBaseDocument extends Document {
 
 		this.editedBy = {
 			type: [User],
+			required: false
+		}
+
+		this.sourceDatapack = {
+			type: Datapack,
 			required: false
 		}
 	}

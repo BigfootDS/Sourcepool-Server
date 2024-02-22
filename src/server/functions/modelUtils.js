@@ -3,6 +3,7 @@
 const { Role } = require("../models/extendsDocument/RoleModel");
 const { ServerConfig } = require("../models/extendsDocument/ServerConfig");
 const { User } = require("../models/extendsDocument/UserModel");
+const { Datapack } = require("../models/extendsDocument/DatapackModel");
 
 // Extends CustomBaseDocument
 const { Campaign } = require("../models/extendsCustomBaseDocument/CampaignModel");
@@ -41,7 +42,8 @@ const models = {
 	extendsDocument: {
 		User,
 		Role,
-		ServerConfig
+		ServerConfig,
+		Datapack
 	},
 	extendsCustomBaseDocument: {
 		Campaign,
