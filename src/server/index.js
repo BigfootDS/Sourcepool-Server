@@ -43,7 +43,7 @@ console.log("Sourcepool Server now starting up on " + localIp);
 // 1. ".env" file values
 // 2. Database values
 // 3. Default values
-const HOST = process.env.HOST || serverSettings.host || 'localhost';
+const HOST = process.env.HOST || serverSettings.host || localIp || 'localhost';
 const PORT = process.env.PORT || serverSettings.port || 7474;
 /* 
 Wanna be inline with Servarr ports
@@ -67,7 +67,7 @@ const { ServerConfig } = require('./models/extendsDocument/ServerConfig.js');
 detect(PORT).then(_port => {
 	if (PORT == _port){
 		// port is available to use
-		app.listen(PORT, HOST, () => {
+		app.listen(PORT, () => {
 			console.clear();
 			console.log("Server running!");
 		});
