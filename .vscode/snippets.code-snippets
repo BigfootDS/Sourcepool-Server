@@ -1,0 +1,113 @@
+{
+	// Place your dnd-character-erd workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	//
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"Make Camo document":{
+		"scope":"javascript",
+		"prefix":["camo-doc", "sourcepool-document"],
+		"body":[
+			"const camo = require(\"camo\");",
+			"const Document = camo.Document;",
+			"",
+			"",
+			"",
+			"class ${1:ModelName} extends Document {",
+			"	constructor(){",
+			"		super();",
+			"		",
+			"		",
+			"		"
+			"	}",
+			"}",
+			"",
+			"",
+			"",
+			"module.exports = { ${1:ModelName} }"
+		],
+		"description":"Generates boilerplate for a model based on Camo's Document."
+	},
+	"Make Camo subdocument":{
+		"scope":"javascript",
+		"prefix":["camo-subdoc", "camo-embeddeddoc", "camo-embed", "sourcepool-subdocument"],
+		"body":[
+			"const camo = require(\"camo\");",
+			"const EmbeddedDocument = camo.EmbeddedDocument;",
+			"",
+			"",
+			"",
+			"class ${1:ModelName} extends EmbeddedDocument {",
+			"	constructor(){",
+			"		super();",
+			"		",
+			"		",
+			"		"
+			"	}",
+			"}",
+			"",
+			"",
+			"",
+			"module.exports = { ${1:ModelName} }"
+		],
+		"description":"Generates boilerplate for a model based on Camo's EmbeddedDocument, which is their version of a NoSQL subdocument."
+	},
+	"Make model extending CustomBaseDocument":{
+		"scope":"javascript",
+		"prefix":["sourcepool-extends-custombasedocument"],
+		"body":[
+			"const { CustomBaseDocument } = require('../extendsDocument/CustomBaseDocumentModel');",
+			"",
+			"",
+			"",
+			"class ${1:ModelName} extends CustomBaseDocument {",
+			"	constructor(){",
+			"		super();",
+			"		",
+			"		",
+			"		"
+			"	}",
+			"}",
+			"",
+			"",
+			"",
+			"module.exports = { ${1:ModelName} }"
+		],
+		"description":"Generates boilerplate for a model that inherits from Sourcepool's CustomBaseDocument model."
+	},
+	"Make model extending ContentBaseDocument":{
+		"scope":"javascript",
+		"prefix":["sourcepool-extends-contentbasedocument"],
+		"body":[
+			"const { ContentBaseDocument } = require('../extendsCustomBaseDocument/ContentBaseDocument');",
+			"",
+			"",
+			"",
+			"class ${1:ModelName} extends ContentBaseDocument {",
+			"	constructor(){",
+			"		super();",
+			"		",
+			"		",
+			"		"
+			"	}",
+			"}",
+			"",
+			"",
+			"",
+			"module.exports = { ${1:ModelName} }"
+		],
+		"description":"Generates boilerplate for a model that inherits from Sourcepool's ContentBaseDocument model."
+	},
+}

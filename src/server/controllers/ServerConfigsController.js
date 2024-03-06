@@ -1,4 +1,4 @@
-const { ServerConfig } = require('../models/ServerConfig');
+const { ServerConfig } = require('../models/extendsDocument/ServerConfig');
 
 const router = require('express').Router();
 

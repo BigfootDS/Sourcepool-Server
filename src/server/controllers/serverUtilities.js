@@ -1,6 +1,6 @@
 const express = require('express');
 const camo = require('camo');
-const { User } = require('../models/UserModel');
+const { User } = require('../models/extendsDocument/UserModel');
 const { requiresAdminUser } = require('../middleware/authMiddleware');
 
 const router = express.Router();

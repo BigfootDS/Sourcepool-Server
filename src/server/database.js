@@ -7,9 +7,9 @@ let db = null;
 async function databaseConnector(){
 	db = null;
 	try {
-		console.log(`Checking for database at: ${process.env.userStorageDir}/data \n`)
-		db = await camo.connect(`nedb://${process.env.userStorageDir}/data`);
-		
+		console.log(`Checking for database at: ${global.databasePath} \n`)
+		db = await camo.connect(`nedb://${global.databasePath}`);
+		global.modelUtils.helpers.pingAllModels();
 		console.log("Server connected to database!");
 		return db;
 	  } catch (error) {

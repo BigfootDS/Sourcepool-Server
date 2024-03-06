@@ -22,25 +22,20 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // Debug error handling
-void process.on('unhandledRejection', (reason, p) => {
-	console.log(`Things got pretty major here! Big error:\n`+ JSON.stringify(p));
-	console.log(`That error happened because of:\n` + reason);
-});
+// void process.on('unhandledRejection', (reason, p) => {
+// 	console.log(`Things got pretty major here! Big error:\n`+ JSON.stringify(p));
+// 	console.log(`That error happened because of:\n` + reason);
+// });
 
-const { databaseInitCheck } = require('./functions/serverUtils');
-try {
-	databaseInitCheck();
-} catch (error) {
-	console.log("--- Error occured! --- ")
-	console.log(error);
-}
+
 
 const {readServerConfig} = require('./middleware/serverMiddleware');
 app.use(readServerConfig);
 
 
-const { User } = require('./models/UserModel');
-const bcrypt = require('bcryptjs');
+const { User } = require('./models/extendsDocument/UserModel');
+const { generateUserJwt, hashPassword } = require('./functions/userAuthUtils');
+const { Role } = require('./models/extendsDocument/RoleModel');
 
 // Keeping the admin creation route separate so that it is usable regardless of auth settings
 app.post("/users/admin/create/emergency", async (request, response) => {
@@ -50,11 +45,13 @@ app.post("/users/admin/create/emergency", async (request, response) => {
 			message:"Other admin accounts exist, please use those to do whatever you're trying to do."
 		});
 	} else {
-		let hashedAndSaltedPassword = await bcrypt.hash(request.body.password, 16);
+		let hashedAndSaltedPassword = await hashPassword(request.body.password);
+		let adminRole = await Role.findOne({"descriptions.name": "Admin"});
+		// console.log(adminRole);
 		let newModelInstance = User.create({
 			username: request.body.username,
 			password: hashedAndSaltedPassword,
-			isAdmin: true
+			roles: [adminRole._id]
 		});
 		let result = await newModelInstance.save();
 		let freshJwt = await generateUserJwt(result._id);
@@ -72,7 +69,7 @@ const electronHelpers = require('./controllers/electronUtilities');
 app.use("/electron", electronHelpers);
 
 const path = require('node:path');
-const { generateUserJwt } = require('./functions/userAuthUtils');
+
 
 
 let localWebClientPath = path.join(process.env.userStorageDir, 'localWebClient');

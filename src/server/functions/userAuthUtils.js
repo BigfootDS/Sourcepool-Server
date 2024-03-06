@@ -1,10 +1,11 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { ServerConfig } = require('../models/ServerConfig');
+const { ServerConfig } = require('../models/extendsDocument/ServerConfig');
 
 
 const hashPassword = async (unsecurePassword) => {
-	let passwordSalt = await bcrypt.genSalt(16);
+	let serverSettings = await ServerConfig.findOne({});
+	let passwordSalt = await bcrypt.genSalt(serverSettings.passwordSaltCostFactor || 8);
 	return bcrypt.hashSync(unsecurePassword, passwordSalt)
 }
 

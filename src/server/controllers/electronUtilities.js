@@ -4,7 +4,7 @@ const path = require('node:path');
 const router = express.Router();
 var downloadRelease = require('download-github-release');
 const semver = require('semver');
-const { ServerConfig } = require('../models/ServerConfig');
+const { ServerConfig } = require('../models/extendsDocument/ServerConfig');
 
 router.get("/updateLocalWebClient", async (request, response) => {
 	let localWebClientPath = path.join(process.env.userStorageDir, 'localWebClient');
