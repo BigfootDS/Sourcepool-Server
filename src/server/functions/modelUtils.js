@@ -93,9 +93,12 @@ async function pingAllModels(){
 
 async function serverMinimalSetup(){
 	let roles = await models.extendsDocument.Role.find({});
+	let regularUserRole = null;
+	let adminUserRole = null; 
+
 	if (roles.length == 0){
 		// create user and admin roles
-		let regularUserRole = await models.extendsDocument.Role.create({
+		regularUserRole = await models.extendsDocument.Role.create({
 			admin: false,
 			descriptions: [
 				{
@@ -106,7 +109,7 @@ async function serverMinimalSetup(){
 			]
 		}).save();
 
-		let adminUserRole = await models.extendsDocument.Role.create({
+		adminUserRole = await models.extendsDocument.Role.create({
 			admin: true,
 			descriptions: [
 				{
@@ -123,6 +126,32 @@ async function serverMinimalSetup(){
 
 	let serverConfig = await models.extendsDocument.ServerConfig.find({});
 	if (serverConfig.length == 0){
+
+		if (!regularUserRole){
+			regularUserRole = await models.extendsDocument.Role.find({admin:false, "descriptions.name": "User"});
+		}
+
+		if (!adminUserRole){
+			adminUserRole = await models.extendsDocument.Role.find({admin: true, 'descriptions.name':'Admin'});
+		}
+
+		let defaultPermissions = [
+			ContentPermission.create({
+				role: regularUserRole._id,
+				create: false,
+				read: true,
+				update: false,
+				delete: false
+			}),
+			ContentPermission.create({
+				role: adminUserRole._id,
+				create: true,
+				read: true,
+				update: true,
+				delete: true
+			})
+		];
+
 		let newServerConfig = await models.extendsDocument.ServerConfig.create({
 			name: "Sourcepool Server",
 			ftueComplete: false,
@@ -134,7 +163,11 @@ async function serverMinimalSetup(){
 			clientAutoUpdateInterval: 1000 * 60 * 60, // one hour
 			jwtEncryptionKey: "Customise this to increase the security level of the server's password encryption.",
 			jwtLifetimeBeforeExpiry: "7d",
-			passwordSaltCostFactor: 8
+			passwordSaltCostFactor: 8,
+			permissions: defaultPermissions,
+			defaultDatapacksCRUDPermissions: defaultPermissions,
+			defaultPluginsCRUDPermissions: defaultPermissions,
+			datapacksCreateDuplicateProducts: false
 		}).save();
 	}
 
