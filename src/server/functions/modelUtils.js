@@ -3,37 +3,19 @@
 const { Role } = require("../models/extendsDocument/RoleModel");
 const { ServerConfig } = require("../models/extendsDocument/ServerConfig");
 const { User } = require("../models/extendsDocument/UserModel");
-const { Datapack } = require("../models/extendsDocument/DatapackModel");
+const { ServerPlugin } = require("../models/extendsDocument/ServerPluginModel");
 
 // Extends CustomBaseDocument
 const { Campaign } = require("../models/extendsCustomBaseDocument/CampaignModel");
-const { Dice } = require("../models/extendsCustomBaseDocument/DiceModel");
 const { Game } = require("../models/extendsCustomBaseDocument/GameModel");
 const { Product } = require("../models/extendsCustomBaseDocument/ProductModel");
-const { Grant } = require("../models/extendsCustomBaseDocument/GrantModel");
 
 // Extends ContentBaseDocument
-
-const { Calendar } = require("../models/extendsContentBaseDocument/CalendarModel");
-const { Day } = require("../models/extendsContentBaseDocument/DayModel");
-const { Encounter } = require("../models/extendsContentBaseDocument/EncounterModel");
-const { Epoch } = require("../models/extendsContentBaseDocument/EpochModel");
-const { Entity } = require("../models/extendsContentBaseDocument/EntityModel");
 const { Lore } = require("../models/extendsContentBaseDocument/LoreModel");
-const { Month } = require("../models/extendsContentBaseDocument/MonthModel");
-const { Property } = require("../models/extendsContentBaseDocument/PropertyModel");
-const { Universe } = require("../models/extendsContentBaseDocument/UniverseModel");
 
 // Extends EmbeddedDocument
-const { CampaignCalendar } = require("../models/extendsEmbeddedDocument/CampaignCalendarSubdocument");
 const { ContentPermission } = require("../models/extendsEmbeddedDocument/ContentPermissionSubdocument");
-const { DiceRoll } = require("../models/extendsEmbeddedDocument/DiceRollSubdocument");
-const { ImportantDate } = require("../models/extendsEmbeddedDocument/ImportantDateSubdocument");
-const { ImportantEvent } = require("../models/extendsEmbeddedDocument/ImportantEventSubdocument");
-const { Initiative } = require("../models/extendsEmbeddedDocument/InitiativeSubdocument");
 const { LocalizedContent } = require("../models/extendsEmbeddedDocument/LocalizedContentSubdocument");
-const { Prerequisite } = require("../models/extendsEmbeddedDocument/PrerequisiteSubdocument");
-const { ValueModifier } = require("../models/extendsEmbeddedDocument/ValueModifierSubdocument");
 
 
 //#endregion
@@ -43,35 +25,19 @@ const models = {
 		User,
 		Role,
 		ServerConfig,
-		Datapack
+		ServerPlugin
 	},
 	extendsCustomBaseDocument: {
 		Campaign,
-		Dice,
 		Game,
 		Product,
-		Grant
 	},
 	extendsContentBaseDocument: {
-		Calendar,
-		Day,
-		Encounter,
-		Epoch,
-		Entity,
-		Lore,
-		Month,
-		Property,
-		Universe
+		Lore
 	},
 	extendsEmbeddedDocument: {
-		CampaignCalendar,
 		ContentPermission,
-		DiceRoll,
-		ImportantDate, ImportantEvent,
-		Initiative,
-		LocalizedContent, 
-		Prerequisite,
-		ValueModifier
+		LocalizedContent
 	}
 }
 

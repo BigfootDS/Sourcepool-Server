@@ -4,7 +4,7 @@ const { LocalizedContent } = require('../extendsEmbeddedDocument/LocalizedConten
 const { ContentPermission } = require('../extendsEmbeddedDocument/ContentPermissionSubdocument');
 const { User } = require('./UserModel');
 const { Role } = require('./RoleModel');
-const { Datapack } = require('./DatapackModel');
+const { Datapack } = require('./ServerPluginModel');
 
 
 /**

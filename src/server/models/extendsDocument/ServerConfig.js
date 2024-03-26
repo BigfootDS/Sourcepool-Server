@@ -77,6 +77,15 @@ class ServerConfig extends Document{
 			required: true
 		}
 
+		// Allow connected users to clone the server's databases
+		// eg. allow players to view their characters & other creatures
+		// while disconnected from this server
+		this.canServerBeCloned = {
+			type: Boolean,
+			default: true,
+			required: true
+		}
+
 		this.jwtEncryptionKey = {
 			type: String,
 			default: "Customise this to increase the security level of the server's password encryption.",

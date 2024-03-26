@@ -43,7 +43,11 @@ console.log("Sourcepool Server now starting up on " + localIp);
 // 1. ".env" file values
 // 2. Database values
 // 3. Default values
+
+// Don't use HOST, potential listener address issues -- more work needed
 const HOST = process.env.HOST || serverSettings.host || localIp || 'localhost';
+
+
 const PORT = process.env.PORT || serverSettings.port || 7474;
 /* 
 Wanna be inline with Servarr ports

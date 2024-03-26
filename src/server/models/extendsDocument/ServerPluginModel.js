@@ -3,7 +3,7 @@ const { LocalizedContent } = require('../extendsEmbeddedDocument/LocalizedConten
 const { ContentPermission } = require('../extendsEmbeddedDocument/ContentPermissionSubdocument');
 
 
-class Datapack extends Document {
+class ServerPlugin extends Document {
 	constructor(){
 		super();
 
@@ -56,9 +56,9 @@ class Datapack extends Document {
 	}
 
 	static getCollectionName() {
-		return 'datapacks';
+		return 'serverPlugins';
 	}
 }
 
 
-module.exports = { Datapack };
+module.exports = { ServerPlugin };

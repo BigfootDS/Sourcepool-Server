@@ -14,15 +14,10 @@ global.modelUtils = modelUtils;
 global.databasePath = `${process.env.userStorageDir}/database`;
 
 /**
- * String representing the OS file path to the available game source data.
- * Users find and copy datapacks into this directory however they like.
- * These datapacks are then used as source files for database data.
- */
-global.datapacks = `${process.env.userStorageDir}/datapacks`;
-
-/**
  * String representing the OS file path to the installed server plugins.
- * Some server functionality is provided as a bundle of plugins, while other plugins may be user-collected for further server customisation.
+ * Some server functionality is provided as a bundle of plugins, 
+ * while other plugins may be user-collected for further server customisation.
+ * Plugins can be used to store game content, such as character classes, creatures, and spells.
  * It's anything, really.
  * The server will load up plugins on boot-up.
  */
