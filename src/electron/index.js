@@ -24,7 +24,7 @@ let clientAutoUpdateCheckInterval = null;
 app.whenReady().then(async () => {
 	// If MacOS app dock is available, hide the app
 	if (app.dock) app.dock.hide();
-	console.clear();
+	// console.clear();
 
 	// Set package name in case Electron removes it,
 	// it just helps with database file tidiness
@@ -33,9 +33,9 @@ app.whenReady().then(async () => {
 	process.env.npm_package_version = serverVersion;
 	
 	// Confirm what environment variables are available to the app:
-	if (process.env.NODE_ENV ==  "development") {
-		console.log("ElectronJS envs: \n"+JSON.stringify(process.env, null, 4));
-	}
+	// if (process.env.NODE_ENV ==  "development") {
+	// 	console.log("ElectronJS envs: \n"+JSON.stringify(process.env, null, 4));
+	// }
 	
 	// Start up the server:
 	require('../server/index');

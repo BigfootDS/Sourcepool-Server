@@ -23,6 +23,9 @@ router.use("/users", userController);
 const configsController = require('./controllers/ServerConfigsController');
 router.use("/config", configsController);
 
+const pluginsController = require("./controllers/ServerPluginsController");
+router.use("/plugins", pluginsController);
+
 const genericModelsController = require('./controllers/GenericModelsController');
 router.use("/models", requiresValidUserJwt, genericModelsController);
 

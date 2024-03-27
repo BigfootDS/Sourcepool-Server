@@ -10,7 +10,7 @@ if (!process.env.userStorageDir || process.env.userStorageDir == undefined){
 
 // Custom globals depend on process.env.userStorageDir, so that needs to be setup first!
 require('./customGlobals.js');
-console.log(global);
+// console.log(global);
 
 // Get server settings from database
 const { databaseInitCheck } = require('./functions/serverUtils');
@@ -77,8 +77,7 @@ detect(PORT).then(_port => {
 		});
 	} else {
 		// port is not available to use
-		console.warn(
-`Port ${PORT} was not available, Sourcepool will now close.`);
+		console.warn("Port " + PORT + "was not available, Sourcepool will now close.");
 		process.exit(1);
 	}
 }).catch(error => {

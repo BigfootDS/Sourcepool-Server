@@ -7,12 +7,33 @@ class ServerPlugin extends Document {
 	constructor(){
 		super();
 
+		this.name = {
+			type: String,
+			required: true
+		}
+
+		this.namespace = {
+			type: String,
+			required: true
+		}
+
+		this.loadPriority = {
+			type: Number,
+			required: false,
+			default: 1
+		}
+
 		this.sourceUrl = {
 			type: String,
 			required: false
 		}
 
-		this.authorName = {
+		this.localPath = {
+			type: String,
+			required: true
+		}
+
+		this.author = {
 			type: String,
 			required: false
 		}

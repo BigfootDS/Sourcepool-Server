@@ -1,5 +1,5 @@
 
-
+const path = require('node:path');
 const modelUtils = require('./functions/modelUtils');
 /**
  * An object containing model references and helper functions so help us
@@ -11,7 +11,7 @@ global.modelUtils = modelUtils;
  * String representing the OS file path to the server-managed data.
  * This data should be a series of documents representing Camo-formatted NoSQL data.
  */
-global.databasePath = `${process.env.userStorageDir}/database`;
+global.databasePath = path.join(process.env.userStorageDir, "database");
 
 /**
  * String representing the OS file path to the installed server plugins.
@@ -21,4 +21,4 @@ global.databasePath = `${process.env.userStorageDir}/database`;
  * It's anything, really.
  * The server will load up plugins on boot-up.
  */
-global.serverPlugins = `${process.env.userStorageDir}/plugins`;
+global.serverPlugins = path.join(process.env.userStorageDir, "plugins");

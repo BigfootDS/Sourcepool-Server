@@ -64,20 +64,6 @@
 					"fk": false
 				},
 				{
-					"id": "9e8f7ae3-31bb-44ba-b677-3334f8304cfb",
-					"name": "tags",
-					"datatype": "17607923-7f1a-4348-bc02-5be19bc3fbf3",
-					"param": "",
-					"pk": false,
-					"nn": false,
-					"list": true,
-					"comment": "",
-					"data": "",
-					"options": "",
-					"estimatedSize": "",
-					"fk": false
-				},
-				{
 					"id": "3f4b2f94-8e95-47e9-b6dd-fa8354a7f09e",
 					"name": "editedBy",
 					"datatype": "ObjectId",
@@ -104,11 +90,26 @@
 					"fk": true,
 					"list": false,
 					"estimatedSize": ""
+				},
+				{
+					"id": "bf9067cf-1446-433a-bcbf-94580432adb3",
+					"name": "tags",
+					"datatype": "ObjectId",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"options": "",
+					"estimatedSize": "",
+					"fk": true
 				}
 			],
 			"relations": [
 				"6e9d7ee6-9a93-4fb0-a771-a2191ad8e740",
-				"0ecc8bbd-fea1-42b7-a692-680ab146a988"
+				"0ecc8bbd-fea1-42b7-a692-680ab146a988",
+				"f72a3472-76cd-492d-9e37-86ae12660aa7"
 			],
 			"lines": [],
 			"keys": [
@@ -492,7 +493,7 @@
 					"datatype": "String",
 					"param": "",
 					"pk": false,
-					"nn": true,
+					"nn": false,
 					"list": false,
 					"comment": "",
 					"data": "",
@@ -1394,6 +1395,79 @@
 			"beforeScript": "",
 			"afterScript": "",
 			"others": ""
+		},
+		"f4d30dca-7239-47ca-ae86-67380b3ca140": {
+			"id": "f4d30dca-7239-47ca-ae86-67380b3ca140",
+			"visible": true,
+			"name": "Tag",
+			"desc": "Extends Document.",
+			"estimatedSize": "",
+			"cols": [
+				{
+					"id": "9a735318-df7c-4b59-ad5b-dd8038f65fcd",
+					"name": "_id",
+					"datatype": "ObjectId",
+					"param": "",
+					"pk": true,
+					"nn": true,
+					"list": false,
+					"comment": "",
+					"data": "",
+					"options": "",
+					"estimatedSize": ""
+				},
+				{
+					"id": "09d80eb6-1046-4503-adfa-0ed305f95460",
+					"name": "values",
+					"datatype": "17607923-7f1a-4348-bc02-5be19bc3fbf3",
+					"param": "",
+					"pk": false,
+					"nn": false,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"options": "",
+					"estimatedSize": ""
+				},
+				{
+					"id": "86e75425-70b9-4699-80c5-47ca0e2dea88",
+					"name": "permissions",
+					"datatype": "723ef7cd-2fea-47a8-b994-dc72c6d5de9e",
+					"param": "",
+					"pk": false,
+					"nn": true,
+					"list": true,
+					"comment": "",
+					"data": "",
+					"options": "",
+					"estimatedSize": ""
+				}
+			],
+			"relations": [
+				"f72a3472-76cd-492d-9e37-86ae12660aa7"
+			],
+			"lines": [],
+			"keys": [
+				{
+					"id": "dfd4ce98-4ce8-4abf-ac84-e362a4d9abed",
+					"name": "Primary",
+					"isPk": true,
+					"cols": [
+						{
+							"id": "c32ad5d8-f4e6-4df7-81f4-fe4e3a96c6f1",
+							"colid": "9a735318-df7c-4b59-ad5b-dd8038f65fcd"
+						}
+					]
+				}
+			],
+			"indexes": [],
+			"embeddable": false,
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"beforeScript": "",
+			"afterScript": "",
+			"others": ""
 		}
 	},
 	"relations": {
@@ -1693,6 +1767,33 @@
 			"generateCustomCode": true,
 			"customCode": "",
 			"relationColor": "transparent"
+		},
+		"f72a3472-76cd-492d-9e37-86ae12660aa7": {
+			"id": "f72a3472-76cd-492d-9e37-86ae12660aa7",
+			"visible": true,
+			"name": "_id_CustomBaseDocument",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "dfd4ce98-4ce8-4abf-ac84-e362a4d9abed",
+			"parent": "f4d30dca-7239-47ca-ae86-67380b3ca140",
+			"child": "af904a6c-60f2-41d3-b4ef-2513b6dfdb75",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "ca9ed4d6-1b92-4644-953e-a9f207cc7258",
+					"parentcol": "9a735318-df7c-4b59-ad5b-dd8038f65fcd",
+					"childcol": "bf9067cf-1446-433a-bcbf-94580432adb3"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true,
+			"customCode": "",
+			"relationColor": "transparent"
 		}
 	},
 	"notes": {},
@@ -1727,7 +1828,7 @@
 		"companyUrl": "",
 		"def_coltopk": true,
 		"def_others": "",
-		"lastSaved": 1711406419612
+		"lastSaved": 1711500131624
 	},
 	"otherObjects": {},
 	"diagrams": {
@@ -1737,7 +1838,7 @@
 			"id": "015fdd02-f5b2-4714-a909-fdd4ac0229c3",
 			"keysgraphics": true,
 			"linegraphics": "detailed",
-			"zoom": 0.5,
+			"zoom": 0.7,
 			"background": "transparent",
 			"lineColor": "transparent",
 			"isOpen": true,
@@ -1898,6 +1999,19 @@
 					"autoExpand": true,
 					"backgroundOpacity": "10",
 					"collapsed": false
+				},
+				"f4d30dca-7239-47ca-ae86-67380b3ca140": {
+					"referencedItemId": "f4d30dca-7239-47ca-ae86-67380b3ca140",
+					"x": 294,
+					"y": 385,
+					"gHeight": 81,
+					"gWidth": 289,
+					"color": "#ffffff",
+					"background": "#000000",
+					"resized": false,
+					"autoExpand": true,
+					"backgroundOpacity": "10",
+					"collapsed": false
 				}
 			},
 			"scroll": {
@@ -1924,7 +2038,7 @@
 			"showColumnDataTypes": true,
 			"showSampleData": false,
 			"showTableIndexes": true,
-			"showTableDescriptions": false,
+			"showTableDescriptions": true,
 			"showRelations": true,
 			"backgroundImage": "na",
 			"descriptionsColor": "transparent",
