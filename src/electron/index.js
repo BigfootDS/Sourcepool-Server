@@ -24,7 +24,7 @@ let clientAutoUpdateCheckInterval = null;
 app.whenReady().then(async () => {
 	// If MacOS app dock is available, hide the app
 	if (app.dock) app.dock.hide();
-	console.clear();
+	// console.clear();
 
 	// Set package name in case Electron removes it,
 	// it just helps with database file tidiness
@@ -33,9 +33,9 @@ app.whenReady().then(async () => {
 	process.env.npm_package_version = serverVersion;
 	
 	// Confirm what environment variables are available to the app:
-	if (process.env.NODE_ENV ==  "development") {
-		console.log("ElectronJS envs: \n"+JSON.stringify(process.env, null, 4));
-	}
+	// if (process.env.NODE_ENV ==  "development") {
+	// 	console.log("ElectronJS envs: \n"+JSON.stringify(process.env, null, 4));
+	// }
 	
 	// Start up the server:
 	require('../server/index');
@@ -114,57 +114,39 @@ const updateMenu = () => {
 
 	let menuItems = [
 		{
-			label:`Sourcepool ${serverVersion}`,
+			label:`Sourcepool Server ${serverVersion}`,
 			enabled: false
 		},
 		{
 			label: 'Open Sourcepool',
-			sublabel:`Client: ${clientVersion}`,
+			// sublabel:`Client: ${clientVersion}`,
 			click() { 
 				shell.openExternal(`http://localhost:${PORT}/`);
 			}
 		},
-		{
-			label: `Newer Client Version Available: ${newClientVersion}`,
-			sublabel: clientVersion,
-			visible: Boolean(newClientVersion),
-			enabled: false
-		},
-		{
-			label: `Update Local Client To ${newClientVersion}`,
-			visible: Boolean(newClientVersion),
-			async click() {
-				let clientUpdateCheck = await fetch(`http://localhost:${PORT}/electron/updateLocalWebClient`);
-				newClientVersion = clientUpdateCheck.newVersion || null;
-			}
-		},
+		// {
+		// 	label: `Newer Client Version Available: ${newClientVersion}`,
+		// 	sublabel: clientVersion,
+		// 	visible: Boolean(newClientVersion),
+		// 	enabled: false
+		// },
+		// {
+		// 	label: `Update Local Client To ${newClientVersion}`,
+		// 	visible: Boolean(newClientVersion),
+		// 	async click() {
+		// 		let clientUpdateCheck = await fetch(`http://localhost:${PORT}/electron/updateLocalWebClient`);
+		// 		newClientVersion = clientUpdateCheck.newVersion || null;
+		// 	}
+		// },
 		{ type: 'separator' },
 		{
 			label: 'Server Directories',
 			submenu: [
 				{
-					label: 'External Data Packs Location',
-					click() { 
-						let dataPacksPath = path.join(app.getPath('documents'), "Sourcepool", "Server Data Packs");
-						
-						if (!fs.existsSync(dataPacksPath)){
-							console.log("External data packs directory did not exist, creating it now...");
-							fs.mkdirSync(dataPacksPath, {recursive: true});
-						}
-		
-						const {openExplorer} = require('explorer-opener');
-						openExplorer(dataPacksPath).then(() => {
-							console.log("Opening data packs directory now...");
-						}).catch((error) => {
-							console.log(error);
-						});
-					}
-				},
-				{
-					label: 'Internal Data Packs Location',
+					label: 'Plugins Directory',
 					click() { 
 						// let databasePath = path.join(app.getPath('documents'), "Sourcepool", "Server Data Packs");
-						let dataPacksPath = path.join(app.getPath('userData'), "bundledDataPacks");
+						let dataPacksPath = path.join(app.getPath('userData'), "plugins");
 						if (!fs.existsSync(dataPacksPath)){
 							console.log("Internal data packs directory did not exist, creating it now...");
 							fs.mkdirSync(dataPacksPath, {recursive: true});
@@ -180,10 +162,10 @@ const updateMenu = () => {
 					}
 				},
 				{
-					label: 'Database Location',
+					label: 'Database Directory',
 					click() { 
 						// let databasePath = path.join(app.getPath('documents'), "Sourcepool", "Server Data Packs");
-						let databasePath = path.join(app.getPath('userData'), "data");
+						let databasePath = path.join(app.getPath('userData'), "database");
 						if (!fs.existsSync(databasePath)){
 							console.log("Database directory did not exist, creating it now...");
 							fs.mkdirSync(databasePath, {recursive: true});

@@ -10,7 +10,7 @@ if (!process.env.userStorageDir || process.env.userStorageDir == undefined){
 
 // Custom globals depend on process.env.userStorageDir, so that needs to be setup first!
 require('./customGlobals.js');
-console.log(global);
+// console.log(global);
 
 // Get server settings from database
 const { databaseInitCheck } = require('./functions/serverUtils');
@@ -43,7 +43,11 @@ console.log("Sourcepool Server now starting up on " + localIp);
 // 1. ".env" file values
 // 2. Database values
 // 3. Default values
+
+// Don't use HOST, potential listener address issues -- more work needed
 const HOST = process.env.HOST || serverSettings.host || localIp || 'localhost';
+
+
 const PORT = process.env.PORT || serverSettings.port || 7474;
 /* 
 Wanna be inline with Servarr ports
@@ -73,8 +77,7 @@ detect(PORT).then(_port => {
 		});
 	} else {
 		// port is not available to use
-		console.warn(
-`Port ${PORT} was not available, Sourcepool will now close.`);
+		console.warn("Port " + PORT + "was not available, Sourcepool will now close.");
 		process.exit(1);
 	}
 }).catch(error => {

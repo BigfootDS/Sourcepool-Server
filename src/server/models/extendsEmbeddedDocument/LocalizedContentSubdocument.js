@@ -48,7 +48,7 @@ class LocalizedContent extends EmbeddedDocument {
 		this.name = {
 			type: String,
 			unique: false,
-			required: true
+			required: false
 		}
 
 		/**
