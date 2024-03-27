@@ -18,11 +18,9 @@ async function discoverLocalPlugins(){
 
 	let potentialPluginDirs = fs.readdirSync(pluginDirectory, { withFileTypes: true });
 	potentialPluginDirs = potentialPluginDirs.filter((directory) => directory.isDirectory())
-	// console.log(potentialPluginDirs);
 	
 	availablePluginDirs = potentialPluginDirs.map((directory) => {return path.join(pluginDirectory, directory.name)});
 
-	// console.log(availablePluginDirs);
 
 	for (const directoryPath of availablePluginDirs) {
 		let potentialMetadataPath = path.join(directoryPath, "package.json");
@@ -30,8 +28,7 @@ async function discoverLocalPlugins(){
 
 		try {
 			await fsPromise.access(potentialMetadataPath, fs.constants.R_OK);
-			// console.log("Metadata found! " + potentialMetadataPath);
-			// foundPluginMetadata.push(potentialMetadataPath);
+			
 
 			// For each found package.json of a plugin,
 			// check if we have a database entry of that plugin.
@@ -96,8 +93,7 @@ async function processDirectoryAsPlugin(targetDirectory){
 
 	try {
 		await fsPromise.access(potentialMetadataPath, fs.constants.R_OK);
-		// console.log("Metadata found! " + potentialMetadataPath);
-		// foundPluginMetadata.push(potentialMetadataPath);
+		
 
 		// For each found package.json of a plugin,
 		// check if we have a database entry of that plugin.
@@ -107,14 +103,10 @@ async function processDirectoryAsPlugin(targetDirectory){
 		let existingDbEntry = await ServerPlugin.findOne({name: packageMeta.name, namespace: packageMeta.sourcepool.namespace});
 		
 		let serverConfig = await ServerConfig.findOne({});
-		// console.log("ServerConfig:");
-		// console.log(serverConfig);
+		
 		
 		if (existingDbEntry == null){
 
-			// console.log("\r\n");
-			// console.log("ServerConfig:");
-			// console.log(serverConfig);
 
 			let newEntry = await ServerPlugin.create({
 				name: packageMeta.name,
@@ -185,7 +177,6 @@ async function processDirectoryAsPlugin(targetDirectory){
  */
 async function pluginLoader(){
 	console.log("Parent app start");
-	// let otherAppDirectory = path.resolve("../Sourcepool-Server-Test-Plugin");
 
 	// Find all plugins in DB
 	// Sort them by loadPriority from lowest to highest, lowest first
